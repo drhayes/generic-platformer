@@ -1,0 +1,2 @@
+# surrender
+A short game.
