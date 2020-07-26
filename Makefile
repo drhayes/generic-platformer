@@ -1,9 +1,11 @@
 # All the dang dirs.
 ASSETS_DIR := assets
 TILE_ASSETS_DIR := $(ASSETS_DIR)/tiles
+IMAGE_ASSETS_DIR := $(ASSETS_DIR)/images
 MEDIA_DIR := media
 IMAGES_DIR := $(MEDIA_DIR)/images
 JSON_DIR := $(MEDIA_DIR)/json
+SRC_DIR := src
 
 TMP_DIR := tmp
 TILES_TMP := $(TMP_DIR)/tiles
@@ -26,8 +28,8 @@ TILE_MARKERS=$(patsubst $(TILE_ASSETS_DIR)/%.ase,$(TILES_TMP)/%.tilemarker,$(TIL
 ###############
 
 .PHONY: start
-start: tiles
-	echo Starting...
+start: $(SRC_DIR)/media $(SRC_DIR)/lib tiles media/images/icon.png
+	exec love $(SRC_DIR)
 
 .PHONY: tiles
 tiles: $(IMAGES_DIR)/tiles.png $(JSON_DIR)/tiles.json
@@ -37,6 +39,12 @@ tiles: $(IMAGES_DIR)/tiles.png $(JSON_DIR)/tiles.json
 # Directories #
 ###############
 
+$(SRC_DIR)/media:
+	ln -s $(abspath $(MEDIA_DIR)) $(abspath $@)
+
+$(SRC_DIR)/lib:
+	ln -s $(abspath lib) $(abspath $@)
+
 $(IMAGES_DIR):
 	mkdir -p $@
 
@@ -45,6 +53,13 @@ $(JSON_DIR):
 
 $(TILES_TMP):
 	mkdir -p $@
+
+########
+# Misc #
+########
+
+media/images/icon.png: $(IMAGE_ASSETS_DIR)/icon.ase
+	$(ASEPRITE) --batch $< --save-as $@
 
 #########
 # Tiles #
