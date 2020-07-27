@@ -6,6 +6,7 @@ TILEMAP_ASSETS_DIR := $(ASSETS_DIR)/tilemaps
 MEDIA_DIR := media
 IMAGES_DIR := $(MEDIA_DIR)/images
 JSON_DIR := $(MEDIA_DIR)/json
+TILEMAPS_DIR := $(MEDIA_DIR)/tilemaps
 SRC_DIR := src
 TMP_DIR := tmp
 TILES_TMP := $(TMP_DIR)/tiles
@@ -25,6 +26,7 @@ TILED=/home/drhayes/bin/Tiled-1.3.3-x86_64.AppImage
 # Generated stuff.
 # Tiles.
 TILE_MARKERS=$(patsubst $(TILE_ASSETS_DIR)/%.ase,$(TILES_TMP)/%.tilemarker,$(TILE_ASSETS))
+CONVERTED_TILEMAPS=$(patsubst $(TILEMAP_ASSETS_DIR)/%.tmx,$(TILEMAPS_DIR)/%.lua,$(TILEMAP_ASSETS))
 
 
 ###############
@@ -32,11 +34,14 @@ TILE_MARKERS=$(patsubst $(TILE_ASSETS_DIR)/%.ase,$(TILES_TMP)/%.tilemarker,$(TIL
 ###############
 
 .PHONY: start
-start: $(SRC_DIR)/media $(SRC_DIR)/lib tiles media/images/icon.png
+start: $(SRC_DIR)/media $(SRC_DIR)/lib tiles media/images/icon.png tilemaps
 	@exec love $(SRC_DIR)
 
 .PHONY: tiles
 tiles: $(IMAGES_DIR)/tiles.png $(JSON_DIR)/tiles.json
+
+.PHONY: tilemaps
+tilemaps: $(CONVERTED_TILEMAPS)
 
 
 ###############
@@ -55,16 +60,11 @@ $(IMAGES_DIR):
 $(JSON_DIR):
 	mkdir -p $@
 
-$(TILES_TMP):
+$(TILEMAPS_DIR):
 	mkdir -p $@
 
-
-########
-# Misc #
-########
-
-media/images/icon.png: $(IMAGE_ASSETS_DIR)/icon.ase
-	$(ASEPRITE) --batch $< --save-as $@
+$(TILES_TMP):
+	mkdir -p $@
 
 
 #########
@@ -76,3 +76,19 @@ $(IMAGES_DIR)/tiles.png $(JSON_DIR)/tiles.json: $(TILE_MARKERS) | $(IMAGES_DIR) 
 
 $(TILES_TMP)/%.tilemarker: $(TILE_ASSETS_DIR)/%.ase | $(TILES_TMP)
 	$(ASEPRITE) --batch --split-slices $< --save-as '$(TILES_TMP)/$*-{slice}.png' && touch $@
+
+
+############
+# Tilemaps #
+############
+
+$(TILEMAPS_DIR)/%.lua: $(TILEMAP_ASSETS_DIR)/%.tmx | $(TILEMAPS_DIR)
+	$(TILED) $< --export-map $@
+
+
+########
+# Misc #
+########
+
+media/images/icon.png: $(IMAGE_ASSETS_DIR)/icon.ase
+	$(ASEPRITE) --batch $< --save-as $@
