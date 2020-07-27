@@ -22,18 +22,18 @@ local function parseTilesets(spec)
 end
 
 
-function Tilemap:new(name, spec, spriteMaker)
-  self.name = name
-  self.spec = spec
-  self.spriteMaker = spriteMaker
+function Tilemap:new(spec)
+  self.name = spec.name
+  self.spec = spec.tilemapData
+  self.spriteMaker = spec.spriteMaker
 
   local tilesByGid = parseTilesets(self.spec)
   self.tilesByGid = tilesByGid
 
   -- Iterate layers to find top-left corner.
   local minX, minY = math.huge, math.huge
-  for i = 1, #spec.layers do
-    local layer = spec.layers[i]
+  for i = 1, #spec.tilemapData.layers do
+    local layer = spec.tilemapData.layers[i]
     -- Is this a tilelayer?
     if layer.type == 'tilelayer' then
       -- Check every chunk.
@@ -42,13 +42,19 @@ function Tilemap:new(name, spec, spriteMaker)
         minX = math.min(minX, chunk.x)
         minY = math.min(minY, chunk.y)
       end
+    elseif layer.type == 'objectgroup' then
+      for j = 1, #layer.objects do
+        local object = layer.objects[j]
+        minX = math.min(minX, object.x)
+        minY = math.min(minY, object.y)
+      end
     end
   end
 
   local layers = {}
   -- Now iterates layers to create Grid instances and add tile objects to in them.
-  for i = 1, #spec.layers do
-    local layer = spec.layers[i]
+  for i = 1, #spec.tilemapData.layers do
+    local layer = spec.tilemapData.layers[i]
     if layer.type == 'tilelayer' and layer.name ~= 'physics' then
       table.insert(layers, TileLayer(layer, tilesByGid, -minX, -minY))
     end
@@ -57,6 +63,13 @@ function Tilemap:new(name, spec, spriteMaker)
     end
   end
   self.layers = layers
+end
+
+function Tilemap:initialize(eventBus, spriteMaker)
+  for i = 1, #self.layers do
+    local layer = self.layers[i]
+    layer:initialize(eventBus, spriteMaker)
+  end
 end
 
 function Tilemap:update(dt)

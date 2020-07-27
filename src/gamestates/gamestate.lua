@@ -11,5 +11,9 @@ function Gamestate:update(dt) end
 function Gamestate:draw() end
 function Gamestate:leave() end
 
+function Gamestate:subscribe(event, handler)
+  self.eventBus:on(event, handler, self)
+end
+
 
 return Gamestate

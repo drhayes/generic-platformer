@@ -1,13 +1,16 @@
 local Object = require 'lib.classic'
 
+local Player = require 'sprites.player'
 local Spawner = require 'sprites.spawner'
 
 local SpriteMaker = Object:extend()
 
-function SpriteMaker:new(spriteAtlas)
+function SpriteMaker:new(spriteAtlas, eventBus)
   self.spriteAtlas = spriteAtlas
+  self.eventBus = eventBus
 
   self.mapping = {
+    player = Player,
     spawner = Spawner,
   }
 end
