@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="2">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="3">
  <editorsettings>
   <chunksize width="20" height="16"/>
  </editorsettings>
  <tileset firstgid="1" source="stone.tsx"/>
  <tileset firstgid="63" source="collision.tsx"/>
+ <tileset firstgid="66" source="environment.tsx"/>
  <layer id="2" name="floor" width="100" height="100">
   <data encoding="csv">
    <chunk x="-20" y="-16" width="20" height="16">
@@ -13,8 +14,8 @@
 0,0,0,0,0,0,0,0,45,57,55,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,45,43,32,25,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,4,19,18,17,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,2147483653,5,0,1610612741,5,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,536870917,1073741829,0,3221225477,2684354565,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,46,48,48,48,48,48,48,0,0,0,0,0,0,0,0,0,
 0,0,0,0,6,1,21,20,20,20,20,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,31,20,20,20,20,20,0,0,0,0,0,0,0,0,0,
@@ -50,6 +51,6 @@
   </data>
  </layer>
  <objectgroup id="3" name="things">
-  <object id="1" x="-256" y="-176" width="16" height="32"/>
+  <object id="2" gid="66" x="-240" y="-480" width="16" height="16" visible="0"/>
  </objectgroup>
 </map>

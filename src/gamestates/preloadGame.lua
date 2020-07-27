@@ -45,6 +45,10 @@ function PreloadGame:slurpDirectory(directory, resourceTable, read, parse)
 end
 
 function PreloadGame:leave()
+  -- Make the sprite atlas.
+  local spriteAtlas = Atlas(self.jsons['sprites.json'], self.images['sprites.png'])
+  self.eventBus:emit('setSpriteAtlas', spriteAtlas)
+
   -- Make the tile atlas.
   local tileAtlas = Atlas(self.jsons['tiles.json'], self.images['tiles.png'])
   self.eventBus:emit('setTileAtlas', tileAtlas)

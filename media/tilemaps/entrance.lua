@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 4,
-  nextobjectid = 2,
+  nextobjectid = 3,
   properties = {},
   tilesets = {
     {
@@ -460,6 +460,38 @@ return {
           height = 16
         }
       }
+    },
+    {
+      name = "environment",
+      firstgid = 66,
+      filename = "../../assets/tilemaps/environment.tsx",
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 0,
+      objectalignment = "topleft",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 1,
+        height = 1
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1,
+      tiles = {
+        {
+          id = 0,
+          type = "spawner",
+          image = "../../tmp/sprites/spawner-000.png",
+          width = 16,
+          height = 16
+        }
+      }
     }
   },
   layers = {
@@ -486,8 +518,8 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 45, 57, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 45, 43, 32, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 4, 19, 18, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 2147483653, 5, 0, 1610612741, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 536870917, 1073741829, 0, 3221225477, 2684354565, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 46, 48, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 6, 1, 21, 20, 20, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 31, 20, 20, 20, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -551,16 +583,17 @@ return {
       properties = {},
       objects = {
         {
-          id = 1,
+          id = 2,
           name = "",
           type = "",
           shape = "rectangle",
-          x = -256,
-          y = -176,
+          x = -240,
+          y = -480,
           width = 16,
-          height = 32,
+          height = 16,
           rotation = 0,
-          visible = true,
+          gid = 66,
+          visible = false,
           properties = {}
         }
       }

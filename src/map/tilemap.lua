@@ -1,5 +1,6 @@
 local Object = require 'lib.classic'
 local TileLayer = require 'map.tileLayer'
+local ObjectLayer = require 'map.objectLayer'
 
 local Tilemap = Object:extend()
 
@@ -21,9 +22,10 @@ local function parseTilesets(spec)
 end
 
 
-function Tilemap:new(name, spec)
+function Tilemap:new(name, spec, spriteMaker)
   self.name = name
   self.spec = spec
+  self.spriteMaker = spriteMaker
 
   local tilesByGid = parseTilesets(self.spec)
   self.tilesByGid = tilesByGid
@@ -51,9 +53,7 @@ function Tilemap:new(name, spec)
       table.insert(layers, TileLayer(layer, tilesByGid, -minX, -minY))
     end
     if layer.type == 'objectgroup' then
-      self.thing = layer.objects[1]
-      self.thing.x = self.thing.x - minX * 16
-      self.thing.y = self.thing.y - minY * 16
+      table.insert(layers, ObjectLayer(layer, tilesByGid, -minX, -minY, self.spriteMaker))
     end
   end
   self.layers = layers
@@ -63,12 +63,6 @@ function Tilemap:draw(windowFactor, tileAtlas)
   for i = 1, #self.layers do
     local layer = self.layers[i]
     layer:draw(windowFactor, tileAtlas)
-  end
-  if self.thing then
-    love.graphics.push()
-    love.graphics.scale(windowFactor)
-    love.graphics.rectangle('fill', self.thing.x, self.thing.y, self.thing.width, self.thing.height)
-    love.graphics.pop()
   end
 end
 

@@ -1,5 +1,4 @@
 local Object = require 'lib.classic'
-local lume = require 'lib.lume'
 
 local Atlas = Object:extend()
 

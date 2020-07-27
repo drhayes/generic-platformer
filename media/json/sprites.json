@@ -431,6 +431,14 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
+},
+"spawner-000.png":
+{
+	"frame": {"x":127,"y":73,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
@@ -439,6 +447,6 @@
 	"format": "RGBA8888",
 	"size": {"w":144,"h":144},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:3767cc2de2795c1b5bab2427952786de:8eeded42b3ee9bcbc45c07fb818fe7d3:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:c387dfcb3c793f1d7f56a7391eb3ee3c:a144fcd9e72b460e5a5b40d352eb3270:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }
