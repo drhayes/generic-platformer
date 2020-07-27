@@ -2,7 +2,11 @@ local Object = require 'lib.classic'
 
 local Spawner = Object:extend()
 
-function Spawner:new(mapObject, objectType)
+function Spawner:new(spec)
+end
+
+function Spawner:update(dt)
+
 end
 
 function Spawner:draw()

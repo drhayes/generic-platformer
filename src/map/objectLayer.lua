@@ -29,6 +29,13 @@ function ObjectLayer:new(layerData, tilesByGid, offsetX, offsetY, spriteMaker)
   end
 end
 
+function ObjectLayer:update(dt)
+  for i = 1, #self.sprites do
+    local sprite = self.sprites[i]
+    sprite:update(dt)
+  end
+end
+
 function ObjectLayer:draw(windowFactor, tileAtlas)
   for i = 1, #self.sprites do
     local sprite = self.sprites[i]

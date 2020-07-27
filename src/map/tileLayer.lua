@@ -90,6 +90,8 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   end
 end
 
+function TileLayer:update(dt) end
+
 local lg = love.graphics
 
 function TileLayer:draw(windowFactor, tileAtlas)

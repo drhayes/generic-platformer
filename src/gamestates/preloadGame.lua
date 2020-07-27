@@ -17,7 +17,10 @@ function PreloadGame:new(eventBus)
 end
 
 function PreloadGame:enter()
-  log.info('Preload')
+  log.debug('-----------')
+  log.debug('  Preload')
+  log.debug('-----------')
+
   self.resourceCount = 0
 
   self:slurpDirectory('media/images', self.images, lily.newImage)

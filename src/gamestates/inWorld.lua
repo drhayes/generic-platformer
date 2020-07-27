@@ -14,7 +14,15 @@ function InWorld:new(eventBus)
 end
 
 function InWorld:enter()
-  log.info('InWorld')
+  log.debug('-----------')
+  log.debug('  InWorld')
+  log.debug('-----------')
+end
+
+function InWorld:update(dt)
+  if self.currentTilemap then
+    self.currentTilemap:update(dt)
+  end
 end
 
 function InWorld:draw()

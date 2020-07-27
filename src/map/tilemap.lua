@@ -59,6 +59,13 @@ function Tilemap:new(name, spec, spriteMaker)
   self.layers = layers
 end
 
+function Tilemap:update(dt)
+  for i = 1, #self.layers do
+    local layer = self.layers[i]
+    layer:update(dt)
+  end
+end
+
 function Tilemap:draw(windowFactor, tileAtlas)
   for i = 1, #self.layers do
     local layer = self.layers[i]
