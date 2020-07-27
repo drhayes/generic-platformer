@@ -1,22 +1,26 @@
 # All the dang dirs.
 ASSETS_DIR := assets
-TILE_ASSETS_DIR := $(ASSETS_DIR)/tiles
 IMAGE_ASSETS_DIR := $(ASSETS_DIR)/images
+TILE_ASSETS_DIR := $(ASSETS_DIR)/tiles
+TILEMAP_ASSETS_DIR := $(ASSETS_DIR)/tilemaps
 MEDIA_DIR := media
 IMAGES_DIR := $(MEDIA_DIR)/images
 JSON_DIR := $(MEDIA_DIR)/json
 SRC_DIR := src
-
 TMP_DIR := tmp
 TILES_TMP := $(TMP_DIR)/tiles
 
+
 # All the dang assets.
 TILE_ASSETS := $(wildcard $(TILE_ASSETS_DIR)/*.ase)
+TILEMAP_ASSETS := $(wildcard $(TILEMAP_ASSETS_DIR)/*.tmx)
 
 
 # Programs I use.
 ASEPRITE=/usr/bin/aseprite
 TEXTUREPACKER=/usr/bin/TexturePacker
+TILED=/home/drhayes/bin/Tiled-1.3.3-x86_64.AppImage
+
 
 # Generated stuff.
 # Tiles.
@@ -54,12 +58,14 @@ $(JSON_DIR):
 $(TILES_TMP):
 	mkdir -p $@
 
+
 ########
 # Misc #
 ########
 
 media/images/icon.png: $(IMAGE_ASSETS_DIR)/icon.ase
 	$(ASEPRITE) --batch $< --save-as $@
+
 
 #########
 # Tiles #
