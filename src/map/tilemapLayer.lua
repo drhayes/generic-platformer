@@ -98,7 +98,7 @@ function TilemapLayer:draw(windowFactor, tileAtlas)
     local quad = tileAtlas:toQuad(tileData.image)
     local dx, dy = x * TILE_SIZE, y * TILE_SIZE
     if quad then
-      lg.draw(tilesImage, quad, dx, dy, tileData.r, tileData.sx, tileData.sy, 8, 8)
+      lg.draw(tilesImage, quad, dx + 8, dy + 8, tileData.r, tileData.sx, tileData.sy, 8, 8)
     else
       log.error('missing tile image', tileData.image)
     end

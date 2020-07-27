@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="3" nextobjectid="1">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="2">
  <editorsettings>
   <chunksize width="20" height="16"/>
  </editorsettings>
@@ -27,7 +27,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="1" name="physics" width="100" height="100">
+ <layer id="1" name="physics" width="100" height="100" visible="0">
   <data encoding="csv">
    <chunk x="-20" y="-16" width="20" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -49,4 +49,7 @@
 </chunk>
   </data>
  </layer>
+ <objectgroup id="3" name="things">
+  <object id="1" x="-256" y="-176" width="16" height="32"/>
+ </objectgroup>
 </map>

@@ -32,11 +32,14 @@ function Tilemap:new(name, spec)
   local minX, minY = math.huge, math.huge
   for i = 1, #spec.layers do
     local layer = spec.layers[i]
-    -- Check every chunk.
-    for j = 1, #layer.chunks do
-      local chunk = layer.chunks[j]
-      minX = math.min(minX, chunk.x)
-      minY = math.min(minY, chunk.y)
+    -- Is this a tilelayer?
+    if layer.type == 'tilelayer' then
+      -- Check every chunk.
+      for j = 1, #layer.chunks do
+        local chunk = layer.chunks[j]
+        minX = math.min(minX, chunk.x)
+        minY = math.min(minY, chunk.y)
+      end
     end
   end
 
@@ -47,6 +50,11 @@ function Tilemap:new(name, spec)
     if layer.type == 'tilelayer' and layer.name ~= 'physics' then
       table.insert(layers, TilemapLayer(layer, tilesByGid, -minX, -minY))
     end
+    if layer.type == 'objectgroup' then
+      self.thing = layer.objects[1]
+      self.thing.x = self.thing.x - minX * 16
+      self.thing.y = self.thing.y - minY * 16
+    end
   end
   self.layers = layers
 end
@@ -55,6 +63,12 @@ function Tilemap:draw(windowFactor, tileAtlas)
   for i = 1, #self.layers do
     local layer = self.layers[i]
     layer:draw(windowFactor, tileAtlas)
+  end
+  if self.thing then
+    love.graphics.push()
+    love.graphics.scale(windowFactor)
+    love.graphics.rectangle('fill', self.thing.x, self.thing.y, self.thing.width, self.thing.height)
+    love.graphics.pop()
   end
 end
 
