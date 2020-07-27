@@ -1,5 +1,5 @@
 local Object = require 'lib.classic'
-local TilemapLayer = require 'map.tilemapLayer'
+local TileLayer = require 'map.tileLayer'
 
 local Tilemap = Object:extend()
 
@@ -48,7 +48,7 @@ function Tilemap:new(name, spec)
   for i = 1, #spec.layers do
     local layer = spec.layers[i]
     if layer.type == 'tilelayer' and layer.name ~= 'physics' then
-      table.insert(layers, TilemapLayer(layer, tilesByGid, -minX, -minY))
+      table.insert(layers, TileLayer(layer, tilesByGid, -minX, -minY))
     end
     if layer.type == 'objectgroup' then
       self.thing = layer.objects[1]

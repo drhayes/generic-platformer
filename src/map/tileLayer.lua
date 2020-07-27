@@ -8,14 +8,14 @@ local FLIPPED_VERTICAL = 0x40000000
 local FLIPPED_DIAGONALLY = 0x20000000
 local TILE_SIZE = config.tileSize
 
-local TilemapLayer = Object:extend()
+local TileLayer = Object:extend()
 
 local function basename(str)
   local name = string.gsub(str, "(.*/)(.*)", "%2")
   return name
 end
 
-function TilemapLayer:new(layerData, tilesByGid, offsetX, offsetY)
+function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   offsetX, offsetY = offsetX or 0, offsetY or 0
   self.name = layerData.name
   self.visible = layerData.visible or true
@@ -92,7 +92,7 @@ end
 
 local lg = love.graphics
 
-function TilemapLayer:draw(windowFactor, tileAtlas)
+function TileLayer:draw(windowFactor, tileAtlas)
   local tilesImage = tileAtlas.image
   local drawCell = function(x, y, tileData)
     local quad = tileAtlas:toQuad(tileData.image)
@@ -111,4 +111,4 @@ function TilemapLayer:draw(windowFactor, tileAtlas)
   lg.pop()
 end
 
-return TilemapLayer
+return TileLayer
