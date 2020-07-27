@@ -26,8 +26,6 @@ function Atlas:new(json, image)
       }
     end
   end
-  -- Bind the toQuad method so it can be passed to lume.map and stuff.
-  self.toQuad = lume.fn(self.toQuad, self)
 end
 
 function Atlas:toQuad(frameName)

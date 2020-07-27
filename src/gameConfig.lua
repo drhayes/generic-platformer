@@ -1,4 +1,6 @@
 return {
+  tileSize = 16,
+
   graphics = {
     width = 400,
     height = 225,

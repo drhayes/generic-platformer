@@ -7,29 +7,40 @@ local PreloadGame = Gamestate:extend()
 
 local lf = love.filesystem
 
+local identity = function(x) return x end
+
 function PreloadGame:new(eventBus)
   PreloadGame.super.new(self, eventBus)
   self.images = {}
   self.jsons = {}
+  self.tilemaps = {}
 end
 
 function PreloadGame:enter()
   log.info('Preload')
   self.resourceCount = 0
-  -- Images.
-  local imageFilenames = lf.getDirectoryItems('media/images')
-  for i = 1, #imageFilenames do
-    local imageName = imageFilenames[i]
-    lily.newImage('media/images/' .. imageName)
-      :onComplete(self:createImageHandler(imageName))
-  end
 
-  -- JSONs.
-  local jsonFilenames = lf.getDirectoryItems('media/json')
-  for i = 1, #jsonFilenames do
-    local jsonFilename = jsonFilenames[i]
-    lily.read('media/json/' .. jsonFilename)
-      :onComplete(self:createJsonHandler(jsonFilename))
+  self:slurpDirectory('media/images', self.images, lily.newImage)
+  self:slurpDirectory('media/json', self.jsons, lily.read, json.parse)
+  self:slurpDirectory('media/tilemaps', self.tilemaps, lily.read, loadstring)
+end
+
+function PreloadGame:slurpDirectory(directory, resourceTable, read, parse)
+  read = read or lily.read
+  parse = parse or identity
+  local createHandler = function(name)
+    self.resourceCount = self.resourceCount + 1
+    return function(_, data)
+      log.debug('Loaded:', name)
+      resourceTable[name] = parse(data)
+      self.resourceCount = self.resourceCount - 1
+    end
+  end
+  local filenames = lf.getDirectoryItems(directory)
+  for i = 1, #filenames do
+    local filename = filenames[i]
+    read(directory .. '/' .. filename)
+      :onComplete(createHandler(filename))
   end
 end
 
@@ -37,21 +48,10 @@ function PreloadGame:leave()
   -- Make the tile atlas.
   local tileAtlas = Atlas(self.jsons['tiles.json'], self.images['tiles.png'])
   self.eventBus:emit('setTileAtlas', tileAtlas)
-end
 
-function PreloadGame:createImageHandler(imageName)
-  self.resourceCount = self.resourceCount + 1
-  return function(_, image)
-    self.images[imageName] = image
-    self.resourceCount = self.resourceCount - 1
-  end
-end
-
-function PreloadGame:createJsonHandler(jsonName)
-  self.resourceCount = self.resourceCount + 1
-  return function(_, jsonData)
-    self.jsons[jsonName] = json.parse(jsonData)
-    self.resourceCount = self.resourceCount - 1
+  -- The tilemaps.
+  for name, map in pairs(self.tilemaps) do
+    self.eventBus:emit('loadedTilemap', name, map)
   end
 end
 

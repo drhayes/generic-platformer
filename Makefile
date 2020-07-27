@@ -20,7 +20,7 @@ TILEMAP_ASSETS := $(wildcard $(TILEMAP_ASSETS_DIR)/*.tmx)
 # Programs I use.
 ASEPRITE=/usr/bin/aseprite
 TEXTUREPACKER=/usr/bin/TexturePacker
-TILED=/home/drhayes/bin/Tiled-1.3.3-x86_64.AppImage
+TILED=/home/drhayes/bin/Tiled-1.4.1-x86_64.AppImage
 
 
 # Generated stuff.

@@ -3,7 +3,7 @@ inspect = require 'lib.inspect' -- luacheck: ignore
 log = require 'lib.log' -- luacheck: ignore
 local config = require 'gameConfig'
 local EventEmitter = require 'core.eventEmitter'
-local StateSwitcher = require 'core.stateSwitcher'
+local StateSwitcher = require 'gamestates.stateSwitcher'
 local lily = require 'lib.lily'
 
 local eventBus
@@ -34,6 +34,7 @@ function love.load()
 
   eventBus = EventEmitter()
   stateSwitcher = StateSwitcher(eventBus)
+  eventBus:emit('setWindowFactor', windowFactor)
   eventBus:emit('switchState', 'preloadGame')
 end
 
