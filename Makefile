@@ -29,7 +29,7 @@ TILE_MARKERS=$(patsubst $(TILE_ASSETS_DIR)/%.ase,$(TILES_TMP)/%.tilemarker,$(TIL
 
 .PHONY: start
 start: $(SRC_DIR)/media $(SRC_DIR)/lib tiles media/images/icon.png
-	exec love $(SRC_DIR)
+	@exec love $(SRC_DIR)
 
 .PHONY: tiles
 tiles: $(IMAGES_DIR)/tiles.png $(JSON_DIR)/tiles.json

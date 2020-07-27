@@ -2,6 +2,12 @@
 inspect = require 'lib.inspect' -- luacheck: ignore
 log = require 'lib.log' -- luacheck: ignore
 local config = require 'gameConfig'
+local EventEmitter = require 'core.eventEmitter'
+local StateSwitcher = require 'core.stateSwitcher'
+local lily = require 'lib.lily'
+
+local eventBus
+local stateSwitcher
 
 function love.load()
   log.level = 'debug' -- luacheck: ignore
@@ -25,10 +31,21 @@ function love.load()
   love.graphics.setLineStyle('rough')
   -- GUI stuff.
   love.mouse.setVisible(false)
+
+  eventBus = EventEmitter()
+  stateSwitcher = StateSwitcher(eventBus)
+  eventBus:emit('switchState', 'preloadGame')
 end
 
 function love.draw()
+  stateSwitcher:draw()
 end
 
 function love.update(dt)
+  stateSwitcher:update(dt)
+end
+
+function love.quit()
+  lily.quit()
+  log.info('Quitting Surrender. Have a blessed day.')
 end
