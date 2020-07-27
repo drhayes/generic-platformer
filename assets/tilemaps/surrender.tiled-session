@@ -1,0 +1,370 @@
+{
+    "activeFile": "",
+    "console.history": [
+        "tiled.alert('hey there')"
+    ],
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/home/drhayes/games/gr/assets/chunks/fixtures/down1.tmx": {
+            "scale": 29.553906249999997,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 31.97546855586984,
+                "y": 31.975468555869835
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/downRight.tmx": {
+            "scale": 16.654687499999998,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 96.00900647340276,
+                "y": 32.00300215780093
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/downwardHook.tmx": {
+            "scale": 9.846354166666666,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 32.093097064268704,
+                "y": 96.27929119280614
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/left-right1.tmx": {
+            "scale": 11,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 53.727272727272734,
+                "y": 48.727272727272734
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/left1.tmx": {
+            "scale": 29.5390625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 32.09309706426871,
+                "y": 32.02539010843692
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/right1.tmx": {
+            "scale": 29.5390625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 32.09309706426871,
+                "y": 32.02539010843692
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/up-down1.tmx": {
+            "scale": 29.5390625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 32.09309706426871,
+                "y": 32.02539010843692
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/up1.tmx": {
+            "scale": 29.5390625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 32.09309706426871,
+                "y": 32.02539010843692
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/upDownMiddle.tmx": {
+            "scale": 22.20625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 72.00675485505207,
+                "y": 40.03377427526034
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/fixtures/upMiddle.tmx": {
+            "scale": 22.20625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 72.00675485505207,
+                "y": 40.03377427526034
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeBase/homeBase1.tmx": {
+            "scale": 4.55,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 363.95604395604397,
+                "y": 89.67032967032965
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeBase/homeBase2.tmx": {
+            "scale": 4.3225,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 159.3984962406015,
+                "y": 120.18507807981493
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeBase/homeBase3.tmx": {
+            "scale": 4.3225,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 159.3984962406015,
+                "y": 112.08791208791209
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeBase/homeBase4.tmx": {
+            "scale": 4.116666666666666,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 168.34008097165992,
+                "y": 96.07287449392713
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeBase/homeBase5.tmx": {
+            "scale": 2.8816666666666664,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 240.13880855986122,
+                "y": 144.1873915558126
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeBase/homeBase6.tmx": {
+            "scale": 3.7586956521739125,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 183.57432041642568,
+                "y": 120.12145748987857
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeDeadend/homeDeadend1.tmx": {
+            "scale": 12.980859375,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 64.0173332129638,
+                "y": 64.05585146399447
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeDeadend/homeDeadend2.tmx": {
+            "scale": 12.980859375,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 64.0173332129638,
+                "y": 64.05585146399447
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeDoor/homeDoor1.tmx": {
+            "scale": 11.75625,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 136.0127591706539,
+                "y": 48.399787347155765
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeExit/homeExit1.tmx": {
+            "scale": 17.3078125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 72.04838855285726,
+                "y": 48.04188859799584
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeExit/homeExit2.tmx": {
+            "scale": 17.3078125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 80.02166651620476,
+                "y": 48.04188859799584
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway1.tmx": {
+            "scale": 5.0852941176470585,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": -52.307692307692264,
+                "y": 2.6547137073453086
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway10.tmx": {
+            "scale": 5.0852941176470585,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 136.47194910352806,
+                "y": 136.176980913823
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway11.tmx": {
+            "scale": 8.65390625,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 135.89238963618308,
+                "y": 96.08377719599169
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway2.tmx": {
+            "scale": 9.084375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 176.1265909872721,
+                "y": 80.08255933952529
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway3.tmx": {
+            "scale": 7.859090909090909,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 88.0508964719491,
+                "y": 88.24175824175823
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway4.tmx": {
+            "scale": 6.923125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 88.11049923264423,
+                "y": 120.10472149498962
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway5.tmx": {
+            "scale": 4.116666666666666,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 168.34008097165992,
+                "y": 80.04048582995952
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway6.tmx": {
+            "scale": 9.516964285714284,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 168.01576132845486,
+                "y": 72.02927103855897
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway7.tmx": {
+            "scale": 5.763333333333333,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 120.06940427993061,
+                "y": 112.00115673799885
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway8.tmx": {
+            "scale": 3.7586956521739125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 184.10641989589357,
+                "y": 128.10294968189706
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/homeHallway/homeHallway9.tmx": {
+            "scale": 7.204166666666666,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 95.91671486408327,
+                "y": 88.07403123192597
+            }
+        },
+        "/home/drhayes/games/gr/assets/chunks/stuff.tmx": {
+            "scale": 0.5907812499999999,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1584.3427664638987,
+                "y": 1103.6233800581856
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/east-vert.tmx": {
+            "scale": 8,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 24.875,
+                "y": 22.125
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/grating-middle.tmx": {
+            "scale": 8,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 21.875,
+                "y": 24
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/grating-west-cap.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 23,
+                "y": 23
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/south-east-corner.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 23,
+                "y": 23
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/south-west-corner-upper.tmx": {
+            "scale": 8,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 24.375,
+                "y": 16.75
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/south-west-corner.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 23,
+                "y": 23
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/top-left-corner.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 23,
+                "y": 23
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/top-right-corner.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 23,
+                "y": 23
+            }
+        },
+        "/home/drhayes/games/gr/assets/mapperRules/home/west-vert.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 23,
+                "y": 23
+            }
+        },
+        "entrance.tmx": {
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -159,
+                "y": -71
+            }
+        }
+    },
+    "map.fixedSize": false,
+    "map.height": 100,
+    "map.orientation": 1,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 100,
+    "openFiles": [
+    ],
+    "project": "surrender.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+    ],
+    "tileset.embedInMap": false,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.type": 1
+}
