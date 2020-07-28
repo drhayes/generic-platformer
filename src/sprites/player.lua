@@ -19,4 +19,8 @@ function Player:draw()
   lg.pop()
 end
 
+function Player:__tostring()
+  return 'Player'
+end
+
 return Player

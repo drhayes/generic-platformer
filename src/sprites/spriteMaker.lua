@@ -22,6 +22,8 @@ function SpriteMaker:create(spec)
     return nil
   end
 
+  spec.spriteAtlas = self.spriteAtlas
+
   return spriteClass(spec)
 end
 

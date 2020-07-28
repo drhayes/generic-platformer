@@ -1,6 +1,6 @@
-local Object = require 'lib.classic'
+local GameObject = require 'gobs.gameObject'
 
-local Spawner = Object:extend()
+local Spawner = GameObject:extend()
 
 function Spawner:new(spec)
   self.x, self.y = spec.x, spec.y
@@ -19,10 +19,6 @@ function Spawner:update(dt)
     self.running = false
     self.eventBus:emit('spawnSprite', 'player', self.x, self.y)
   end
-end
-
-function Spawner:draw()
-  -- Invisible!
 end
 
 return Spawner

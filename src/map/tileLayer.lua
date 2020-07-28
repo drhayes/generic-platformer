@@ -103,10 +103,8 @@ local lg = love.graphics
 
 function TileLayer:initialize(eventBus, tileAtlas)
   local canvas = lg.newCanvas(self.width, self.height)
-  log.debug(self.width, self.height)
   lg.setCanvas(canvas)
   local tilesImage = tileAtlas.image
-  log.debug('after image')
   local drawCell = function(x, y, tileData)
     local quad = tileAtlas:toQuad(tileData.image)
     local dx, dy = x * TILE_SIZE, y * TILE_SIZE

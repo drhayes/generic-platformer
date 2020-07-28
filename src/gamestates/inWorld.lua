@@ -2,6 +2,7 @@ local Gamestate = require 'gamestates.gamestate'
 local Tilemap = require 'map.tilemap'
 local SpriteMaker = require 'sprites.spriteMaker'
 local TilemapSpec = require 'map.tilemapSpec'
+local SpriteSpec = require 'sprites.spriteSpec'
 
 local InWorld = Gamestate:extend()
 
@@ -69,9 +70,20 @@ function InWorld:onSetSpriteAtlas(spriteAtlas)
 end
 
 function InWorld:onSpawnSprite(spriteType, x, y)
-  log.debug('spawn sprite', spriteType, x, y)
-  -- How to hook up this to where the sprites are drawing in the tilemap?
-  -- Given a sprite type and an x,y, what layer does that sprite come in at?
+  if not self.spriteMaker then
+    local mesg = 'Trying to spawn sprite before I have a spriteMaker'
+    log.fatal(mesg, spriteType, x, y)
+    error(mesg)
+  end
+
+  local spec = SpriteSpec(spriteType)
+  spec.x, spec.y = x, y
+  local sprite = self.spriteMaker:create(spec)
+  if not sprite then
+    log.warn('did not get sprite back from spriteMaker', spriteType, spec)
+    return
+  end
+  self.eventBus:emit('addGob', sprite)
 end
 
 return InWorld
