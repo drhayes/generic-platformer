@@ -51,6 +51,6 @@
   </data>
  </layer>
  <objectgroup id="3" name="sprites">
-  <object id="2" gid="66" x="-240" y="-480" width="16" height="16" visible="0"/>
+  <object id="2" gid="66" x="-240" y="-224" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -6,7 +6,10 @@ local EventEmitter = require 'core.eventEmitter'
 local StateSwitcher = require 'gamestates.stateSwitcher'
 local lily = require 'lib.lily'
 
-local eventBus
+local Registry = require 'services.registry'
+local DrawService = require 'services.drawService'
+local GobsService = require 'services.gobsService'
+
 local stateSwitcher
 
 function love.load()
@@ -20,7 +23,6 @@ function love.load()
   local width, height = love.window.getDesktopDimensions(flags.display) -- luacheck: ignore
   local wFactor, hFactor = width / config.graphics.width, height / config.graphics.height
   local windowFactor = math.min(math.floor(math.min(wFactor, hFactor)), config.graphics.maxWindowFactor)
-  config.graphics.windowFactor = windowFactor
   -- Resize the window.
   love.window.setMode(windowFactor * config.graphics.width, windowFactor * config.graphics.height)
 
@@ -32,10 +34,15 @@ function love.load()
   -- GUI stuff.
   love.mouse.setVisible(false)
 
-  eventBus = EventEmitter()
-  stateSwitcher = StateSwitcher(eventBus)
+  local eventBus = EventEmitter()
+
+  local registry = Registry()
+  registry:add('gobs', GobsService(eventBus))
+  registry:add('draw', DrawService(eventBus, windowFactor))
+
+  stateSwitcher = StateSwitcher(registry, eventBus)
   eventBus:emit('setWindowFactor', windowFactor)
-  eventBus:emit('switchState', 'preloadGame')
+  eventBus:emit('switchState', 'initializeGame')
 end
 
 function love.draw()

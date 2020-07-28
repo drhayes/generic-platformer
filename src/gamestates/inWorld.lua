@@ -5,8 +5,8 @@ local TilemapSpec = require 'map.tilemapSpec'
 
 local InWorld = Gamestate:extend()
 
-function InWorld:new(eventBus)
-  InWorld.super.new(self, eventBus)
+function InWorld:new(registry, eventBus)
+  InWorld.super.new(self, registry, eventBus)
 
   self.tilemaps = {}
 
@@ -24,18 +24,16 @@ function InWorld:enter()
 end
 
 function InWorld:update(dt)
-  if self.currentTilemap then
-    self.currentTilemap:update(dt)
-  end
+  local gobsService = self.registry:get('gobs')
+  gobsService:update(dt)
   if not self.currentTilemap then
     self:switchTilemap('entrance.lua')
   end
 end
 
 function InWorld:draw()
-  if self.currentTilemap then
-    self.currentTilemap:draw(self.windowFactor, self.tileAtlas)
-  end
+  local drawService = self.registry:get('draw')
+  drawService:draw()
 end
 
 
@@ -54,7 +52,7 @@ function InWorld:switchTilemap(key)
   end
 
   self.currentTilemap = tilemap
-  tilemap:initialize(self.eventBus, self.spriteMaker)
+  tilemap:initialize(self.eventBus, self.spriteMaker, self.tileAtlas)
 end
 
 function InWorld:onSetTileAtlas(tileAtlas)

@@ -1,14 +1,17 @@
 local Object = require 'lib.classic'
 local InWorld = require 'gamestates.inWorld'
 local PreloadGame = require 'gamestates.preloadGame'
+local InitializeGame = require 'gamestates.initializeGame'
 
 local StateSwitcher = Object:extend()
 
-function StateSwitcher:new(eventBus)
+function StateSwitcher:new(registry, eventBus)
+  self.registry = registry
   self.eventBus = eventBus
   self.states = {
-    inWorld = InWorld(eventBus),
-    preloadGame = PreloadGame(eventBus),
+    inWorld = InWorld(registry, eventBus),
+    preloadGame = PreloadGame(registry, eventBus),
+    initializeGame = InitializeGame(registry, eventBus)
   }
   self.currentState = nil
 

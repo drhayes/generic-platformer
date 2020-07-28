@@ -26,7 +26,6 @@ function Tilemap:new(spec)
   self.name = spec.name
   self.spec = spec.tilemapData
   self.spriteSpecs = {}
-  self.sprites = {}
 
   local tilesByGid = parseTilesets(self.spec)
   self.tilesByGid = tilesByGid
@@ -40,8 +39,8 @@ function Tilemap:new(spec)
       -- Check every chunk.
       for j = 1, #layer.chunks do
         local chunk = layer.chunks[j]
-        minX = math.min(minX, chunk.x)
-        minY = math.min(minY, chunk.y)
+        minX = math.min(minX, chunk.x * 16)
+        minY = math.min(minY, chunk.y * 16)
       end
     elseif layer.type == 'objectgroup' then
       for j = 1, #layer.objects do
@@ -80,51 +79,22 @@ function Tilemap:specSprites(spriteLayer, offsetX, offsetY)
   end
 end
 
-function Tilemap:initialize(eventBus, spriteMaker)
+function Tilemap:initialize(eventBus, spriteMaker, tileAtlas)
   -- Do the layers.
   for i = 1, #self.layers do
     local layer = self.layers[i]
-    layer:initialize(eventBus, spriteMaker)
+    layer:initialize(eventBus, tileAtlas)
+    eventBus:emit('addGob', layer)
   end
 
   -- Do the sprites.
-  lume.clear(self.sprites)
-  local sprites = self.sprites
   for i = 1, #self.spriteSpecs do
     local spriteSpec = self.spriteSpecs[i]
     spriteSpec.eventBus = eventBus
     local sprite = spriteMaker:create(spriteSpec)
     if sprite then
-      table.insert(sprites, sprite)
+      eventBus:emit('addGob', sprite)
     end
-  end
-end
-
-function Tilemap:update(dt)
-  -- Update layers.
-  for i = 1, #self.layers do
-    local layer = self.layers[i]
-    layer:update(dt)
-  end
-
-  -- Update sprites.
-  for i = 1, #self.sprites do
-    local sprite = self.sprites[i]
-    sprite:update(dt)
-  end
-end
-
-function Tilemap:draw(windowFactor, tileAtlas)
-  -- Draw layers.
-  for i = 1, #self.layers do
-    local layer = self.layers[i]
-    layer:draw(windowFactor, tileAtlas)
-  end
-
-  -- Draw sprites.
-  for i = 1, #self.sprites do
-    local sprite = self.sprites[i]
-    sprite:draw()
   end
 end
 

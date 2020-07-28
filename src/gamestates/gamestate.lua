@@ -2,7 +2,8 @@ local Object = require 'lib.classic'
 
 local Gamestate = Object:extend()
 
-function Gamestate:new(eventBus)
+function Gamestate:new(registry, eventBus)
+  self.registry = registry
   self.eventBus = eventBus
 end
 

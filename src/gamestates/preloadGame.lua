@@ -9,8 +9,8 @@ local lf = love.filesystem
 
 local identity = function(x) return x end
 
-function PreloadGame:new(eventBus)
-  PreloadGame.super.new(self, eventBus)
+function PreloadGame:new(registry, eventBus)
+  PreloadGame.super.new(self, registry, eventBus)
   self.images = {}
   self.jsons = {}
   self.tilemaps = {}

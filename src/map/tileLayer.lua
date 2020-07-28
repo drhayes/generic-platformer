@@ -1,4 +1,5 @@
-local Object = require 'lib.classic'
+local Gameobject = require 'gobs.gameObject'
+local Drawable = require 'gobs.drawable'
 local Grid = require 'core.grid'
 local bit = bit or bit32 or require 'bit32' -- luacheck: ignore
 local config = require 'gameConfig'
@@ -8,7 +9,8 @@ local FLIPPED_VERTICAL = 0x40000000
 local FLIPPED_DIAGONALLY = 0x20000000
 local TILE_SIZE = config.tileSize
 
-local TileLayer = Object:extend()
+local TileLayer = Gameobject:extend()
+TileLayer:implement(Drawable)
 
 local function basename(str)
   local name = string.gsub(str, "(.*/)(.*)", "%2")
@@ -21,6 +23,8 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   self.visible = layerData.visible or true
   self.opacity = layerData.opacity or 1
   self.properties = layerData.properties
+  self.width = 0
+  self.height = 0
 
   local grid = Grid()
   self.grid = grid
@@ -29,6 +33,8 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
     local chunk = layerData.chunks[i]
     -- Iterate the data taking into account the stride of the chunk.
     local width, height = chunk.width, chunk.height
+    self.width = math.max(self.width, chunk.x + offsetX + width)
+    self.height = math.max(self.height, chunk.y + offsetY + height)
     for y = 0, height - 1 do
       for x = 0, width - 1 do
         local tileIndex = 1 + y * width + x
@@ -83,20 +89,24 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
             tileData.r  = math.rad(90)
             tileData.sy = -1
           end
-          grid:set(x + chunk.x + offsetX, y + chunk.y + offsetY, tileData)
+          grid:set(
+            x + chunk.x + math.floor(offsetX / 16),
+            y + chunk.y + math.floor(offsetY / 16),
+            tileData)
         end
       end
     end
   end
 end
 
-function TileLayer:initialize(eventBus, spriteMaker) end
-function TileLayer:update(dt) end
-
 local lg = love.graphics
 
-function TileLayer:draw(windowFactor, tileAtlas)
+function TileLayer:initialize(eventBus, tileAtlas)
+  local canvas = lg.newCanvas(self.width, self.height)
+  log.debug(self.width, self.height)
+  lg.setCanvas(canvas)
   local tilesImage = tileAtlas.image
+  log.debug('after image')
   local drawCell = function(x, y, tileData)
     local quad = tileAtlas:toQuad(tileData.image)
     local dx, dy = x * TILE_SIZE, y * TILE_SIZE
@@ -107,10 +117,17 @@ function TileLayer:draw(windowFactor, tileAtlas)
     end
   end
   lg.push()
-  lg.scale(windowFactor, windowFactor)
-  lg.setColor(1, 1, 1, self.opacity)
+  lg.setColor(1, 1, 1, 1)
   self.grid:forEach(drawCell)
-  -- error()
+  lg.pop()
+  lg.setCanvas()
+  self.canvas = canvas
+end
+
+function TileLayer:draw()
+  lg.push()
+  lg.setColor(1, 1, 1, self.opacity)
+  lg.draw(self.canvas, 0, 0, 0)
   lg.pop()
 end
 

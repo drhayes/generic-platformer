@@ -588,12 +588,12 @@ return {
           type = "",
           shape = "rectangle",
           x = -240,
-          y = -480,
+          y = -224,
           width = 16,
           height = 16,
           rotation = 0,
           gid = 66,
-          visible = false,
+          visible = true,
           properties = {}
         }
       }
