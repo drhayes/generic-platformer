@@ -1,9 +1,9 @@
 local Object = require 'lib.classic'
 local TileLayer = require 'map.tileLayer'
-local ObjectLayer = require 'map.objectLayer'
+local SpriteSpec = require 'sprites.spriteSpec'
+local lume = require 'lib.lume'
 
 local Tilemap = Object:extend()
-
 
 -- Returns a map of GID to tile thing.
 local function parseTilesets(spec)
@@ -25,7 +25,8 @@ end
 function Tilemap:new(spec)
   self.name = spec.name
   self.spec = spec.tilemapData
-  self.spriteMaker = spec.spriteMaker
+  self.spriteSpecs = {}
+  self.sprites = {}
 
   local tilesByGid = parseTilesets(self.spec)
   self.tilesByGid = tilesByGid
@@ -57,32 +58,73 @@ function Tilemap:new(spec)
     local layer = spec.tilemapData.layers[i]
     if layer.type == 'tilelayer' and layer.name ~= 'physics' then
       table.insert(layers, TileLayer(layer, tilesByGid, -minX, -minY))
-    end
-    if layer.type == 'objectgroup' then
-      table.insert(layers, ObjectLayer(layer, tilesByGid, -minX, -minY, self.spriteMaker))
+    elseif layer.name == 'sprites' then
+      self:specSprites(layer, -minX, -minY)
+    else
+      log.error('unknown layer', layer.name, layer.type)
     end
   end
   self.layers = layers
 end
 
+function Tilemap:specSprites(spriteLayer, offsetX, offsetY)
+  local spriteSpecs = self.spriteSpecs
+  local tilesByGid = self.tilesByGid
+  for i = 1, #spriteLayer.objects do
+    local object = spriteLayer.objects[i]
+    local objectType = tilesByGid[object.gid]
+    local spriteSpec = SpriteSpec.fromMap(object, objectType)
+    spriteSpec.x = spriteSpec.x + offsetX
+    spriteSpec.y = spriteSpec.y + offsetY
+    table.insert(spriteSpecs, spriteSpec)
+  end
+end
+
 function Tilemap:initialize(eventBus, spriteMaker)
+  -- Do the layers.
   for i = 1, #self.layers do
     local layer = self.layers[i]
     layer:initialize(eventBus, spriteMaker)
   end
+
+  -- Do the sprites.
+  lume.clear(self.sprites)
+  local sprites = self.sprites
+  for i = 1, #self.spriteSpecs do
+    local spriteSpec = self.spriteSpecs[i]
+    spriteSpec.eventBus = eventBus
+    local sprite = spriteMaker:create(spriteSpec)
+    if sprite then
+      table.insert(sprites, sprite)
+    end
+  end
 end
 
 function Tilemap:update(dt)
+  -- Update layers.
   for i = 1, #self.layers do
     local layer = self.layers[i]
     layer:update(dt)
   end
+
+  -- Update sprites.
+  for i = 1, #self.sprites do
+    local sprite = self.sprites[i]
+    sprite:update(dt)
+  end
 end
 
 function Tilemap:draw(windowFactor, tileAtlas)
+  -- Draw layers.
   for i = 1, #self.layers do
     local layer = self.layers[i]
     layer:draw(windowFactor, tileAtlas)
+  end
+
+  -- Draw sprites.
+  for i = 1, #self.sprites do
+    local sprite = self.sprites[i]
+    sprite:draw()
   end
 end
 

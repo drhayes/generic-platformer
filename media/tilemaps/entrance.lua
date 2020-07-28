@@ -575,7 +575,7 @@ return {
       type = "objectgroup",
       draworder = "topdown",
       id = 3,
-      name = "things",
+      name = "sprites",
       visible = true,
       opacity = 1,
       offsetx = 0,

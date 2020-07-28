@@ -41,7 +41,7 @@ end
 
 function InWorld:onLoadedTilemap(key, data)
   local rawTilemap = data()
-  local tilemapSpec = TilemapSpec(key, rawTilemap, self.spriteMaker)
+  local tilemapSpec = TilemapSpec(key, rawTilemap)
   local tilemap = Tilemap(tilemapSpec)
   self.tilemaps[tilemap.name] = tilemap
 end
@@ -72,6 +72,8 @@ end
 
 function InWorld:onSpawnSprite(spriteType, x, y)
   log.debug('spawn sprite', spriteType, x, y)
+  -- How to hook up this to where the sprites are drawing in the tilemap?
+  -- Given a sprite type and an x,y, what layer does that sprite come in at?
 end
 
 return InWorld
