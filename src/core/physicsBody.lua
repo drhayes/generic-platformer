@@ -7,9 +7,16 @@ local SUPERTINY = 1e-5
 
 local PhysicsBody = Object:extend()
 
-function PhysicsBody:new()
-  -- This is the position of the entity, literally the same as the "pos" component
-  -- for most entities.
+function PhysicsBody:new(checkCollisionsCallback)
+  if not checkCollisionsCallback then
+    local mesg = 'invalid physics body, no checkCollisions callback'
+    log.fatal(mesg)
+    error(mesg)
+  end
+
+  self.checkCollisions = checkCollisionsCallback
+
+  -- This is the position of the entity, literally its x,y.
   self.oldPosition = Vector()
   self.position = Vector()
 
@@ -42,11 +49,11 @@ function PhysicsBody:new()
   self.isOnCeiling = false
 
   -- I collide with things that match the mask.
-  self.collisionMask = 0
+  -- self.collisionMask = 0
   -- I'm in these collision layers.
-  self.collisionLayers = 0
+  -- self.collisionLayers = 0
   -- What collided with me?
-  self.collidedWith = nil
+  -- self.collidedWith = nil
 
   -- This is the actual bounds of the physics body.
   self.aabb = AABB()
@@ -95,7 +102,7 @@ function PhysicsBody:update(dt)
     self:moveY(deltaPos.y)
   -- else
   --   -- Even if we don't move, check collisions.
-  --   self:checkCollisions(entity, 0, 0)
+  --   self:checkCollisions(0, 0)
   --   if body.collidedWith then
   --     self:resolveCollision(entity)
   --   end
@@ -110,8 +117,14 @@ function PhysicsBody:moveX(amount)
   local sign = amount < 0 and -1 or 1
   while math.abs(amount) > 0 do
     local step = math.min(1, math.abs(amount)) * sign
-    self.position.x = self.position.x + step
-    self.aabb.center.x = self.aabb.center.x + step
+    if not self:checkCollisions(step, 0) then
+      self.position.x = self.position.x + step
+      self.aabb.center.x = self.aabb.center.x + step
+    else
+      self.velocity.x = 0
+      -- Done moving!
+      return
+    end
     amount = amount - step
   end
 end
@@ -121,8 +134,14 @@ function PhysicsBody:moveY(amount)
   local sign = amount < 0 and -1 or 1
   while math.abs(amount) > 0 do
     local step = math.min(1, math.abs(amount)) * sign
-    self.position.y = self.position.y + step
-    self.aabb.center.y = self.aabb.center.y + step
+    if not self:checkCollisions(0, step) then
+      self.position.y = self.position.y + step
+      self.aabb.center.y = self.aabb.center.y + step
+    else
+      self.velocity.y = 0
+      -- Done moving!
+      return
+    end
     amount = amount - step
   end
 end

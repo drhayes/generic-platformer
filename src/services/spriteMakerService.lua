@@ -24,6 +24,7 @@ function SpriteMakerService:create(spec)
 
   spec.eventBus = self.eventBus
   spec.animationService = self.registry:get('animation')
+  spec.physicsService = self.registry:get('physics')
 
   return spriteClass(spec)
 end

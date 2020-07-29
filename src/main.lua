@@ -10,6 +10,7 @@ local Registry = require 'services.registry'
 local DrawService = require 'services.drawService'
 local GobsService = require 'services.gobsService'
 local SpriteMaker = require 'services.spriteMakerService'
+local PhysicsService = require 'services.physicsService'
 
 
 local stateSwitcher
@@ -42,6 +43,7 @@ function love.load()
   registry:add('gobs', GobsService(eventBus))
   registry:add('draw', DrawService(eventBus, windowFactor))
   registry:add('spriteMaker', SpriteMaker(eventBus, registry))
+  registry:add('physics', PhysicsService(eventBus))
 
   stateSwitcher = StateSwitcher(registry, eventBus)
   eventBus:emit('setWindowFactor', windowFactor)

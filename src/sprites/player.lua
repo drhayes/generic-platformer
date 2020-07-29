@@ -1,8 +1,8 @@
 local GameObject = require 'gobs.gameObject'
 local Drawable = require 'gobs.drawable'
-local PhysicsBody = require 'core.physicsBody'
 
 local Player = GameObject:extend()
+-- TODO: Do I *need* drawable yet?
 Player:implement(Drawable)
 
 function Player:new(spec)
@@ -10,13 +10,15 @@ function Player:new(spec)
 
   self.animation = spec.animationService:create('player')
   self.animation.current = 'idle'
-  local body = PhysicsBody()
+  local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
   body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
   body.aabb.halfSize.x = 2
   body.aabb.halfSize.y = 5
   body.aabbOffset.y = 3
-  body.gravityForce.y = 10
+  -- self.gravity = (2 * JUMP_HEIGHT) / math.pow(TIME_TO_JUMP_APEX, 2)
+  -- self.jumpVelocity = self.gravity * TIME_TO_JUMP_APEX
+  body.gravityForce.y = 50
   self.body = body
 end
 
