@@ -7,7 +7,7 @@ local config = require 'gameConfig'
 local FLIPPED_HORIZONTAL = 0x80000000
 local FLIPPED_VERTICAL = 0x40000000
 local FLIPPED_DIAGONALLY = 0x20000000
-local TILE_SIZE = config.tileSize
+local TILE_SIZE = config.map.tileSize
 
 local TileLayer = Gameobject:extend()
 TileLayer:implement(Drawable)
@@ -90,8 +90,8 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
             tileData.sy = -1
           end
           grid:set(
-            x + chunk.x + math.floor(offsetX / 16),
-            y + chunk.y + math.floor(offsetY / 16),
+            x + chunk.x + math.floor(offsetX / TILE_SIZE),
+            y + chunk.y + math.floor(offsetY / TILE_SIZE),
             tileData)
         end
       end

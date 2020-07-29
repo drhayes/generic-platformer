@@ -1,24 +1,24 @@
 local Object = require 'lib.classic'
 local TileLayer = require 'map.tileLayer'
 local SpriteSpec = require 'sprites.spriteSpec'
-local lume = require 'lib.lume'
+local config = require 'gameConfig'
+
+local TILE_SIZE = config.map.tileSize
 
 local Tilemap = Object:extend()
 
 -- Returns a map of GID to tile thing.
 local function parseTilesets(spec)
   local tilesByGid = {}
-  local tilesetsByGid = {}
   for i = 1, #spec.tilesets do
     local tileset = spec.tilesets[i]
     for j = 1, #tileset.tiles do
       local tile = tileset.tiles[j]
       local gid = tileset.firstgid + tile.id
       tilesByGid[gid] = tile
-      tilesetsByGid[gid] = tileset
     end
   end
-  return tilesByGid, tilesetsByGid
+  return tilesByGid
 end
 
 
@@ -39,8 +39,8 @@ function Tilemap:new(spec)
       -- Check every chunk.
       for j = 1, #layer.chunks do
         local chunk = layer.chunks[j]
-        minX = math.min(minX, chunk.x * 16)
-        minY = math.min(minY, chunk.y * 16)
+        minX = math.min(minX, chunk.x * TILE_SIZE)
+        minY = math.min(minY, chunk.y * TILE_SIZE)
       end
     elseif layer.type == 'objectgroup' then
       for j = 1, #layer.objects do

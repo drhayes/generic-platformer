@@ -1,5 +1,7 @@
 return {
-  tileSize = 16,
+  map = {
+    tileSize = 16,
+  },
 
   graphics = {
     width = 400,

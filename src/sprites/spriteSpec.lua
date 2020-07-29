@@ -1,5 +1,8 @@
 local Object = require 'lib.classic'
 local lume = require 'lib.lume'
+local config = require 'gameConfig'
+
+local TILE_SIZE = config.map.tileSize
 
 local SpriteSpec = Object:extend()
 
@@ -13,8 +16,8 @@ function SpriteSpec:new(spriteType)
   self.x = 0
   self.y = 0
   self.r = 0
-  self.width = 16
-  self.height = 16
+  self.width = TILE_SIZE
+  self.height = TILE_SIZE
   self.visible = true
   self.properties = {}
   self.spriteAtlas = nil
