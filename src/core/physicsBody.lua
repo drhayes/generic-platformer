@@ -3,6 +3,8 @@ local Vector = require 'lib.brinevector'
 local AABB = require 'core.aabb'
 local bit = bit or bit32 or require 'bit32'
 
+local SUPERTINY = 1e-5
+
 local PhysicsBody = Object:extend()
 
 function PhysicsBody:new()
@@ -19,8 +21,10 @@ function PhysicsBody:new()
   self.acceleration = Vector()
 
   self.friction = 1
-  self.gravity = 0
   self.knockbackFactor = 1
+
+  self.gravityForce = Vector()
+  self.moveForce = Vector()
 
   self.wasPushingLeftward = false
   self.isPushingLeftward = false
@@ -60,13 +64,67 @@ function PhysicsBody:inLayer(layerMask)
   return bit.band(self.collisionLayers, layerMask) ~= 0
 end
 
-function PhysicsBody:setVelocity(angle, speed)
-  self.velocity.x = math.cos(angle) * speed
-  self.velocity.y = math.sin(angle) * speed
+function PhysicsBody:update(dt)
+  -- Store last frame's stuff.
+  self.oldPosition.x, self.oldPosition.y = self.position.x, self.position.y
+  self.oldVelocity.x, self.oldVelocity.y = self.velocity.x, self.velocity.y
+  self.oldAcceleration.x, self.oldAcceleration.y = self.acceleration.x, self.acceleration.y
+  self.wasPushingLeftward = self.isPushingLeftward
+  self.wasPushingRightward = self.isPushingRightward
+  self.wasOnGround = self.isOnGround
+  self.wasOnCeiling = self.isOnCeiling
+  self.wasOnOneWayUpPlatform = self.isOnOneWayUpPlatform
+  self.isOnOneWayUpPlatform = false
+
+  self.isOnGround = false
+  self.isOnCeiling = false
+  self.isPushingLeftward = false
+  self.isPushingRightward = false
+
+  -- Add our forces.
+  self.velocity = self.velocity + self.gravityForce * dt
+  self.velocity = self.velocity + self.moveForce * dt
+  -- Accelerate our velocity.
+  self.velocity = self.velocity + self.acceleration * dt
+
+  -- Movement this frame.
+  local deltaPos = self.velocity * dt
+
+  if deltaPos.x ~= 0 or deltaPos.y ~= 0 then
+    self:moveX(deltaPos.x)
+    self:moveY(deltaPos.y)
+  -- else
+  --   -- Even if we don't move, check collisions.
+  --   self:checkCollisions(entity, 0, 0)
+  --   if body.collidedWith then
+  --     self:resolveCollision(entity)
+  --   end
+  end
+
+  self.velocity = self.velocity * self.friction
+  self.aabb.center = self.position + self.aabbOffset
 end
 
-function PhysicsBody:accelerate(angle, speed)
-  self.acceleration = Vector.angled(Vector(speed, 0), angle)
+function PhysicsBody:moveX(amount)
+  if math.abs(amount) < SUPERTINY then return end
+  local sign = amount < 0 and -1 or 1
+  while math.abs(amount) > 0 do
+    local step = math.min(1, math.abs(amount)) * sign
+    self.position.x = self.position.x + step
+    self.aabb.center.x = self.aabb.center.x + step
+    amount = amount - step
+  end
+end
+
+function PhysicsBody:moveY(amount)
+  if math.abs(amount) < SUPERTINY then return end
+  local sign = amount < 0 and -1 or 1
+  while math.abs(amount) > 0 do
+    local step = math.min(1, math.abs(amount)) * sign
+    self.position.y = self.position.y + step
+    self.aabb.center.y = self.aabb.center.y + step
+    amount = amount - step
+  end
 end
 
 return PhysicsBody

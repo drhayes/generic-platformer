@@ -1,27 +1,40 @@
 local GameObject = require 'gobs.gameObject'
 local Drawable = require 'gobs.drawable'
-local AABB = require 'core.aabb'
+local PhysicsBody = require 'core.physicsBody'
 
 local Player = GameObject:extend()
 Player:implement(Drawable)
 
 function Player:new(spec)
-  self.aabb = AABB(spec.x, spec.y, 16, 16)
+  self.x, self.y = spec.x, spec.y
+
   self.animation = spec.animationService:create('player')
   self.animation.current = 'idle'
+  local body = PhysicsBody()
+  body.position.x, body.position.y = spec.x, spec.y
+  body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
+  body.aabb.halfSize.x = 2
+  body.aabb.halfSize.y = 5
+  body.aabbOffset.y = 3
+  body.gravityForce.y = 10
+  self.body = body
 end
 
 function Player:update(dt)
   self.animation:update(dt)
+  self.body:update(dt)
+  self.x = self.body.position.x
+  self.y = self.body.position.y
 end
 
 local lg = love.graphics
 
 function Player:draw()
-  local aabb = self.aabb
   lg.push()
   lg.setColor(1, 1, 1, 1)
-  self.animation:draw(aabb.center.x, aabb.center.y)
+  self.animation:draw(self.x, self.y)
+  lg.setColor(0, 1, 0, .3)
+  lg.rectangle('fill', self.body.aabb:bounds())
   lg.pop()
 end
 
