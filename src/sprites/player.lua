@@ -23,6 +23,14 @@ function Player:new(spec)
 end
 
 function Player:update(dt)
+  if love.keyboard.isDown('right') then
+    self.body.moveForce.x = 50
+  elseif love.keyboard.isDown('left') then
+    self.body.moveForce.x = -50
+  else
+    self.body.moveForce.x = 0
+  end
+
   self.animation:update(dt)
   self.body:update(dt)
   self.x = self.body.position.x
