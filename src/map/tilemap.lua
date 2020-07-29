@@ -1,5 +1,6 @@
 local Object = require 'lib.classic'
 local TileLayer = require 'map.tileLayer'
+local PhysicsLayer = require 'map.physicsLayer'
 local SpriteSpec = require 'sprites.spriteSpec'
 local config = require 'gameConfig'
 
@@ -31,6 +32,7 @@ function Tilemap:new(spec)
   self.tilesByGid = tilesByGid
 
   -- Iterate layers to find top-left corner.
+  -- Top corner is expressed in pixels, not map tiles.
   local minX, minY = math.huge, math.huge
   for i = 1, #spec.tilemapData.layers do
     local layer = spec.tilemapData.layers[i]
@@ -57,6 +59,8 @@ function Tilemap:new(spec)
     local layer = spec.tilemapData.layers[i]
     if layer.type == 'tilelayer' and layer.name ~= 'physics' then
       table.insert(layers, TileLayer(layer, tilesByGid, -minX, -minY))
+    elseif layer.type == 'tilelayer' and layer.name == 'physics' then
+      table.insert(layers, PhysicsLayer(layer, tilesByGid, -minX, -minY))
     elseif layer.name == 'sprites' then
       self:specSprites(layer, -minX, -minY)
     else
@@ -79,12 +83,14 @@ function Tilemap:specSprites(spriteLayer, offsetX, offsetY)
   end
 end
 
-function Tilemap:initialize(eventBus, tileAtlas)
+function Tilemap:initialize(eventBus, tileAtlas, physicsService)
   -- Do the layers.
   for i = 1, #self.layers do
     local layer = self.layers[i]
-    layer:initialize(eventBus, tileAtlas)
-    eventBus:emit('addGob', layer)
+    layer:initialize(eventBus, tileAtlas, physicsService)
+    if layer.update then
+      eventBus:emit('addGob', layer)
+    end
   end
 
   -- Do the sprites.

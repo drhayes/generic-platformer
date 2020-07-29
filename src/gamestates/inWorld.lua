@@ -52,7 +52,8 @@ function InWorld:switchTilemap(key)
   end
 
   self.currentTilemap = tilemap
-  tilemap:initialize(self.eventBus, self.tileAtlas)
+  local physicsService = self.registry:get('physics')
+  tilemap:initialize(self.eventBus, self.tileAtlas, physicsService)
 end
 
 function InWorld:onSetTileAtlas(tileAtlas)
