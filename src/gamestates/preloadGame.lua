@@ -2,6 +2,7 @@ local Gamestate = require 'gamestates.gamestate'
 local lily = require 'lib.lily'
 local Atlas = require 'core.atlas'
 local json = require 'lib.json'
+local AnimationService = require 'services.animationService'
 
 local PreloadGame = Gamestate:extend()
 
@@ -60,6 +61,17 @@ function PreloadGame:leave()
   for name, map in pairs(self.tilemaps) do
     self.eventBus:emit('loadedTilemap', name, map)
   end
+
+  local registry = self.registry
+  -- Gather the animation files and create an animation service.
+  local animationJsons = {}
+  for name, data in pairs(self.jsons) do
+    if name:match('-animation.json') then
+      animationJsons[name] = data
+    end
+  end
+  local animationService = AnimationService(animationJsons, spriteAtlas)
+  registry:add('animation', animationService)
 end
 
 function PreloadGame:update(dt)

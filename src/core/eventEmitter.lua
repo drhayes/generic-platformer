@@ -36,7 +36,7 @@ function EventEmitter:emit(eventName, ...)
     end
 
     if not ok then
-      log.error(message)
+      log.error(eventName, message)
     end
   end
 end

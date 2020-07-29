@@ -17,6 +17,7 @@ function SpriteSpec:new(spriteType)
   self.height = 16
   self.visible = true
   self.properties = {}
+  self.spriteAtlas = nil
 end
 
 function SpriteSpec.fromMap(mapObject, objectType)

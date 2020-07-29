@@ -17,7 +17,7 @@ function Spawner:update(dt)
   self.timer = self.timer + dt
   if self.timer >= self.threshold then
     self.running = false
-    self.eventBus:emit('spawnSprite', 'player', self.x, self.y)
+    self.eventBus:emit('spawnSpriteByType', 'player', self.x, self.y)
   end
 end
 

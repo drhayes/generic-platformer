@@ -3,11 +3,11 @@ local Object = require 'lib.classic'
 local Player = require 'sprites.player'
 local Spawner = require 'sprites.spawner'
 
-local SpriteMaker = Object:extend()
+local SpriteMakerService = Object:extend()
 
-function SpriteMaker:new(spriteAtlas, eventBus)
-  self.spriteAtlas = spriteAtlas
+function SpriteMakerService:new(eventBus, registry)
   self.eventBus = eventBus
+  self.registry = registry
 
   self.mapping = {
     player = Player,
@@ -15,16 +15,17 @@ function SpriteMaker:new(spriteAtlas, eventBus)
   }
 end
 
-function SpriteMaker:create(spec)
+function SpriteMakerService:create(spec)
   local spriteClass = self.mapping[spec.spriteType]
   if not spriteClass then
     log.warn('unknown sprite type', spec.spriteType)
     return nil
   end
 
-  spec.spriteAtlas = self.spriteAtlas
+  spec.eventBus = self.eventBus
+  spec.animationService = self.registry:get('animation')
 
   return spriteClass(spec)
 end
 
-return SpriteMaker
+return SpriteMakerService

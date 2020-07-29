@@ -79,7 +79,7 @@ function Tilemap:specSprites(spriteLayer, offsetX, offsetY)
   end
 end
 
-function Tilemap:initialize(eventBus, spriteMaker, tileAtlas)
+function Tilemap:initialize(eventBus, tileAtlas)
   -- Do the layers.
   for i = 1, #self.layers do
     local layer = self.layers[i]
@@ -90,11 +90,7 @@ function Tilemap:initialize(eventBus, spriteMaker, tileAtlas)
   -- Do the sprites.
   for i = 1, #self.spriteSpecs do
     local spriteSpec = self.spriteSpecs[i]
-    spriteSpec.eventBus = eventBus
-    local sprite = spriteMaker:create(spriteSpec)
-    if sprite then
-      eventBus:emit('addGob', sprite)
-    end
+    eventBus:emit('spawnSpriteBySpec', spriteSpec)
   end
 end
 

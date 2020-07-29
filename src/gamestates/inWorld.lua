@@ -1,6 +1,5 @@
 local Gamestate = require 'gamestates.gamestate'
 local Tilemap = require 'map.tilemap'
-local SpriteMaker = require 'sprites.spriteMaker'
 local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
 
@@ -14,8 +13,8 @@ function InWorld:new(registry, eventBus)
   self:subscribe('loadedTilemap', self.onLoadedTilemap)
   self:subscribe('setTileAtlas', self.onSetTileAtlas)
   self:subscribe('setWindowFactor', self.onSetWindowFactor)
-  self:subscribe('setSpriteAtlas', self.onSetSpriteAtlas)
-  self:subscribe('spawnSprite', self.onSpawnSprite)
+  self:subscribe('spawnSpriteByType', self.onSpawnSpriteByType)
+  self:subscribe('spawnSpriteBySpec', self.onSpawnSpriteBySpec)
 end
 
 function InWorld:enter()
@@ -53,7 +52,7 @@ function InWorld:switchTilemap(key)
   end
 
   self.currentTilemap = tilemap
-  tilemap:initialize(self.eventBus, self.spriteMaker, self.tileAtlas)
+  tilemap:initialize(self.eventBus, self.tileAtlas)
 end
 
 function InWorld:onSetTileAtlas(tileAtlas)
@@ -64,23 +63,17 @@ function InWorld:onSetWindowFactor(windowFactor)
   self.windowFactor = windowFactor
 end
 
-function InWorld:onSetSpriteAtlas(spriteAtlas)
-  self.spriteAtlas = spriteAtlas
-  self.spriteMaker = SpriteMaker(spriteAtlas, self.eventBus)
-end
-
-function InWorld:onSpawnSprite(spriteType, x, y)
-  if not self.spriteMaker then
-    local mesg = 'Trying to spawn sprite before I have a spriteMaker'
-    log.fatal(mesg, spriteType, x, y)
-    error(mesg)
-  end
-
+function InWorld:onSpawnSpriteByType(spriteType, x, y)
   local spec = SpriteSpec(spriteType)
   spec.x, spec.y = x, y
-  local sprite = self.spriteMaker:create(spec)
+  self:onSpawnSpriteBySpec(spec)
+end
+
+function InWorld:onSpawnSpriteBySpec(spec)
+  local spriteMaker = self.registry:get('spriteMaker')
+  local sprite = spriteMaker:create(spec)
   if not sprite then
-    log.warn('did not get sprite back from spriteMaker', spriteType, spec)
+    log.warn('did not get sprite back from spriteMaker', spec.spriteType, spec)
     return
   end
   self.eventBus:emit('addGob', sprite)
