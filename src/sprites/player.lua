@@ -21,8 +21,7 @@ function Player:new(spec)
   -- body.friction = 0.95
   body.gravityForce.y = (2 * config.player.jumpHeight) / math.pow(config.player.timeToJumpApex, 2)
   self.jumpVelocity = body.gravityForce.y * config.player.timeToJumpApex
-  body.maxVelocity.x = config.player.maxVelocityX
-  body.maxVelocity.y = config.player.maxVelocityY
+  log.debug(body.gravityForce, self.jumpVelocity)
   body.collisionLayer = collisionLayers.player
   body.collisionMask = collisionLayers.tilemap
   self.body = body
@@ -32,20 +31,20 @@ function Player:update(dt)
   local body = self.body
 
   if love.keyboard.isDown('right') then
-    body.moveForce.x = config.player.runVelocity
+    body.moveVelocity.x = config.player.runVelocity
   elseif love.keyboard.isDown('left') then
-    body.moveForce.x = -config.player.runVelocity
+    body.moveVelocity.x = -config.player.runVelocity
   else
-    body.moveForce.x = 0
+    body.moveVelocity.x = 0
   end
 
   -- Change this when there's hurting and stuff.
-  if body.velocity.x ~= 0 and body.moveForce.x == 0 then
+  if body.velocity.x ~= 0 and body.moveVelocity.x == 0 then
     body.velocity.x = 0
   end
 
   if love.keyboard.isDown('space') and body.isOnGround then
-    body.jumpForce.y = -self.jumpVelocity
+    body.jumpVelocity.y = -self.jumpVelocity
   end
 
   self.animation:update(dt)
@@ -53,7 +52,7 @@ function Player:update(dt)
   self.x = body.position.x
   self.y = body.position.y
 
-  body.jumpForce.y = 0
+  body.jumpVelocity.y = 0
 end
 
 local lg = love.graphics

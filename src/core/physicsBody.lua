@@ -19,17 +19,19 @@ function PhysicsBody:new(checkCollisionsCallback)
 
   self.oldVelocity = Vector()
   self.velocity = Vector()
-  self.maxVelocity = Vector()
+  -- self.maxVelocity = Vector()
 
-  self.oldAcceleration = Vector()
-  self.acceleration = Vector()
+  -- self.oldAcceleration = Vector()
+  -- self.acceleration = Vector()
 
   self.friction = 1
   self.knockbackFactor = 1
 
-  self.jumpForce = Vector()
   self.gravityForce = Vector()
-  self.moveForce = Vector()
+
+  self.fallingVelocity = Vector()
+  self.jumpVelocity = Vector()
+  self.moveVelocity = Vector()
 
   self.wasPushingLeftward = false
   self.isPushingLeftward = false
@@ -73,7 +75,7 @@ function PhysicsBody:update(dt)
   -- Store last frame's stuff.
   self.oldPosition.x, self.oldPosition.y = self.position.x, self.position.y
   self.oldVelocity.x, self.oldVelocity.y = self.velocity.x, self.velocity.y
-  self.oldAcceleration.x, self.oldAcceleration.y = self.acceleration.x, self.acceleration.y
+  -- self.oldAcceleration.x, self.oldAcceleration.y = self.acceleration.x, self.acceleration.y
   self.wasPushingLeftward = self.isPushingLeftward
   self.wasPushingRightward = self.isPushingRightward
   self.wasOnGround = self.isOnGround
@@ -88,25 +90,22 @@ function PhysicsBody:update(dt)
   self.isPushingRightward = false
 
   -- Are we jumping?
-  if self.jumpForce.x ~= 0 then
-    self.velocity.x = self.jumpForce.x
+  if self.jumpVelocity.x ~= 0 then
+    self.fallingVelocity = self.jumpVelocity.x
   end
-  if self.jumpForce.y ~= 0 then
-    self.velocity.y = self.jumpForce.y
+  if self.jumpVelocity.y ~= 0 then
+    self.fallingVelocity.y = self.jumpVelocity.y
   end
 
   -- Accelerate our velocity.
-  self.velocity.x = self.velocity.x + self.acceleration.x * dt
-  self.velocity.y = self.velocity.y + self.acceleration.y * dt
-  -- Add our forces.
-  self.velocity.x = self.velocity.x + self.gravityForce.x * dt
-  self.velocity.y = self.velocity.y + self.gravityForce.y * dt
-  self.velocity.x = self.velocity.x + self.moveForce.x * dt
-  self.velocity.y = self.velocity.y + self.moveForce.y * dt
-
-  -- Check our max velocities.
-  self.velocity.x = lume.clamp(self.velocity.x, -self.maxVelocity.x, self.maxVelocity.x)
-  self.velocity.y = lume.clamp(self.velocity.y, -self.maxVelocity.y, self.maxVelocity.y)
+  -- self.velocity.x = self.velocity.x + self.acceleration.x * dt
+  -- self.velocity.y = self.velocity.y + self.acceleration.y * dt
+  -- Add our forces and velocities.
+  self.fallingVelocity.x = self.fallingVelocity.x + self.gravityForce.x * dt
+  self.fallingVelocity.y = self.fallingVelocity.y + self.gravityForce.y * dt
+  -- Sum it all together.
+  self.velocity.x = self.fallingVelocity.x + self.jumpVelocity.x + self.moveVelocity.x
+  self.velocity.y = self.fallingVelocity.y + self.jumpVelocity.y + self.moveVelocity.y
 
   -- Movement this frame.
   local deltaPos = self.velocity * dt
@@ -130,6 +129,13 @@ function PhysicsBody:update(dt)
   self.velocity.y = self.velocity.y * self.friction
   self.aabb.center.x = self.position.x + self.aabbOffset.x
   self.aabb.center.y = self.position.y + self.aabbOffset.y
+
+  if self.isOnGround then
+    self.fallingVelocity.y = 0
+  end
+
+  self.jumpVelocity.x, self.jumpVelocity.y = 0, 0
+  self.moveVelocity.x, self.moveVelocity.y = 0, 0
 end
 
 function PhysicsBody:moveX(amount)
