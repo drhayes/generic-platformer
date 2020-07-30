@@ -1,5 +1,6 @@
 local GameObject = require 'gobs.gameObject'
 local Drawable = require 'gobs.drawable'
+local collisionLayers = require 'core.collisionLayers'
 
 local HORIZ_VEL = 100
 
@@ -22,6 +23,8 @@ function Player:new(spec)
   -- self.gravity = (2 * JUMP_HEIGHT) / math.pow(TIME_TO_JUMP_APEX, 2)
   -- self.jumpVelocity = self.gravity * TIME_TO_JUMP_APEX
   body.gravityForce.y = 50
+  body.collisionLayer = collisionLayers.player
+  body.collisionMask = collisionLayers.tilemap
   self.body = body
 end
 

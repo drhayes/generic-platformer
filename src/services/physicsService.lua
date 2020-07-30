@@ -32,7 +32,7 @@ function PhysicsService:checkCollisions(movingBody, deltaX, deltaY)
       local aabb = movingBody.aabb
       testAABB.center.x, testAABB.center.y = aabb.center.x + deltaX, aabb.center.y + deltaY
       testAABB.halfSize.x, testAABB.halfSize.y = aabb.halfSize.x, aabb.halfSize.y
-      if testAABB:overlaps(body.aabb) then
+      if testAABB:overlaps(body.aabb) and movingBody:collidesWith(body.collisionLayers) then
         return true
       end
     end

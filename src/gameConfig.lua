@@ -10,4 +10,11 @@ return {
     maxWindowFactor = 6,
     uiScale = 2,
   },
+
+  physics = {
+    layers = {
+      'player',
+      'tilemap',
+    },
+  }
 }

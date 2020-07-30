@@ -45,9 +45,9 @@ function PhysicsBody:new(checkCollisionsCallback)
   self.isOnCeiling = false
 
   -- I collide with things that match the mask.
-  -- self.collisionMask = 0
+  self.collisionMask = 0
   -- I'm in these collision layers.
-  -- self.collisionLayers = 0
+  self.collisionLayers = 0
   -- What collided with me?
   -- self.collidedWith = nil
 

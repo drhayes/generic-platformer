@@ -1,4 +1,5 @@
 local Object = require 'lib.classic'
+local collisionLayers = require 'core.collisionLayers'
 
 local PhysicsLayer = Object:extend()
 
@@ -24,6 +25,7 @@ function PhysicsLayer:initialize(_, _, physicsService)
     aabb.center.x = object.x + halfWidth
     aabb.center.y = object.y + halfHeight
     aabb.halfSize.x, aabb.halfSize.y = halfWidth, halfHeight
+    body.collisionLayers = collisionLayers.tilemap
   end
 end
 
