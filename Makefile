@@ -39,7 +39,7 @@ CONVERTED_TILEMAPS=$(patsubst $(TILEMAP_ASSETS_DIR)/%.tmx,$(TILEMAPS_DIR)/%.lua,
 ###############
 
 .PHONY: start
-start: $(SRC_DIR)/media $(SRC_DIR)/lib tiles media/images/icon.png tilemaps
+start: $(SRC_DIR)/media $(SRC_DIR)/lib tiles media/images/icon.png tilemaps sprites
 	@exec love $(SRC_DIR)
 
 .PHONY: sprites

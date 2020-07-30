@@ -147,7 +147,6 @@ function PhysicsBody:moveX(amount)
       self.position.x = self.position.x + step
       self.aabb.center.x = self.aabb.center.x + step
     else
-      self.velocity.x = 0
       -- Done moving!
       return
     end
@@ -164,7 +163,6 @@ function PhysicsBody:moveY(amount)
       self.position.y = self.position.y + step
       self.aabb.center.y = self.aabb.center.y + step
     else
-      self.velocity.y = 0
       -- Done moving!
       return
     end

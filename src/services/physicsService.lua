@@ -7,7 +7,12 @@ local PhysicsService = Object:extend()
 
 local function collisionResolution(body)
   if body.collidedWith:inLayer(collisionLayers.tilemap) then
-    body.isOnGround = true
+    local collidedWith = body.collidedWith
+    if body.velocity.y > 0 then
+      body.position.y = collidedWith.aabb:top() - body.aabb.halfSize.y - body.aabbOffset.y
+      body.aabb.center.y = collidedWith.aabb:top() - body.aabb.halfSize.y
+      body.isOnGround = true
+    end
   end
 end
 
