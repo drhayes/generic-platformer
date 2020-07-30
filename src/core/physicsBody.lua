@@ -7,14 +7,10 @@ local SUPERTINY = 1e-5
 
 local PhysicsBody = Object:extend()
 
-function PhysicsBody:new(checkCollisionsCallback)
-  if not checkCollisionsCallback then
-    local mesg = 'invalid physics body, no checkCollisions callback'
-    log.fatal(mesg)
-    error(mesg)
-  end
+local function no() return false end
 
-  self.checkCollisions = checkCollisionsCallback
+function PhysicsBody:new(checkCollisionsCallback)
+  self.checkCollisions = checkCollisionsCallback or no
 
   -- This is the position of the entity, literally its x,y.
   self.oldPosition = Vector()

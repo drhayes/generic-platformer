@@ -59,7 +59,7 @@ function Tilemap:new(spec)
     local layer = spec.tilemapData.layers[i]
     if layer.type == 'tilelayer' and layer.name ~= 'physics' then
       table.insert(layers, TileLayer(layer, tilesByGid, -minX, -minY))
-    elseif layer.type == 'tilelayer' and layer.name == 'physics' then
+    elseif layer.type == 'objectgroup' and layer.name == 'physics' then
       table.insert(layers, PhysicsLayer(layer, tilesByGid, -minX, -minY))
     elseif layer.name == 'sprites' then
       self:specSprites(layer, -minX, -minY)
@@ -77,8 +77,8 @@ function Tilemap:specSprites(spriteLayer, offsetX, offsetY)
     local object = spriteLayer.objects[i]
     local objectType = tilesByGid[object.gid]
     local spriteSpec = SpriteSpec.fromMap(object, objectType)
-    spriteSpec.x = spriteSpec.x + offsetX
-    spriteSpec.y = spriteSpec.y + offsetY
+    spriteSpec.x = spriteSpec.x + offsetX + object.width / 2
+    spriteSpec.y = spriteSpec.y + offsetY + object.height / 2
     table.insert(spriteSpecs, spriteSpec)
   end
 end

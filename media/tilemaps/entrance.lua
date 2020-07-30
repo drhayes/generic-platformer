@@ -8,8 +8,8 @@ return {
   height = 100,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 4,
-  nextobjectid = 3,
+  nextlayerid = 5,
+  nextobjectid = 5,
   properties = {},
   tilesets = {
     {
@@ -21,7 +21,7 @@ return {
       spacing = 0,
       margin = 0,
       columns = 0,
-      objectalignment = "unspecified",
+      objectalignment = "topleft",
       tileoffset = {
         x = 0,
         y = 0
@@ -418,7 +418,7 @@ return {
       spacing = 0,
       margin = 0,
       columns = 0,
-      objectalignment = "unspecified",
+      objectalignment = "topleft",
       tileoffset = {
         x = 0,
         y = 0
@@ -534,40 +534,43 @@ return {
       }
     },
     {
-      type = "tilelayer",
-      x = 0,
-      y = 0,
-      width = 100,
-      height = 100,
-      id = 1,
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 4,
       name = "physics",
-      visible = false,
-      opacity = 1,
+      visible = true,
+      opacity = 0.4,
       offsetx = 0,
       offsety = 0,
       properties = {},
-      encoding = "lua",
-      chunks = {
+      objects = {
         {
-          x = -20, y = -16, width = 20, height = 16,
-          data = {
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 63, 63, 63, 63, 63, 63, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 63, 63, 63, 63, 63, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 63, 63, 63, 63, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-          }
+          id = 3,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -253.25,
+          y = -144,
+          width = 109.25,
+          height = 16,
+          rotation = 0,
+          gid = 63,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 4,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -185.727,
+          y = -208,
+          width = 41.7273,
+          height = 16,
+          rotation = 0,
+          gid = 63,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -587,8 +590,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = -240,
-          y = -224,
+          x = -192,
+          y = -240,
           width = 16,
           height = 16,
           rotation = 0,
