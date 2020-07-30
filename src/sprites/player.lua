@@ -18,7 +18,7 @@ function Player:new(spec)
   body.aabb.halfSize.x = 2
   body.aabb.halfSize.y = 5
   body.aabbOffset.y = 3
-  body.friction = 0.95
+  -- body.friction = 0.95
   -- self.gravity = (2 * JUMP_HEIGHT) / math.pow(TIME_TO_JUMP_APEX, 2)
   -- self.jumpVelocity = self.gravity * TIME_TO_JUMP_APEX
   body.gravityForce.y = 50
