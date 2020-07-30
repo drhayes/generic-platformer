@@ -1,8 +1,7 @@
 local GameObject = require 'gobs.gameObject'
 local Drawable = require 'gobs.drawable'
 local collisionLayers = require 'core.collisionLayers'
-
-local HORIZ_VEL = 100
+local config = require 'gameConfig'
 
 local Player = GameObject:extend()
 -- TODO: Do I *need* drawable yet?
@@ -20,27 +19,41 @@ function Player:new(spec)
   body.aabb.halfSize.y = 5
   body.aabbOffset.y = 3
   -- body.friction = 0.95
-  -- self.gravity = (2 * JUMP_HEIGHT) / math.pow(TIME_TO_JUMP_APEX, 2)
-  -- self.jumpVelocity = self.gravity * TIME_TO_JUMP_APEX
-  body.gravityForce.y = 50
+  body.gravityForce.y = (2 * config.player.jumpHeight) / math.pow(config.player.timeToJumpApex, 2)
+  self.jumpVelocity = body.gravityForce.y * config.player.timeToJumpApex
+  body.maxVelocity.x = config.player.maxVelocityX
+  body.maxVelocity.y = config.player.maxVelocityY
   body.collisionLayer = collisionLayers.player
   body.collisionMask = collisionLayers.tilemap
   self.body = body
 end
 
 function Player:update(dt)
+  local body = self.body
+
   if love.keyboard.isDown('right') then
-    self.body.moveForce.x = HORIZ_VEL
+    body.moveForce.x = config.player.runVelocity
   elseif love.keyboard.isDown('left') then
-    self.body.moveForce.x = -HORIZ_VEL
+    body.moveForce.x = -config.player.runVelocity
   else
-    self.body.moveForce.x = 0
+    body.moveForce.x = 0
+  end
+
+  -- Change this when there's hurting and stuff.
+  if body.velocity.x ~= 0 and body.moveForce.x == 0 then
+    body.velocity.x = 0
+  end
+
+  if love.keyboard.isDown('space') and body.isOnGround then
+    body.jumpForce.y = -self.jumpVelocity
   end
 
   self.animation:update(dt)
-  self.body:update(dt)
-  self.x = self.body.position.x
-  self.y = self.body.position.y
+  body:update(dt)
+  self.x = body.position.x
+  self.y = body.position.y
+
+  body.jumpForce.y = 0
 end
 
 local lg = love.graphics

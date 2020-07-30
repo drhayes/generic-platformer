@@ -1,4 +1,12 @@
 return {
+  player = {
+    runVelocity = 300,
+    jumpHeight = 20,
+    timeToJumpApex = .5,
+    maxVelocityX = 100,
+    maxVelocityY = 100,
+  },
+
   map = {
     tileSize = 16,
   },

@@ -2,6 +2,7 @@ local Object = require 'lib.classic'
 local Vector = require 'lib.brinevector'
 local AABB = require 'core.aabb'
 local bit = bit or bit32 or require 'bit32'
+local lume = require 'lib.lume'
 
 local SUPERTINY = 1e-5
 
@@ -26,6 +27,7 @@ function PhysicsBody:new(checkCollisionsCallback)
   self.friction = 1
   self.knockbackFactor = 1
 
+  self.jumpForce = Vector()
   self.gravityForce = Vector()
   self.moveForce = Vector()
 
@@ -49,7 +51,7 @@ function PhysicsBody:new(checkCollisionsCallback)
   -- I'm in these collision layers.
   self.collisionLayers = 0
   -- What collided with me?
-  -- self.collidedWith = nil
+  self.collidedWith = nil
 
   -- This is the actual bounds of the physics body.
   self.aabb = AABB()
@@ -78,17 +80,33 @@ function PhysicsBody:update(dt)
   self.wasOnCeiling = self.isOnCeiling
   self.wasOnOneWayUpPlatform = self.isOnOneWayUpPlatform
   self.isOnOneWayUpPlatform = false
+  self.collidedWith = nil
 
   self.isOnGround = false
   self.isOnCeiling = false
   self.isPushingLeftward = false
   self.isPushingRightward = false
 
-  -- Add our forces.
-  self.velocity = self.velocity + self.gravityForce * dt
-  self.velocity = self.velocity + self.moveForce * dt
+  -- Are we jumping?
+  if self.jumpForce.x ~= 0 then
+    self.velocity.x = self.jumpForce.x
+  end
+  if self.jumpForce.y ~= 0 then
+    self.velocity.y = self.jumpForce.y
+  end
+
   -- Accelerate our velocity.
-  self.velocity = self.velocity + self.acceleration * dt
+  self.velocity.x = self.velocity.x + self.acceleration.x * dt
+  self.velocity.y = self.velocity.y + self.acceleration.y * dt
+  -- Add our forces.
+  self.velocity.x = self.velocity.x + self.gravityForce.x * dt
+  self.velocity.y = self.velocity.y + self.gravityForce.y * dt
+  self.velocity.x = self.velocity.x + self.moveForce.x * dt
+  self.velocity.y = self.velocity.y + self.moveForce.y * dt
+
+  -- Check our max velocities.
+  self.velocity.x = lume.clamp(self.velocity.x, -self.maxVelocity.x, self.maxVelocity.x)
+  self.velocity.y = lume.clamp(self.velocity.y, -self.maxVelocity.y, self.maxVelocity.y)
 
   -- Movement this frame.
   local deltaPos = self.velocity * dt
@@ -104,8 +122,14 @@ function PhysicsBody:update(dt)
   --   end
   end
 
-  self.velocity = self.velocity * self.friction
-  self.aabb.center = self.position + self.aabbOffset
+  if self.collidedWith then
+    self:collisionResolution()
+  end
+
+  self.velocity.x = self.velocity.x * self.friction
+  self.velocity.y = self.velocity.y * self.friction
+  self.aabb.center.x = self.position.x + self.aabbOffset.x
+  self.aabb.center.y = self.position.y + self.aabbOffset.y
 end
 
 function PhysicsBody:moveX(amount)
@@ -141,5 +165,7 @@ function PhysicsBody:moveY(amount)
     amount = amount - step
   end
 end
+
+function PhysicsBody:collisionResolution() end
 
 return PhysicsBody
