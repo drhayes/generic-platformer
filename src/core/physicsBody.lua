@@ -54,6 +54,7 @@ function PhysicsBody:new(checkCollisionsCallback)
   self.collisionLayers = 0
   -- What collided with me?
   self.collidedWith = nil
+  self.collisionNormal = Vector()
 
   -- This is the actual bounds of the physics body.
   self.aabb = AABB()

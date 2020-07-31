@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="5">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="6">
  <editorsettings>
   <chunksize width="20" height="16"/>
  </editorsettings>
@@ -14,7 +14,7 @@
 0,0,0,0,0,0,0,0,45,57,55,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,45,43,32,25,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,4,19,18,17,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,46,48,48,48,48,48,48,0,0,0,0,0,0,0,0,0,
 0,0,0,0,6,1,21,20,20,20,20,0,0,0,0,0,0,0,0,0,
@@ -31,6 +31,7 @@
  <objectgroup id="4" name="physics" opacity="0.4">
   <object id="3" gid="63" x="-253.25" y="-144" width="109.25" height="16"/>
   <object id="4" gid="63" x="-185.727" y="-208" width="41.7273" height="16"/>
+  <object id="5" gid="63" x="-192" y="-160" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="3" name="sprites">
   <object id="2" gid="66" x="-192" y="-240" width="16" height="16"/>

@@ -8,10 +8,25 @@ local PhysicsService = Object:extend()
 local function collisionResolution(body)
   if body.collidedWith:inLayer(collisionLayers.tilemap) then
     local collidedWith = body.collidedWith
-    if body.velocity.y > 0 then
-      body.position.y = collidedWith.aabb:top() - body.aabb.halfSize.y - body.aabbOffset.y
-      body.aabb.center.y = collidedWith.aabb:top() - body.aabb.halfSize.y
+    local aabb = body.aabb
+    local collidedAABB = collidedWith.aabb
+    if body.collisionNormal.y < 0 then
+      body.position.y = collidedAABB:top() - aabb.halfSize.y - body.aabbOffset.y
+      aabb.center.y = collidedAABB:top() - aabb.halfSize.y
       body.isOnGround = true
+    elseif body.collisionNormal.y > 0 then
+      body.position.y = collidedAABB:bottom() + aabb.halfSize.y - body.aabbOffset.y
+      aabb.center.y = collidedAABB:bottom() + body.aab.halfSize.y
+      body.isOnCeiling = true
+    end
+    if body.collisionNormal.x < 0 then
+      body.position.x = collidedAABB:left() - aabb.halfSize.x - body.aabbOffset.x
+      aabb.center.x = collidedAABB:left() - aabb.halfSize.x
+      body.isPushingRightward = true
+    elseif body.collisionNormal.x > 0 then
+      body.position.x = collidedAABB:right() + aabb.halfSize.x - body.aabbOffset.x
+      aabb.center.x = collidedAABB:right() + aabb.halfSize.x
+      body.isPushingLeftward = true
     end
   end
 end
@@ -46,6 +61,8 @@ function PhysicsService:checkCollisions(movingBody, deltaX, deltaY)
       testAABB.halfSize.x, testAABB.halfSize.y = aabb.halfSize.x, aabb.halfSize.y
       if testAABB:overlaps(body.aabb) and movingBody:collidesWith(body.collisionLayers) then
         movingBody.collidedWith = body
+        movingBody.collisionNormal.x = -deltaX
+        movingBody.collisionNormal.y = -deltaY
         return true
       end
     end
