@@ -21,6 +21,7 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   self.visible = layerData.visible or true
   self.opacity = layerData.opacity or 1
   self.properties = layerData.properties
+  self.layer = layerData.properties.layer or 'background'
   self.width = 0
   self.height = 0
 
