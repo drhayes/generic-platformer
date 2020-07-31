@@ -134,9 +134,6 @@ function PhysicsBody:update(dt)
   if self.isOnGround then
     self.fallingVelocity.y = 0
   end
-
-  self.jumpVelocity.x, self.jumpVelocity.y = 0, 0
-  self.moveVelocity.x, self.moveVelocity.y = 0, 0
 end
 
 function PhysicsBody:moveX(amount)

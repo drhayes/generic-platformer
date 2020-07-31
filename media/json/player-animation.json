@@ -125,7 +125,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 2000
    },
    "player-016.png": {
     "frame": { "x": 256, "y": 0, "w": 16, "h": 16 },
@@ -157,7 +157,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 500
+    "duration": 100
    },
    "player-020.png": {
     "frame": { "x": 320, "y": 0, "w": 16, "h": 16 },
@@ -165,7 +165,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 500
    },
    "player-021.png": {
     "frame": { "x": 336, "y": 0, "w": 16, "h": 16 },
@@ -189,7 +189,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 500
+    "duration": 100
    },
    "player-024.png": {
     "frame": { "x": 384, "y": 0, "w": 16, "h": 16 },
@@ -197,7 +197,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 500
    },
    "player-025.png": {
     "frame": { "x": 400, "y": 0, "w": 16, "h": 16 },
@@ -365,7 +365,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 300
+    "duration": 100
    },
    "player-046.png": {
     "frame": { "x": 736, "y": 0, "w": 16, "h": 16 },
@@ -373,10 +373,18 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 300
    },
    "player-047.png": {
     "frame": { "x": 752, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   },
+   "player-048.png": {
+    "frame": { "x": 768, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
@@ -388,20 +396,21 @@
   "app": "http://www.aseprite.org/",
   "version": "1.2.16.3-x64",
   "format": "RGBA8888",
-  "size": { "w": 768, "h": 16 },
+  "size": { "w": 784, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
    { "name": "jumping", "from": 1, "to": 2, "direction": "forward" },
    { "name": "running", "from": 3, "to": 10, "direction": "forward" },
-   { "name": "runningjump", "from": 11, "to": 14, "direction": "forward" },
-   { "name": "dying", "from": 15, "to": 23, "direction": "forward" },
-   { "name": "dead", "from": 23, "to": 23, "direction": "forward" },
-   { "name": "spell", "from": 24, "to": 30, "direction": "forward" },
-   { "name": "hurt", "from": 31, "to": 37, "direction": "forward" },
-   { "name": "resurrect", "from": 38, "to": 43, "direction": "forward" },
-   { "name": "falling", "from": 44, "to": 44, "direction": "forward" },
-   { "name": "shrug", "from": 45, "to": 47, "direction": "pingpong" }
+   { "name": "runningjump", "from": 11, "to": 15, "direction": "forward" },
+   { "name": "runningfalling", "from": 15, "to": 15, "direction": "forward" },
+   { "name": "dying", "from": 16, "to": 24, "direction": "forward" },
+   { "name": "dead", "from": 24, "to": 24, "direction": "forward" },
+   { "name": "spell", "from": 25, "to": 31, "direction": "forward" },
+   { "name": "hurt", "from": 32, "to": 38, "direction": "forward" },
+   { "name": "resurrect", "from": 39, "to": 44, "direction": "forward" },
+   { "name": "falling", "from": 45, "to": 45, "direction": "forward" },
+   { "name": "shrug", "from": 46, "to": 48, "direction": "pingpong" }
   ]
  }
 }

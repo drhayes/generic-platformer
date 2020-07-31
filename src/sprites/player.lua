@@ -27,6 +27,9 @@ end
 
 function Player:update(dt)
   local body, animation = self.body, self.animation
+  -- Reset control velocities.
+  body.jumpVelocity.x, body.jumpVelocity.y = 0, 0
+  body.moveVelocity.x, body.moveVelocity.y = 0, 0
 
   if love.keyboard.isDown('right') then
     body.moveVelocity.x = config.player.runVelocity
@@ -64,7 +67,11 @@ function Player:update(dt)
 
   -- If we're falling, that overrides most animations.
   if not body.isOnGround and body.velocity.y > 0 then
-    animation.current = 'falling'
+    if body.moveVelocity.x ~= 0 then
+      animation.current = 'runningfalling'
+    else
+      animation.current = 'falling'
+    end
     animation.flippedH = body.moveVelocity.x < 0
   end
 

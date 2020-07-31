@@ -448,9 +448,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"spawner-000.png":
+"player-048.png":
 {
 	"frame": {"x":91,"y":109,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"spawner-000.png":
+{
+	"frame": {"x":91,"y":127,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -463,6 +471,6 @@
 	"format": "RGBA8888",
 	"size": {"w":144,"h":144},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:9c973c9e6827340c4dff900d781f9d22:0d194e5f069000f4d55e59875748a5de:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:1aa87d651b2db99b56c744abec490203:993dec171885fb57893a3f6dea9d2553:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }
