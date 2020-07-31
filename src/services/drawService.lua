@@ -7,6 +7,7 @@ local LAYERS = {
   player = 200,
   default = 500,
   foreground = 1000,
+  secretArea = 1200,
 }
 
 local function drawableCompare(a, b)

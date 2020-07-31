@@ -16,7 +16,7 @@ local function collisionResolution(body)
       body.isOnGround = true
     elseif body.collisionNormal.y > 0 then
       body.position.y = collidedAABB:bottom() + aabb.halfSize.y - body.aabbOffset.y
-      aabb.center.y = collidedAABB:bottom() + body.aab.halfSize.y
+      aabb.center.y = collidedAABB:bottom() + body.aabb.halfSize.y
       body.isOnCeiling = true
     end
     if body.collisionNormal.x < 0 then

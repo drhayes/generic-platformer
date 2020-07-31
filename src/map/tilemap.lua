@@ -1,6 +1,7 @@
 local Object = require 'lib.classic'
 local TileLayer = require 'map.tileLayer'
 local PhysicsLayer = require 'map.physicsLayer'
+local SecretAreaLayer = require 'map.secretAreaLayer'
 local SpriteSpec = require 'sprites.spriteSpec'
 local config = require 'gameConfig'
 
@@ -57,8 +58,10 @@ function Tilemap:new(spec)
   -- Now iterates layers to create Grid instances and add tile objects to in them.
   for i = 1, #spec.tilemapData.layers do
     local layer = spec.tilemapData.layers[i]
-    if layer.type == 'tilelayer' and layer.name ~= 'physics' then
+    if layer.type == 'tilelayer' and not layer.properties.isSecretArea then
       table.insert(layers, TileLayer(layer, tilesByGid, -minX, -minY))
+    elseif layer.type == 'tilelayer' and layer.properties.isSecretArea then
+      table.insert(layers, SecretAreaLayer(layer, tilesByGid, -minX, -minY))
     elseif layer.type == 'objectgroup' and layer.name == 'physics' then
       table.insert(layers, PhysicsLayer(layer, tilesByGid, -minX, -minY))
     elseif layer.name == 'sprites' then

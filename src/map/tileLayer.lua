@@ -22,8 +22,8 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   self.opacity = layerData.opacity or 1
   self.properties = layerData.properties
   self.layer = layerData.properties.layer or 'background'
-  self.width = 0
-  self.height = 0
+  self.width = 1
+  self.height = 1
 
   local grid = Grid()
   self.grid = grid
@@ -32,8 +32,8 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
     local chunk = layerData.chunks[i]
     -- Iterate the data taking into account the stride of the chunk.
     local width, height = chunk.width, chunk.height
-    self.width = math.max(self.width, chunk.x + offsetX + width)
-    self.height = math.max(self.height, chunk.y + offsetY + height)
+    self.width = math.max(self.width, chunk.x * TILE_SIZE + offsetX + width * TILE_SIZE)
+    self.height = math.max(self.height, chunk.y * TILE_SIZE + offsetY + height * TILE_SIZE)
     for y = 0, height - 1 do
       for x = 0, width - 1 do
         local tileIndex = 1 + y * width + x
