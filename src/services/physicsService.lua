@@ -14,15 +14,18 @@ local function collisionResolution(body)
       body.position.y = collidedAABB:top() - aabb.halfSize.y - body.aabbOffset.y
       aabb.center.y = collidedAABB:top() - aabb.halfSize.y
       body.isOnGround = true
+      body.velocity.y = 0
     elseif body.collisionNormal.y > 0 then
       body.position.y = collidedAABB:bottom() + aabb.halfSize.y - body.aabbOffset.y
       aabb.center.y = collidedAABB:bottom() + body.aabb.halfSize.y
       body.isOnCeiling = true
+      body.velocity.y = 0
     end
     if body.collisionNormal.x < 0 then
       body.position.x = collidedAABB:left() - aabb.halfSize.x - body.aabbOffset.x
       aabb.center.x = collidedAABB:left() - aabb.halfSize.x
       body.isPushingRightward = true
+      body.velocity.x = 0
     elseif body.collisionNormal.x > 0 then
       body.position.x = collidedAABB:right() + aabb.halfSize.x - body.aabbOffset.x
       aabb.center.x = collidedAABB:right() + aabb.halfSize.x

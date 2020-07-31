@@ -114,12 +114,9 @@ function PhysicsBody:update(dt)
   if deltaPos.x ~= 0 or deltaPos.y ~= 0 then
     self:moveX(deltaPos.x)
     self:moveY(deltaPos.y)
-  -- else
-  --   -- Even if we don't move, check collisions.
-  --   self:checkCollisions(0, 0)
-  --   if body.collidedWith then
-  --     self:resolveCollision(entity)
-  --   end
+  else
+    -- Even if we don't move, check collisions.
+    self:checkCollisions(0, 0)
   end
 
   if self.collidedWith then

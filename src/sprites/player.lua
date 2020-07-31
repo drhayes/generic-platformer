@@ -41,11 +41,13 @@ function Player:update(dt)
     body.jumpVelocity.y = -self.jumpVelocity
   end
 
+  body:update(dt)
+
   if body.isOnGround then
     animation.current = 'idle'
   end
 
-  if body.moveVelocity.x ~= 0 and body.isOnGround then
+  if body.moveVelocity.x ~= 0 and body.velocity.x ~= 0 and body.isOnGround then
     animation.current = 'running'
     animation.flippedH = body.moveVelocity.x < 0
   end
@@ -60,9 +62,6 @@ function Player:update(dt)
     end
   end
 
-  animation:update(dt)
-  body:update(dt)
-
   -- If we're falling, that overrides most animations.
   if not body.isOnGround and body.velocity.y > 0 then
     if body.moveVelocity.x ~= 0 then
@@ -72,6 +71,8 @@ function Player:update(dt)
     end
     animation.flippedH = body.moveVelocity.x < 0
   end
+
+  animation:update(dt)
 
   self.x = body.position.x
   self.y = body.position.y
