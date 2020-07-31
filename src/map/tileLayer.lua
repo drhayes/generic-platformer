@@ -1,5 +1,4 @@
 local Gameobject = require 'gobs.gameObject'
-local Drawable = require 'gobs.drawable'
 local Grid = require 'core.grid'
 local bit = bit or bit32 or require 'bit32' -- luacheck: ignore
 local config = require 'gameConfig'
@@ -10,7 +9,6 @@ local FLIPPED_DIAGONALLY = 0x20000000
 local TILE_SIZE = config.map.tileSize
 
 local TileLayer = Gameobject:extend()
-TileLayer:implement(Drawable)
 
 local function basename(str)
   local name = string.gsub(str, "(.*/)(.*)", "%2")

@@ -1,11 +1,8 @@
 local GameObject = require 'gobs.gameObject'
-local Drawable = require 'gobs.drawable'
 local collisionLayers = require 'core.collisionLayers'
 local config = require 'gameConfig'
 
 local Player = GameObject:extend()
--- TODO: Do I *need* drawable yet?
-Player:implement(Drawable)
 
 function Player:new(spec)
   self.x, self.y = spec.x, spec.y
