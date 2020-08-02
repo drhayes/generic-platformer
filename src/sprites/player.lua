@@ -11,6 +11,7 @@ function Player:new(spec)
   self.animation = spec.animationService:create('player')
   self.animation.current = 'spawning'
   self.animation.animations.spawning.doneSpawning = function()
+    self.animation.current = 'idle'
     self.isSpawning = false
   end
 
