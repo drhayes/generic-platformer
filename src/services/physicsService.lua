@@ -40,6 +40,7 @@ function PhysicsService:new(eventBus)
   self.bodies = {}
 end
 
+-- TODO: Consider taking x, y, w, h, ox, oy here.
 function PhysicsService:newBody()
   local callback = self:createCheckCollisionsCallback()
   local body = PhysicsBody(callback)

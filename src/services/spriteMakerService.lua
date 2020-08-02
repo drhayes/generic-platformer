@@ -1,6 +1,8 @@
 local Object = require 'lib.classic'
 
+local GoldPiece = require 'sprites.goldPiece'
 local Player = require 'sprites.player'
+local SmallChest = require 'sprites.smallChest'
 local Spawner = require 'sprites.spawner'
 
 local SpriteMakerService = Object:extend()
@@ -10,7 +12,9 @@ function SpriteMakerService:new(eventBus, registry)
   self.registry = registry
 
   self.mapping = {
+    goldPiece = GoldPiece,
     player = Player,
+    smallChest = SmallChest,
     spawner = Spawner,
   }
 end

@@ -1,6 +1,6 @@
 return {
   player = {
-    runVelocity = 50,
+    runVelocity = 65,
     jumpHeight = 40,
     timeToJumpApex = .3,
   },
@@ -21,6 +21,7 @@ return {
     layers = {
       'player',
       'tilemap',
+      'treasure',
     },
   }
 }

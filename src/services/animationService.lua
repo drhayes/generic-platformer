@@ -37,7 +37,7 @@ function AnimationService:new(animationData, spriteAtlas)
     end
     -- ...and make sure to grab that cel data.
     local layers = data.meta.layers
-    if layers then
+    if layers and layers[1] and layers[1].cels then
       for i = 1, #layers do
         local layer = layers[i]
         for j = 1, #layer.cels do

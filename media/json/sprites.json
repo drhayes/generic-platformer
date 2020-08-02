@@ -64,6 +64,14 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
+"goldPiece-000.png":
+{
+	"frame": {"x":91,"y":127,"w":2,"h":3},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":3},
+	"sourceSize": {"w":2,"h":3}
+},
 "player-000.png":
 {
 	"frame": {"x":1,"y":145,"w":16,"h":16},
@@ -520,9 +528,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"spawner-000.png":
+"smallChest-000.png":
 {
 	"frame": {"x":91,"y":91,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"spawner-000.png":
+{
+	"frame": {"x":91,"y":109,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -535,6 +551,6 @@
 	"format": "RGBA8888",
 	"size": {"w":162,"h":162},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:8a6ed9f2ecf8f7a617c9659c6c88f2b5:cbb35d02b36062aca30f1446a64fbd50:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:dc00631f1c31a08328f906bedaa7156b:1fadb360f5cc317ae0a50070cbb9f0d3:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

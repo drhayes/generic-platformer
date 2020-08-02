@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 14,
+  nextobjectid = 15,
   properties = {},
   tilesets = {
     {
@@ -482,12 +482,19 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 1,
+      tilecount = 2,
       tiles = {
         {
           id = 0,
           type = "spawner",
           image = "../../tmp/sprites/spawner-000.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 1,
+          type = "smallChest",
+          image = "../../tmp/sprites/smallChest-000.png",
           width = 16,
           height = 16
         }
@@ -837,6 +844,20 @@ return {
           height = 16,
           rotation = 0,
           gid = 66,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 14,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -16,
+          y = -192,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          gid = 67,
           visible = true,
           properties = {}
         }
