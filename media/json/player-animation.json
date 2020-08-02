@@ -390,13 +390,77 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
     "duration": 300
+   },
+   "player-049.png": {
+    "frame": { "x": 784, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-050.png": {
+    "frame": { "x": 800, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-051.png": {
+    "frame": { "x": 816, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-052.png": {
+    "frame": { "x": 832, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-053.png": {
+    "frame": { "x": 848, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-054.png": {
+    "frame": { "x": 864, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-055.png": {
+    "frame": { "x": 880, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-056.png": {
+    "frame": { "x": 896, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 300
    }
  },
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.16.3-x64",
   "format": "RGBA8888",
-  "size": { "w": 784, "h": 16 },
+  "size": { "w": 912, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
@@ -410,7 +474,11 @@
    { "name": "hurt", "from": 32, "to": 38, "direction": "forward" },
    { "name": "resurrect", "from": 39, "to": 44, "direction": "forward" },
    { "name": "falling", "from": 45, "to": 45, "direction": "forward" },
-   { "name": "shrug", "from": 46, "to": 48, "direction": "pingpong" }
+   { "name": "shrug", "from": 46, "to": 48, "direction": "pingpong" },
+   { "name": "spawning", "from": 49, "to": 56, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 56, "data": "doneSpawning" }] }
   ]
  }
 }

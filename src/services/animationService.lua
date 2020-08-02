@@ -14,7 +14,10 @@ function AnimationService:new(animationData, spriteAtlas)
   -- Separate into per-image-set animation data.
   for key, data in pairs(animationData) do
     local imageRoot = key:match('(%a+)-animation.json')
-    local imageset = {}
+    local imageset = {
+      anims = {},
+      celData = {},
+    }
     -- For each image, save the animations...
     local frameTags = data.meta.frameTags
     for i = 1, #frameTags do
@@ -30,7 +33,23 @@ function AnimationService:new(animationData, spriteAtlas)
         local frameName = getFrameName(imageRoot, j)
         table.insert(anim.durations, data.frames[frameName].duration / 1000)
       end
-      imageset[frameTag.name] = anim
+      imageset.anims[frameTag.name] = anim
+    end
+    -- ...and make sure to grab that cel data.
+    local layers = data.meta.layers
+    if layers then
+      for i = 1, #layers do
+        local layer = layers[i]
+        for j = 1, #layer.cels do
+          local cel = layer.cels[j]
+          local celData = imageset.celData[cel.frame]
+          if not celData then
+            celData = {}
+            imageset.celData[cel.frame] = celData
+          end
+          table.insert(celData, cel.data)
+        end
+      end
     end
 
     self.imagesets[imageRoot] = imageset
@@ -48,15 +67,20 @@ function AnimationService:create(imageRoot)
   end
 
   -- Iterate the animations in the imageset...
-  for name, data in pairs(imageset) do
+  for name, data in pairs(imageset.anims) do
     -- ...and make an anim8 instace for each one by first getting the quads...
     local quads = {}
     for i = data.from, data.to do
       local frameName = getFrameName(imageRoot, i)
       table.insert(quads, spriteAtlas:toQuad(frameName))
     end
-    -- TODO: Oh yeah, looping happens in that 'nil' param.
-    local animationInstance = anim8.newAnimation(quads, data.durations, nil)
+    local loopOperation = nil
+    -- Does the "to" frame have any cel data that looks like a loop operation?
+    local celData = imageset.celData[data.to]
+    if celData then
+      loopOperation = celData[1]
+    end
+    local animationInstance = anim8.newAnimation(quads, data.durations, loopOperation)
     -- ...and add it to the animation instance.
     animation:add(name, animationInstance)
   end

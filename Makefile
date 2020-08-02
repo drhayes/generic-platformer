@@ -97,7 +97,7 @@ $(IMAGES_DIR)/sprites.png $(JSON_DIR)/sprites.json: $(SPRITE_MARKERS) | $(IMAGES
 
 $(SPRITES_TMP)/%.spritemarker: $(SPRITE_ASSETS_DIR)/%.ase | $(SPRITES_TMP)
 	$(ASEPRITE) --batch $< --save-as '$(SPRITES_TMP)/$*-{frame000}.png' && \
-		$(ASEPRITE) --batch --list-tags $< --filename-format '$*-{frame000}.png' --data '$(JSON_DIR)/$*-animation.json' && \
+		$(ASEPRITE) --batch --list-layers --list-tags $< --filename-format '$*-{frame000}.png' --data '$(JSON_DIR)/$*-animation.json' && \
 		touch $@
 
 

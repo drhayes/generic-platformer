@@ -9,6 +9,10 @@ function Player:new(spec)
   self.layer = 'player'
 
   self.animation = spec.animationService:create('player')
+  self.animation.current = 'spawning'
+  self.animation.animations.spawning.doneSpawning = function()
+    self.isSpawning = false
+  end
 
   local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
@@ -21,9 +25,16 @@ function Player:new(spec)
   body.collisionLayer = collisionLayers.player
   body.collisionMask = collisionLayers.tilemap
   self.body = body
+
+  self.isSpawning = true
 end
 
 function Player:update(dt)
+  if self.isSpawning then
+    self.animation:update(dt)
+    return
+  end
+
   local body, animation = self.body, self.animation
   -- Reset control velocities.
   body.jumpVelocity.x, body.jumpVelocity.y = 0, 0
