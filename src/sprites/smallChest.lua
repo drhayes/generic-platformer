@@ -75,7 +75,7 @@ function SmallChest:spillRiches()
         wait = wait + coroutine.yield()
       end
 
-      self.eventBus:emit('spawnSpriteByType', 'goldPiece', self.x, self.y)
+      self.eventBus:emit('spawnSpriteByType', 'goldCoin', self.x, self.y)
       wait = 0
     end
     self.goldCoroutine = nil

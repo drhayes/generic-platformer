@@ -64,7 +64,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"goldPiece-000.png":
+"goldCoin-000.png":
 {
 	"frame": {"x":109,"y":109,"w":2,"h":3},
 	"rotated": false,
@@ -591,6 +591,6 @@
 	"format": "RGBA8888",
 	"size": {"w":162,"h":162},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:079716cab178ef1bffa41edadbd12100:ae1b60df6deb38f742d8d79359ce4f97:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:6fa541bef0a087f2f0d63db03d91d110:ae1b60df6deb38f742d8d79359ce4f97:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

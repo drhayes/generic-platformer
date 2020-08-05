@@ -4,13 +4,13 @@ local collisionLayers = require 'core.collisionLayers'
 local JUMP_HEIGHT = 24
 local APEX_TIME = .5
 
-local GoldPiece = GameObject:extend()
+local GoldCoin = GameObject:extend()
 
-function GoldPiece:new(spec)
+function GoldCoin:new(spec)
   self.x, self.y = spec.x, spec.y
   self.layer = 'player'
 
-  self.animation = spec.animationService:create('goldPiece')
+  self.animation = spec.animationService:create('goldCoin')
 
   local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
@@ -28,7 +28,7 @@ function GoldPiece:new(spec)
   body.jumpVelocity.y = math.sin(angle) * speed
 end
 
-function GoldPiece:update(dt)
+function GoldCoin:update(dt)
   self.body:update(dt)
   self.body.jumpVelocity.x, self.body.jumpVelocity.y = 0, 0
   self.animation:update(dt)
@@ -37,15 +37,15 @@ end
 
 local lg = love.graphics
 
-function GoldPiece:draw()
+function GoldCoin:draw()
   lg.push()
   lg.setColor(1, 1, 1, 1)
   self.animation:draw(self.x, self.y)
   lg.pop()
 end
 
-function GoldPiece:__tostring()
-  return 'GoldPiece'
+function GoldCoin:__tostring()
+  return 'GoldCoin'
 end
 
-return GoldPiece
+return GoldCoin

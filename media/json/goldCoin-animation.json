@@ -1,5 +1,5 @@
 { "frames": {
-   "goldPiece-000.png": {
+   "goldCoin-000.png": {
     "frame": { "x": 0, "y": 0, "w": 2, "h": 3 },
     "rotated": false,
     "trimmed": false,
