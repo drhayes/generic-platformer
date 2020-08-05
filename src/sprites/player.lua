@@ -8,6 +8,8 @@ function Player:new(spec)
   self.x, self.y = spec.x, spec.y
   self.layer = 'player'
 
+  self.input = spec.inputService
+
   self.animation = spec.animationService:create('player')
   self.animation.current = 'spawning'
   self.animation.animations.spawning.doneSpawning = function()
@@ -41,15 +43,17 @@ function Player:update(dt)
   body.jumpVelocity.x, body.jumpVelocity.y = 0, 0
   body.moveVelocity.x, body.moveVelocity.y = 0, 0
 
-  if love.keyboard.isDown('right') then
+  local input = self.input
+
+  if input:down('right') then
     body.moveVelocity.x = config.player.runVelocity
-  elseif love.keyboard.isDown('left') then
+  elseif input:down('left') then
     body.moveVelocity.x = -config.player.runVelocity
   else
     body.moveVelocity.x = 0
   end
 
-  if love.keyboard.isDown('space') and body.isOnGround then
+  if input:pressed('jump') and body.isOnGround then
     body.jumpVelocity.y = -self.jumpVelocity
   end
 

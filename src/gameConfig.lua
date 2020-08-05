@@ -23,5 +23,20 @@ return {
       'tilemap',
       'treasure',
     },
-  }
+  },
+
+  input = {
+    mappings = {
+      controls = {
+        left = { 'key:left', 'key:a' },
+        right = { 'key:right', 'key:d' },
+        up = { 'key:up', 'key:w' },
+        down = { 'key:down', 'key:s' },
+        jump = { 'key:space' },
+      },
+      pairs = {
+        move = { 'left', 'right', 'up', 'down' }
+      },
+    },
+  },
 }

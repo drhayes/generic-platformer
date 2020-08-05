@@ -1,5 +1,6 @@
 local GameObject = require 'gobs.gameObject'
 local collisionLayers = require 'core.collisionLayers'
+local Player = require 'sprites.player'
 
 local SmallChest = GameObject:extend()
 
@@ -18,11 +19,17 @@ function SmallChest:new(spec)
   body.aabbOffset.y = 4
   body.collisionLayer = collisionLayers.treasure
   self.body = body
+
+  spec.eventBus:on('gobAdded', self.onGobAdded, self)
 end
 
 function SmallChest:update(dt)
   self.body:update(dt)
   self.animation:update(dt)
+
+  if self.player and self.player.body.aabb:overlaps(self.body.aabb) then
+    log.debug('overlap')
+  end
 end
 
 local lg = love.graphics
@@ -32,6 +39,11 @@ function SmallChest:draw()
   lg.setColor(1, 1, 1, 1)
   self.animation:draw(self.x, self.y)
   lg.pop()
+end
+
+function SmallChest:onGobAdded(gob)
+  if not gob:is(Player) then return end
+  self.player = gob
 end
 
 function SmallChest:__tostring()

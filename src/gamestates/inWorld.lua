@@ -29,6 +29,9 @@ function InWorld:update(dt)
   if not self.currentTilemap then
     self:switchTilemap('entrance.lua')
   end
+
+  local inputService = self.registry:get('input')
+  inputService:update(dt)
 end
 
 function InWorld:draw()
