@@ -66,7 +66,7 @@
 },
 "goldPiece-000.png":
 {
-	"frame": {"x":91,"y":127,"w":2,"h":3},
+	"frame": {"x":109,"y":109,"w":2,"h":3},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":3},
@@ -536,9 +536,49 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"spawner-000.png":
+"smallChest-001.png":
 {
 	"frame": {"x":91,"y":109,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"smallChest-002.png":
+{
+	"frame": {"x":91,"y":127,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"smallChest-003.png":
+{
+	"frame": {"x":91,"y":145,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"smallChest-004.png":
+{
+	"frame": {"x":109,"y":91,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"smallChest-005.png":
+{
+	"frame": {"x":127,"y":91,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"spawner-000.png":
+{
+	"frame": {"x":145,"y":91,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -551,6 +591,6 @@
 	"format": "RGBA8888",
 	"size": {"w":162,"h":162},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:dc00631f1c31a08328f906bedaa7156b:1fadb360f5cc317ae0a50070cbb9f0d3:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:079716cab178ef1bffa41edadbd12100:ae1b60df6deb38f742d8d79359ce4f97:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

@@ -94,6 +94,15 @@ function Player:update(dt)
   self.y = body.position.y
 
   body.jumpVelocity.y = 0
+
+  if self.useObject and self.body.aabb:overlaps(self.useObject.body.aabb) then
+    if input:pressed('up') and body.isOnGround then
+      self.useObject:used(self)
+      self.useObject = nil
+    end
+  else
+    self.useObject = nil
+  end
 end
 
 local lg = love.graphics
@@ -105,6 +114,10 @@ function Player:draw()
   -- lg.setColor(0, 1, 0, .3)
   -- lg.rectangle('fill', self.body.aabb:bounds())
   lg.pop()
+end
+
+function Player:setUseObject(obj)
+  self.useObject = obj
 end
 
 function Player:__tostring()

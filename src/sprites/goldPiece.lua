@@ -15,12 +15,25 @@ function GoldPiece:new(spec)
   body.aabb.halfSize.x = 1
   body.aabb.halfSize.y = 1.5
   body.collisionLayer = collisionLayers.treasure
+  body.collisionMask = collisionLayers.tilemap
   self.body = body
+
+  local speed = 80
+  local angle = love.math.randomNormal(math.rad(15), math.rad(-90))
+  body.moveVelocity.x = math.cos(angle) * speed
+  body.moveVelocity.y = math.sin(angle) * speed
+  body.gravityForce.y = 200
+  log.debug(body.moveVelocity)
 end
 
 function GoldPiece:update(dt)
   self.body:update(dt)
+  -- self.body.moveVelocity.x = 0
+  -- self.body.moveVelocity.y = 0
+
   self.animation:update(dt)
+
+  self.x, self.y = self.body.position.x, self.body.position.y
 end
 
 local lg = love.graphics
