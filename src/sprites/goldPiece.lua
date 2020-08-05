@@ -1,6 +1,9 @@
 local GameObject = require 'gobs.gameObject'
 local collisionLayers = require 'core.collisionLayers'
 
+local JUMP_HEIGHT = 24
+local APEX_TIME = .5
+
 local GoldPiece = GameObject:extend()
 
 function GoldPiece:new(spec)
@@ -18,21 +21,17 @@ function GoldPiece:new(spec)
   body.collisionMask = collisionLayers.tilemap
   self.body = body
 
-  local speed = 80
+  body.gravityForce.y = (2 * JUMP_HEIGHT) / math.pow(APEX_TIME, 2)
+  local speed = body.gravityForce.y * APEX_TIME
   local angle = love.math.randomNormal(math.rad(15), math.rad(-90))
-  body.moveVelocity.x = math.cos(angle) * speed
-  body.moveVelocity.y = math.sin(angle) * speed
-  body.gravityForce.y = 200
-  log.debug(body.moveVelocity)
+  body.jumpVelocity.x = math.cos(angle) * speed
+  body.jumpVelocity.y = math.sin(angle) * speed
 end
 
 function GoldPiece:update(dt)
   self.body:update(dt)
-  -- self.body.moveVelocity.x = 0
-  -- self.body.moveVelocity.y = 0
-
+  self.body.jumpVelocity.x, self.body.jumpVelocity.y = 0, 0
   self.animation:update(dt)
-
   self.x, self.y = self.body.position.x, self.body.position.y
 end
 

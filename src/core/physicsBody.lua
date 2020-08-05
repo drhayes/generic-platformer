@@ -92,7 +92,7 @@ function PhysicsBody:update(dt)
 
   -- Are we jumping?
   if self.jumpVelocity.x ~= 0 then
-    self.fallingVelocity = self.jumpVelocity.x
+    self.fallingVelocity.x = self.jumpVelocity.x
   end
   if self.jumpVelocity.y ~= 0 then
     self.fallingVelocity.y = self.jumpVelocity.y
