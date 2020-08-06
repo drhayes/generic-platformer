@@ -26,6 +26,7 @@ function SmallChest:new(spec)
   body.collisionLayers = collisionLayers.usables
   self.body = body
 
+  self.isUsable = true
   self.hasOpened = false
 end
 
@@ -51,6 +52,7 @@ function SmallChest:draw()
 end
 
 function SmallChest:used(user)
+  self.isUsable = false
   self.animation.current = 'opening'
 end
 

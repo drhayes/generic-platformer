@@ -126,6 +126,11 @@ function Player:setUseObject(obj)
   self.useObject = obj
 end
 
+function Player:pickUpTreasure(treasure)
+  log.debug('got treasure!')
+  treasure.removeMe = true
+end
+
 function Player:__tostring()
   return 'Player'
 end

@@ -10,6 +10,7 @@ end
 
 function UsableCollider:collide(otherBody)
   if not otherBody:inLayer(collisionLayers.usables) then return false end
+  if not otherBody.parent.isUsable then return false end
   self.player:setUseObject(otherBody.parent)
 end
 

@@ -43,8 +43,6 @@ function GoldCoin:draw()
   lg.push()
   lg.setColor(1, 1, 1, 1)
   self.animation:draw(self.x, self.y)
-  lg.setColor(0, 1, 0, .7)
-  lg.rectangle('fill', self.body.aabb:bounds())
   lg.pop()
 end
 
