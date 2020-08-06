@@ -29,20 +29,17 @@ function PhysicsService:createCheckCollisionsCallback()
 end
 
 local testAABB = AABB()
-function PhysicsService:checkCollisions(movingBody, deltaX, deltaY)
+function PhysicsService:checkCollisions(body, deltaX, deltaY)
   local result = false
   for i = 1, #self.bodies do
-    local body = self.bodies[i]
+    local otherBody = self.bodies[i]
     -- Don't collide with yourself.
-    if body ~= movingBody then
-      local aabb = movingBody.aabb
+    if otherBody ~= body then
+      local aabb = body.aabb
       testAABB.center.x, testAABB.center.y = aabb.center.x + deltaX, aabb.center.y + deltaY
       testAABB.halfSize.x, testAABB.halfSize.y = aabb.halfSize.x, aabb.halfSize.y
-      if testAABB:overlaps(body.aabb) and movingBody:collidesWith(body.collisionLayers) then
-        result = result or movingBody:runColliders(body, -deltaX, -deltaY)
-        -- movingBody.collidedWith = body
-        -- movingBody.collisionNormal.x = -deltaX
-        -- movingBody.collisionNormal.y = -deltaY
+      if body:collidesWith(otherBody.collisionLayers) and testAABB:overlaps(otherBody.aabb) and body:runColliders(otherBody, -deltaX, -deltaY) then
+        result = true
       end
     end
   end

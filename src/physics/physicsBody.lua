@@ -3,7 +3,7 @@ local Vector = require 'lib.brinevector'
 local AABB = require 'core.aabb'
 local bit = bit or bit32 or require 'bit32'
 
-local SUPERTINY = 1e-5
+-- local SUPERTINY = 1e-5
 
 local PhysicsBody = Object:extend()
 
@@ -20,9 +20,6 @@ function PhysicsBody:new(parent, checkCollisionsCallback)
   self.oldVelocity = Vector()
   self.velocity = Vector()
   -- self.maxVelocity = Vector()
-
-  -- self.oldAcceleration = Vector()
-  -- self.acceleration = Vector()
 
   self.friction = 1
   self.knockbackFactor = 1
@@ -76,7 +73,9 @@ function PhysicsBody:runColliders(otherBody, collisionNormalX, collisionNormalY)
   local result = false
   for i = 1, #self.colliders do
     local collider = self.colliders[i]
-    result = result or collider:collide(otherBody, collisionNormalX, collisionNormalY)
+    if collider:collide(otherBody, collisionNormalX, collisionNormalY) then
+      result = true
+    end
   end
   return result
 end
@@ -85,14 +84,12 @@ function PhysicsBody:update(dt)
   -- Store last frame's stuff.
   self.oldPosition.x, self.oldPosition.y = self.position.x, self.position.y
   self.oldVelocity.x, self.oldVelocity.y = self.velocity.x, self.velocity.y
-  -- self.oldAcceleration.x, self.oldAcceleration.y = self.acceleration.x, self.acceleration.y
   self.wasPushingLeftward = self.isPushingLeftward
   self.wasPushingRightward = self.isPushingRightward
   self.wasOnGround = self.isOnGround
   self.wasOnCeiling = self.isOnCeiling
   self.wasOnOneWayUpPlatform = self.isOnOneWayUpPlatform
   self.isOnOneWayUpPlatform = false
-  -- self.collidedWith = nil
 
   self.isOnGround = false
   self.isOnCeiling = false
@@ -107,9 +104,6 @@ function PhysicsBody:update(dt)
     self.fallingVelocity.y = self.jumpVelocity.y
   end
 
-  -- Accelerate our velocity.
-  -- self.velocity.x = self.velocity.x + self.acceleration.x * dt
-  -- self.velocity.y = self.velocity.y + self.acceleration.y * dt
   -- Add our forces and velocities.
   self.fallingVelocity.x = self.fallingVelocity.x + self.gravityForce.x * dt
   self.fallingVelocity.y = self.fallingVelocity.y + self.gravityForce.y * dt
@@ -118,19 +112,15 @@ function PhysicsBody:update(dt)
   self.velocity.y = self.fallingVelocity.y + self.jumpVelocity.y + self.moveVelocity.y
 
   -- Movement this frame.
-  local deltaPos = self.velocity * dt
+  local deltaX, deltaY = self.velocity.x * dt, self.velocity.y * dt
 
-  if deltaPos.x ~= 0 or deltaPos.y ~= 0 then
-    self:moveX(deltaPos.x)
-    self:moveY(deltaPos.y)
+  if deltaX ~= 0 or deltaY ~= 0 then
+    self:moveX(deltaX)
+    self:moveY(deltaY)
   else
     -- Even if we don't move, check collisions.
     self:checkCollisions(0, 0)
   end
-
-  -- if self.collidedWith then
-  --   self:collisionResolution()
-  -- end
 
   self.velocity.x = self.velocity.x * self.friction
   self.velocity.y = self.velocity.y * self.friction
@@ -143,7 +133,7 @@ function PhysicsBody:update(dt)
 end
 
 function PhysicsBody:moveX(amount)
-  if math.abs(amount) < SUPERTINY then return end
+  -- if math.abs(amount) < SUPERTINY then return end
   local sign = amount < 0 and -1 or 1
   while math.abs(amount) > 0 do
     local step = math.min(1, math.abs(amount)) * sign
@@ -159,7 +149,7 @@ function PhysicsBody:moveX(amount)
 end
 
 function PhysicsBody:moveY(amount)
-  if math.abs(amount) < SUPERTINY then return end
+  -- if math.abs(amount) < SUPERTINY then return end
   local sign = amount < 0 and -1 or 1
   while math.abs(amount) > 0 do
     local step = math.min(1, math.abs(amount)) * sign

@@ -9,6 +9,7 @@ local Player = GameObject:extend()
 function Player:new(spec)
   self.x, self.y = spec.x, spec.y
   self.layer = 'player'
+  self.isPlayer = true
 
   self.input = spec.inputService
 

@@ -10,7 +10,6 @@ end
 
 function TreasureCollider:collide(otherBody, collisionNormalX, collisionNormalY)
   if not otherBody:inLayer(collisionLayers.treasure) then return false end
-
   log.debug('player hitting treasure')
 end
 
