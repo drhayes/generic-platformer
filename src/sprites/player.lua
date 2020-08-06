@@ -25,7 +25,7 @@ function Player:new(spec)
   body.aabbOffset.y = 3
   body.gravityForce.y = (2 * config.player.jumpHeight) / math.pow(config.player.timeToJumpApex, 2)
   self.jumpVelocity = body.gravityForce.y * config.player.timeToJumpApex
-  body.collisionLayer = collisionLayers.player
+  body.collisionLayers = collisionLayers.player
   body.collisionMask = collisionLayers.tilemap
   self.body = body
 

@@ -17,8 +17,8 @@ function GoldCoin:new(spec)
   body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
   body.aabb.halfSize.x = 1
   body.aabb.halfSize.y = 1.5
-  body.collisionLayer = collisionLayers.treasure
-  body.collisionMask = collisionLayers.tilemap
+  body.collisionLayers = collisionLayers.treasure
+  body.collisionMask = collisionLayers.tilemap + collisionLayers.player
   body.resolutionType = 'bounceOnce'
   self.body = body
 
@@ -30,10 +30,16 @@ function GoldCoin:new(spec)
 end
 
 function GoldCoin:update(dt)
-  self.body:update(dt)
-  self.body.jumpVelocity.x, self.body.jumpVelocity.y = 0, 0
+  local body = self.body
+  body:update(dt)
+  body.jumpVelocity.x, body.jumpVelocity.y = 0, 0
   self.animation:update(dt)
-  self.x, self.y = self.body.position.x, self.body.position.y
+  self.x, self.y = body.position.x, body.position.y
+
+  if body.collidedWith and body.collidedWith:inLayer(collisionLayers.player) then
+    log.debug('player got me!')
+    self.removeMe = true
+  end
 end
 
 local lg = love.graphics

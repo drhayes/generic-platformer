@@ -1,4 +1,5 @@
 local Object = require 'lib.classic'
+local lume = require 'lib.lume'
 
 local DrawService = Object:extend()
 
@@ -21,12 +22,19 @@ function DrawService:new(eventBus, windowFactor)
   self.drawables = {}
 
   eventBus:on('gobAdded', self.onGobAdded, self)
+  eventBus:on('gobRemoved', self.onGobRemoved, self)
 end
 
 function DrawService:onGobAdded(gob)
   if gob.draw then
     table.insert(self.drawables, gob)
     table.sort(self.drawables, drawableCompare)
+  end
+end
+
+function DrawService:onGobRemoved(gob)
+  if gob.draw then
+    lume.remove(self.drawables, gob)
   end
 end
 

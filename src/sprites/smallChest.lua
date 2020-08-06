@@ -23,7 +23,7 @@ function SmallChest:new(spec)
   body.aabb.halfSize.y = 6
   body.aabbOffset.x = 2
   body.aabbOffset.y = 4
-  body.collisionLayer = collisionLayers.treasure
+  body.collisionLayers = collisionLayers.treasure
   self.body = body
 
   self.hasOpened = false
