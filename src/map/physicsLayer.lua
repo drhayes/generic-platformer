@@ -19,7 +19,7 @@ end
 function PhysicsLayer:initialize(_, _, physicsService)
   for i = 1, #self.solidParts do
     local object = self.solidParts[i]
-    local body = physicsService:newBody()
+    local body = physicsService:newBody(self)
     local aabb = body.aabb
     local halfWidth, halfHeight = object.width / 2, object.height / 2
     aabb.center.x = object.x + halfWidth

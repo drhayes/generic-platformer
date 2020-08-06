@@ -20,6 +20,7 @@ return {
   physics = {
     layers = {
       'player',
+      'usables',
       'tilemap',
       'treasure',
     },

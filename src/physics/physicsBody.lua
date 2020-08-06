@@ -2,7 +2,6 @@ local Object = require 'lib.classic'
 local Vector = require 'lib.brinevector'
 local AABB = require 'core.aabb'
 local bit = bit or bit32 or require 'bit32'
-local lume = require 'lib.lume'
 
 local SUPERTINY = 1e-5
 
@@ -10,7 +9,8 @@ local PhysicsBody = Object:extend()
 
 local function no() return false end
 
-function PhysicsBody:new(checkCollisionsCallback)
+function PhysicsBody:new(parent, checkCollisionsCallback)
+  self.parent = parent
   self.checkCollisions = checkCollisionsCallback or no
 
   -- This is the position of the entity, literally its x,y.
@@ -52,9 +52,8 @@ function PhysicsBody:new(checkCollisionsCallback)
   self.collisionMask = 0
   -- I'm in these collision layers.
   self.collisionLayers = 0
-  -- What collided with me?
-  self.collidedWith = nil
-  self.collisionNormal = Vector()
+  -- What objects are responsible for my collision response?
+  self.colliders = {}
   self.resolutionType = 'stop'
 
   -- This is the actual bounds of the physics body.
@@ -73,6 +72,15 @@ function PhysicsBody:inLayer(layerMask)
   return bit.band(self.collisionLayers, layerMask) ~= 0
 end
 
+function PhysicsBody:runColliders(otherBody, collisionNormalX, collisionNormalY)
+  local result = false
+  for i = 1, #self.colliders do
+    local collider = self.colliders[i]
+    result = result or collider:collide(otherBody, collisionNormalX, collisionNormalY)
+  end
+  return result
+end
+
 function PhysicsBody:update(dt)
   -- Store last frame's stuff.
   self.oldPosition.x, self.oldPosition.y = self.position.x, self.position.y
@@ -84,7 +92,7 @@ function PhysicsBody:update(dt)
   self.wasOnCeiling = self.isOnCeiling
   self.wasOnOneWayUpPlatform = self.isOnOneWayUpPlatform
   self.isOnOneWayUpPlatform = false
-  self.collidedWith = nil
+  -- self.collidedWith = nil
 
   self.isOnGround = false
   self.isOnCeiling = false
@@ -120,9 +128,9 @@ function PhysicsBody:update(dt)
     self:checkCollisions(0, 0)
   end
 
-  if self.collidedWith then
-    self:collisionResolution()
-  end
+  -- if self.collidedWith then
+  --   self:collisionResolution()
+  -- end
 
   self.velocity.x = self.velocity.x * self.friction
   self.velocity.y = self.velocity.y * self.friction
