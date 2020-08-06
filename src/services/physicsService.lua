@@ -1,7 +1,7 @@
 local Object = require 'lib.classic'
-local PhysicsBody = require 'core.physicsBody'
+local PhysicsBody = require 'physics.physicsBody'
 local AABB = require 'core.aabb'
-local collisionLayers = require 'core.collisionLayers'
+local collisionLayers = require 'physics.collisionLayers'
 
 local PhysicsService = Object:extend()
 

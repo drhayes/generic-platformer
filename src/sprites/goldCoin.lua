@@ -1,5 +1,5 @@
 local GameObject = require 'gobs.gameObject'
-local collisionLayers = require 'core.collisionLayers'
+local collisionLayers = require 'physics.collisionLayers'
 
 local JUMP_HEIGHT = 24
 local APEX_TIME = .5

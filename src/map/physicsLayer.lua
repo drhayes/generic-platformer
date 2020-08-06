@@ -1,5 +1,5 @@
 local Object = require 'lib.classic'
-local collisionLayers = require 'core.collisionLayers'
+local collisionLayers = require 'physics.collisionLayers'
 
 local PhysicsLayer = Object:extend()
 
