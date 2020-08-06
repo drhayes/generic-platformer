@@ -19,11 +19,12 @@ function GoldCoin:new(spec)
   body.aabb.halfSize.y = 1.5
   body.collisionLayer = collisionLayers.treasure
   body.collisionMask = collisionLayers.tilemap
+  body.resolutionType = 'bounceOnce'
   self.body = body
 
   body.gravityForce.y = (2 * JUMP_HEIGHT) / math.pow(APEX_TIME, 2)
   local speed = body.gravityForce.y * APEX_TIME
-  local angle = love.math.randomNormal(math.rad(15), math.rad(-90))
+  local angle = love.math.randomNormal(math.rad(5), math.rad(-90))
   body.jumpVelocity.x = math.cos(angle) * speed
   body.jumpVelocity.y = math.sin(angle) * speed
 end

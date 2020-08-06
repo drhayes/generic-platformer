@@ -55,6 +55,7 @@ function PhysicsBody:new(checkCollisionsCallback)
   -- What collided with me?
   self.collidedWith = nil
   self.collisionNormal = Vector()
+  self.resolutionType = 'stop'
 
   -- This is the actual bounds of the physics body.
   self.aabb = AABB()

@@ -37,7 +37,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 300
    },
    "smallChest-005.png": {
     "frame": { "x": 80, "y": 0, "w": 16, "h": 16 },

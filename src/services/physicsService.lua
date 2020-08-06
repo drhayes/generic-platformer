@@ -32,6 +32,18 @@ local function collisionResolution(body)
       body.isPushingLeftward = true
       body.velocity.x = 0
     end
+
+    if body.resolutionType == 'freeze' then
+      body.fallingVelocity.x = 0
+      body.fallingVelocity.y = 0
+      body.resolutionType = 'stop'
+    end
+
+    if body.resolutionType == 'bounceOnce' then
+      body.fallingVelocity.y = -body.oldVelocity.y * .7
+      body.isOnGround = false
+      body.resolutionType = 'freeze'
+    end
   end
 end
 

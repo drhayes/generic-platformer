@@ -71,7 +71,7 @@ function SmallChest:spillRiches()
   local function spitGold()
     local wait = 5
     for i = 1, counter do
-      while wait < .3 do
+      while wait < .12 do
         wait = wait + coroutine.yield()
       end
 
