@@ -15,6 +15,7 @@ function InWorld:new(registry, eventBus)
   self:subscribe('setWindowFactor', self.onSetWindowFactor)
   self:subscribe('spawnSpriteByType', self.onSpawnSpriteByType)
   self:subscribe('spawnSpriteBySpec', self.onSpawnSpriteBySpec)
+  self:subscribe('switchCamera', self.onSwitchCamera)
 end
 
 function InWorld:enter()
@@ -35,8 +36,16 @@ function InWorld:update(dt)
 end
 
 function InWorld:draw()
+  if not self.camera then return end
+
+  local camera = self.camera
   local drawService = self.registry:get('draw')
-  drawService:draw()
+  drawService:draw(
+    camera.offsetX,
+    camera.offsetY,
+    camera.scale,
+    camera.alpha
+  )
 end
 
 
@@ -81,6 +90,10 @@ function InWorld:onSpawnSpriteBySpec(spec)
     return
   end
   self.eventBus:emit('addGob', sprite)
+end
+
+function InWorld:onSwitchCamera(camera)
+  self.camera = camera
 end
 
 return InWorld

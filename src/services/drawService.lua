@@ -40,9 +40,17 @@ end
 
 local lg = love.graphics
 
-function DrawService:draw()
+function DrawService:draw(offsetX, offsetY, scale, alpha)
+  offsetX = offsetX or 0
+  offsetY = offsetY or 0
+  scale = scale or 1
+  alpha = alpha or 1
+
   lg.push()
-  lg.scale(self.windowFactor)
+  lg.scale(self.windowFactor * scale)
+  lg.translate(-offsetX, -offsetY)
+  -- TODO: This ain't gonna work.
+  lg.setColor(1, 1, 1, alpha)
   local drawables = self.drawables
   for i = 1, #drawables do
     local drawable = drawables[i]

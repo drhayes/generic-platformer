@@ -4,6 +4,7 @@ local PhysicsLayer = require 'map.physicsLayer'
 local SecretAreaLayer = require 'map.secretAreaLayer'
 local SpriteSpec = require 'sprites.spriteSpec'
 local config = require 'gameConfig'
+local CameraLayer = require 'map.cameraLayer'
 
 local TILE_SIZE = config.map.tileSize
 
@@ -64,6 +65,8 @@ function Tilemap:new(spec)
       table.insert(layers, SecretAreaLayer(layer, tilesByGid, -minX, -minY))
     elseif layer.type == 'objectgroup' and layer.name == 'physics' then
       table.insert(layers, PhysicsLayer(layer, tilesByGid, -minX, -minY))
+    elseif layer.type == 'objectgroup' and layer.name == 'camera' then
+      table.insert(layers, CameraLayer(layer, -minX, -minY))
     elseif layer.name == 'sprites' then
       self:specSprites(layer, -minX, -minY)
     else
