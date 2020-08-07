@@ -5,8 +5,6 @@ local TilemapCollider = require 'physics.tilemapCollider'
 
 local PhysicsService = Object:extend()
 
--- local function collisionResolution(body) end
-
 function PhysicsService:new(eventBus)
   self.eventBus = eventBus
   self.bodies = {}
