@@ -11,13 +11,8 @@ function TilemapCollider:collide(otherBody, collisionNormalX, collisionNormalY)
   local body = self.body
   local aabb = body.aabb
   local otherAABB = otherBody.aabb
-  -- local shouldLog = self.body.parent and self.body.parent.isPlayer
 
   if collisionNormalY < 0 then
-    -- if shouldLog then
-    --   log.debug(body.position.x, math.abs(aabb.center.x - otherAABB.center.x), aabb.halfSize.x + otherAABB.halfSize.x, math.abs(aabb.center.x - otherAABB.center.x) >= aabb.halfSize.x + otherAABB.halfSize.x)
-    --   log.debug(body.position.y, math.abs(aabb.center.y - otherAABB.center.y), aabb.halfSize.y + otherAABB.halfSize.y, math.abs(aabb.center.y - otherAABB.center.y) >= aabb.halfSize.y + otherAABB.halfSize.y)
-    -- end
     body.position.y = otherAABB:top() - aabb.halfSize.y - body.aabbOffset.y - TINY_SCOOCH
     aabb.center.y = otherAABB:top() - aabb.halfSize.y - TINY_SCOOCH
     body.isOnGround = true

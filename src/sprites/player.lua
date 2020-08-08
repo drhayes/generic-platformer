@@ -34,6 +34,7 @@ function Player:new(spec)
   table.insert(body.colliders, TreasureCollider(self))
   table.insert(body.colliders, UsableCollider(self))
 
+  self.jumpForgivenessTimer = math.huge
 
   self.isSpawning = true
 end
@@ -59,14 +60,18 @@ function Player:update(dt)
     body.moveVelocity.x = 0
   end
 
-  if input:pressed('jump') and body.isOnGround then
+  if input:pressed('jump') and self.jumpForgivenessTimer <= config.player.jumpForgivenessThresholdSeconds then
     body.jumpVelocity.y = -self.jumpVelocity
+    self.jumpForgivenessTimer = config.player.jumpForgivenessThresholdSeconds
   end
 
   body:update(dt)
 
   if body.isOnGround then
     animation.current = 'idle'
+    self.jumpForgivenessTimer = 0
+  else
+    self.jumpForgivenessTimer = self.jumpForgivenessTimer + dt
   end
 
   if body.moveVelocity.x ~= 0 and body.velocity.x ~= 0 and body.isOnGround then

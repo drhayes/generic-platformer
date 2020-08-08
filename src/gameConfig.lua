@@ -3,6 +3,7 @@ return {
     runVelocity = 65,
     jumpHeight = 40,
     timeToJumpApex = .3,
+    jumpForgivenessThresholdSeconds = .4,
   },
 
   map = {
