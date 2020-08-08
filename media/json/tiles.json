@@ -2,7 +2,7 @@
 
 "collisionTiles-hidden.png":
 {
-	"frame": {"x":1,"y":1,"w":16,"h":16},
+	"frame": {"x":1,"y":259,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -10,7 +10,7 @@
 },
 "collisionTiles-one-way-up.png":
 {
-	"frame": {"x":1,"y":19,"w":16,"h":16},
+	"frame": {"x":1,"y":277,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -18,7 +18,543 @@
 },
 "collisionTiles-solid.png":
 {
-	"frame": {"x":1,"y":37,"w":16,"h":16},
+	"frame": {"x":1,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-.png":
+{
+	"frame": {"x":1,"y":1,"w":256,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+	"sourceSize": {"w":256,"h":256}
+},
+"marbleTiles-bottom-1.png":
+{
+	"frame": {"x":1,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-bottom-2.png":
+{
+	"frame": {"x":19,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-bottom-left-1.png":
+{
+	"frame": {"x":19,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-bottom-left-2.png":
+{
+	"frame": {"x":19,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-bottom-right-1.png":
+{
+	"frame": {"x":19,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-bottom-right-2.png":
+{
+	"frame": {"x":37,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-damaged-top-1.png":
+{
+	"frame": {"x":37,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-damaged-top-2.png":
+{
+	"frame": {"x":37,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-damaged-top-3.png":
+{
+	"frame": {"x":37,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-doorway-bottom-left-1.png":
+{
+	"frame": {"x":55,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-doorway-bottom-right-1.png":
+{
+	"frame": {"x":55,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-doorway-top-left-1.png":
+{
+	"frame": {"x":55,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-doorway-top-right-1.png":
+{
+	"frame": {"x":55,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-fragment-top-1.png":
+{
+	"frame": {"x":73,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-fragment-top-2.png":
+{
+	"frame": {"x":73,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-fragment-top-3.png":
+{
+	"frame": {"x":73,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-fragment-top-4.png":
+{
+	"frame": {"x":73,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-middle-1.png":
+{
+	"frame": {"x":91,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-middle-2.png":
+{
+	"frame": {"x":91,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-middle-3.png":
+{
+	"frame": {"x":91,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-middle-4.png":
+{
+	"frame": {"x":91,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-middle-5.png":
+{
+	"frame": {"x":109,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-middle-6.png":
+{
+	"frame": {"x":109,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-top-1.png":
+{
+	"frame": {"x":109,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-top-2.png":
+{
+	"frame": {"x":109,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-top-3.png":
+{
+	"frame": {"x":127,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-top-4.png":
+{
+	"frame": {"x":127,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-top-left-1.png":
+{
+	"frame": {"x":127,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-grass-top-right-1.png":
+{
+	"frame": {"x":127,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-interior-bottom-left-1.png":
+{
+	"frame": {"x":145,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-interior-bottom-right-1.png":
+{
+	"frame": {"x":145,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-interior-top-left-1.png":
+{
+	"frame": {"x":145,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-interior-top-right-1.png":
+{
+	"frame": {"x":145,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-left-1.png":
+{
+	"frame": {"x":163,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-left-2.png":
+{
+	"frame": {"x":163,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-left-3.png":
+{
+	"frame": {"x":163,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-left-4.png":
+{
+	"frame": {"x":163,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-left-5.png":
+{
+	"frame": {"x":181,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-left-6.png":
+{
+	"frame": {"x":181,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-middle-1.png":
+{
+	"frame": {"x":181,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-middle-2.png":
+{
+	"frame": {"x":181,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-middle-3.png":
+{
+	"frame": {"x":199,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-middle-4.png":
+{
+	"frame": {"x":199,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-right-1.png":
+{
+	"frame": {"x":199,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-right-2.png":
+{
+	"frame": {"x":199,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-right-3.png":
+{
+	"frame": {"x":217,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-right-4.png":
+{
+	"frame": {"x":217,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-right-5.png":
+{
+	"frame": {"x":217,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-right-6.png":
+{
+	"frame": {"x":217,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-seam-ns.png":
+{
+	"frame": {"x":235,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-seam-nse.png":
+{
+	"frame": {"x":235,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-seam-nsw.png":
+{
+	"frame": {"x":235,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-seam-nwe.png":
+{
+	"frame": {"x":235,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-seam-swe.png":
+{
+	"frame": {"x":253,"y":259,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-seam-we.png":
+{
+	"frame": {"x":253,"y":277,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-top-1.png":
+{
+	"frame": {"x":253,"y":295,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-top-2.png":
+{
+	"frame": {"x":253,"y":313,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-top-3.png":
+{
+	"frame": {"x":271,"y":1,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-top-left-1.png":
+{
+	"frame": {"x":289,"y":1,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-top-left-2.png":
+{
+	"frame": {"x":307,"y":1,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-top-right-1.png":
+{
+	"frame": {"x":325,"y":1,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-top-right-2.png":
+{
+	"frame": {"x":271,"y":19,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-wear-left-1.png":
+{
+	"frame": {"x":289,"y":19,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-wear-left-2.png":
+{
+	"frame": {"x":307,"y":19,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-wear-right-1.png":
+{
+	"frame": {"x":325,"y":19,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"marbleTiles-wear-right-2.png":
+{
+	"frame": {"x":271,"y":37,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -26,7 +562,7 @@
 },
 "stoneTiles-bottom-left-interior-1.png":
 {
-	"frame": {"x":1,"y":55,"w":16,"h":16},
+	"frame": {"x":289,"y":37,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -34,7 +570,7 @@
 },
 "stoneTiles-bottom-left-interior-2.png":
 {
-	"frame": {"x":1,"y":73,"w":16,"h":16},
+	"frame": {"x":307,"y":37,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -42,7 +578,7 @@
 },
 "stoneTiles-bottom-left-knee-hole.png":
 {
-	"frame": {"x":1,"y":91,"w":16,"h":16},
+	"frame": {"x":325,"y":37,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -50,7 +586,7 @@
 },
 "stoneTiles-bottom-left-knee.png":
 {
-	"frame": {"x":1,"y":109,"w":16,"h":16},
+	"frame": {"x":271,"y":55,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -58,7 +594,7 @@
 },
 "stoneTiles-bottom-left-stone-1.png":
 {
-	"frame": {"x":1,"y":127,"w":16,"h":16},
+	"frame": {"x":289,"y":55,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -66,7 +602,7 @@
 },
 "stoneTiles-bottom-left-stone-knee-1.png":
 {
-	"frame": {"x":1,"y":145,"w":16,"h":16},
+	"frame": {"x":307,"y":55,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -74,7 +610,7 @@
 },
 "stoneTiles-bottom-left.png":
 {
-	"frame": {"x":19,"y":1,"w":16,"h":16},
+	"frame": {"x":325,"y":55,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -82,7 +618,7 @@
 },
 "stoneTiles-bottom-middle-1.png":
 {
-	"frame": {"x":37,"y":1,"w":16,"h":16},
+	"frame": {"x":271,"y":73,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -90,7 +626,7 @@
 },
 "stoneTiles-bottom-middle-2.png":
 {
-	"frame": {"x":55,"y":1,"w":16,"h":16},
+	"frame": {"x":289,"y":73,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -98,7 +634,7 @@
 },
 "stoneTiles-bottom-middle-3.png":
 {
-	"frame": {"x":73,"y":1,"w":16,"h":16},
+	"frame": {"x":307,"y":73,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -106,7 +642,7 @@
 },
 "stoneTiles-bottom-middle-interior-1.png":
 {
-	"frame": {"x":91,"y":1,"w":16,"h":16},
+	"frame": {"x":325,"y":73,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -114,7 +650,7 @@
 },
 "stoneTiles-bottom-right-interior-1.png":
 {
-	"frame": {"x":109,"y":1,"w":16,"h":16},
+	"frame": {"x":271,"y":91,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -122,7 +658,7 @@
 },
 "stoneTiles-bottom-right-interior-2.png":
 {
-	"frame": {"x":127,"y":1,"w":16,"h":16},
+	"frame": {"x":289,"y":91,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -130,7 +666,7 @@
 },
 "stoneTiles-bottom-right-knee-hole.png":
 {
-	"frame": {"x":145,"y":1,"w":16,"h":16},
+	"frame": {"x":307,"y":91,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -138,7 +674,7 @@
 },
 "stoneTiles-bottom-right-knee.png":
 {
-	"frame": {"x":19,"y":19,"w":16,"h":16},
+	"frame": {"x":325,"y":91,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -146,7 +682,7 @@
 },
 "stoneTiles-bottom-right-stone-1.png":
 {
-	"frame": {"x":19,"y":37,"w":16,"h":16},
+	"frame": {"x":271,"y":109,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -154,7 +690,7 @@
 },
 "stoneTiles-bottom-right-stone-knee-1.png":
 {
-	"frame": {"x":19,"y":55,"w":16,"h":16},
+	"frame": {"x":289,"y":109,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -162,7 +698,7 @@
 },
 "stoneTiles-bottom-right.png":
 {
-	"frame": {"x":19,"y":73,"w":16,"h":16},
+	"frame": {"x":307,"y":109,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -170,7 +706,7 @@
 },
 "stoneTiles-bottom-stone-1.png":
 {
-	"frame": {"x":19,"y":91,"w":16,"h":16},
+	"frame": {"x":325,"y":109,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -178,7 +714,7 @@
 },
 "stoneTiles-bottom-stone-2.png":
 {
-	"frame": {"x":19,"y":109,"w":16,"h":16},
+	"frame": {"x":271,"y":127,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -186,7 +722,7 @@
 },
 "stoneTiles-bottom-stone-3.png":
 {
-	"frame": {"x":19,"y":127,"w":16,"h":16},
+	"frame": {"x":289,"y":127,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -194,7 +730,7 @@
 },
 "stoneTiles-center-1.png":
 {
-	"frame": {"x":19,"y":145,"w":16,"h":16},
+	"frame": {"x":307,"y":127,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -202,7 +738,7 @@
 },
 "stoneTiles-center-2.png":
 {
-	"frame": {"x":37,"y":19,"w":16,"h":16},
+	"frame": {"x":325,"y":127,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -210,7 +746,7 @@
 },
 "stoneTiles-center-3.png":
 {
-	"frame": {"x":55,"y":19,"w":16,"h":16},
+	"frame": {"x":271,"y":145,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -218,7 +754,7 @@
 },
 "stoneTiles-center-4.png":
 {
-	"frame": {"x":73,"y":19,"w":16,"h":16},
+	"frame": {"x":289,"y":145,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -226,7 +762,7 @@
 },
 "stoneTiles-center-5.png":
 {
-	"frame": {"x":91,"y":19,"w":16,"h":16},
+	"frame": {"x":307,"y":145,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -234,7 +770,7 @@
 },
 "stoneTiles-center-6.png":
 {
-	"frame": {"x":109,"y":19,"w":16,"h":16},
+	"frame": {"x":325,"y":145,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -242,7 +778,7 @@
 },
 "stoneTiles-center-stone-1.png":
 {
-	"frame": {"x":127,"y":19,"w":16,"h":16},
+	"frame": {"x":271,"y":163,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -250,7 +786,7 @@
 },
 "stoneTiles-ledge-1.png":
 {
-	"frame": {"x":145,"y":19,"w":16,"h":16},
+	"frame": {"x":289,"y":163,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -258,7 +794,7 @@
 },
 "stoneTiles-ledge-2.png":
 {
-	"frame": {"x":37,"y":37,"w":16,"h":16},
+	"frame": {"x":307,"y":163,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -266,7 +802,7 @@
 },
 "stoneTiles-left-side-1.png":
 {
-	"frame": {"x":37,"y":55,"w":16,"h":16},
+	"frame": {"x":325,"y":163,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -274,7 +810,7 @@
 },
 "stoneTiles-left-side-2.png":
 {
-	"frame": {"x":37,"y":73,"w":16,"h":16},
+	"frame": {"x":271,"y":181,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -282,7 +818,7 @@
 },
 "stoneTiles-left-side-3.png":
 {
-	"frame": {"x":37,"y":91,"w":16,"h":16},
+	"frame": {"x":289,"y":181,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -290,7 +826,7 @@
 },
 "stoneTiles-left-side-interior.png":
 {
-	"frame": {"x":37,"y":109,"w":16,"h":16},
+	"frame": {"x":307,"y":181,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -298,7 +834,7 @@
 },
 "stoneTiles-left-side-stone-1.png":
 {
-	"frame": {"x":37,"y":127,"w":16,"h":16},
+	"frame": {"x":325,"y":181,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -306,7 +842,7 @@
 },
 "stoneTiles-mud-1.png":
 {
-	"frame": {"x":37,"y":145,"w":16,"h":16},
+	"frame": {"x":259,"y":199,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -314,7 +850,7 @@
 },
 "stoneTiles-right-side-1.png":
 {
-	"frame": {"x":55,"y":37,"w":16,"h":16},
+	"frame": {"x":259,"y":217,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -322,7 +858,7 @@
 },
 "stoneTiles-right-side-2.png":
 {
-	"frame": {"x":73,"y":37,"w":16,"h":16},
+	"frame": {"x":259,"y":235,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -330,7 +866,7 @@
 },
 "stoneTiles-right-side-3.png":
 {
-	"frame": {"x":91,"y":37,"w":16,"h":16},
+	"frame": {"x":277,"y":199,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -338,7 +874,7 @@
 },
 "stoneTiles-right-side-interior.png":
 {
-	"frame": {"x":109,"y":37,"w":16,"h":16},
+	"frame": {"x":295,"y":199,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -346,7 +882,7 @@
 },
 "stoneTiles-right-side-stone-1.png":
 {
-	"frame": {"x":127,"y":37,"w":16,"h":16},
+	"frame": {"x":313,"y":199,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -354,7 +890,7 @@
 },
 "stoneTiles-surface-wart-1.png":
 {
-	"frame": {"x":145,"y":37,"w":16,"h":16},
+	"frame": {"x":277,"y":217,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -362,7 +898,7 @@
 },
 "stoneTiles-top-left-interior-1.png":
 {
-	"frame": {"x":55,"y":55,"w":16,"h":16},
+	"frame": {"x":295,"y":217,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -370,7 +906,7 @@
 },
 "stoneTiles-top-left-interior-2.png":
 {
-	"frame": {"x":55,"y":73,"w":16,"h":16},
+	"frame": {"x":313,"y":217,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -378,7 +914,7 @@
 },
 "stoneTiles-top-left-knee-hole.png":
 {
-	"frame": {"x":55,"y":91,"w":16,"h":16},
+	"frame": {"x":277,"y":235,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -386,7 +922,7 @@
 },
 "stoneTiles-top-left-knee-stone-1.png":
 {
-	"frame": {"x":55,"y":109,"w":16,"h":16},
+	"frame": {"x":295,"y":235,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -394,7 +930,7 @@
 },
 "stoneTiles-top-left-knee.png":
 {
-	"frame": {"x":55,"y":127,"w":16,"h":16},
+	"frame": {"x":313,"y":235,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -402,7 +938,7 @@
 },
 "stoneTiles-top-left-stone-1.png":
 {
-	"frame": {"x":55,"y":145,"w":16,"h":16},
+	"frame": {"x":271,"y":253,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -410,7 +946,7 @@
 },
 "stoneTiles-top-left.png":
 {
-	"frame": {"x":73,"y":55,"w":16,"h":16},
+	"frame": {"x":289,"y":253,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -418,7 +954,7 @@
 },
 "stoneTiles-top-middle-interior-1.png":
 {
-	"frame": {"x":91,"y":55,"w":16,"h":16},
+	"frame": {"x":307,"y":253,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -426,7 +962,7 @@
 },
 "stoneTiles-top-middle.png":
 {
-	"frame": {"x":109,"y":55,"w":16,"h":16},
+	"frame": {"x":325,"y":253,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -434,7 +970,7 @@
 },
 "stoneTiles-top-right-interior-1.png":
 {
-	"frame": {"x":127,"y":55,"w":16,"h":16},
+	"frame": {"x":271,"y":271,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -442,7 +978,7 @@
 },
 "stoneTiles-top-right-interior-2.png":
 {
-	"frame": {"x":145,"y":55,"w":16,"h":16},
+	"frame": {"x":271,"y":289,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -450,7 +986,7 @@
 },
 "stoneTiles-top-right-knee-hole.png":
 {
-	"frame": {"x":73,"y":73,"w":16,"h":16},
+	"frame": {"x":271,"y":307,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -458,7 +994,7 @@
 },
 "stoneTiles-top-right-knee-stone-1.png":
 {
-	"frame": {"x":73,"y":91,"w":16,"h":16},
+	"frame": {"x":271,"y":325,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -466,7 +1002,7 @@
 },
 "stoneTiles-top-right-knee.png":
 {
-	"frame": {"x":73,"y":109,"w":16,"h":16},
+	"frame": {"x":289,"y":271,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -474,7 +1010,7 @@
 },
 "stoneTiles-top-right-stone-1.png":
 {
-	"frame": {"x":73,"y":127,"w":16,"h":16},
+	"frame": {"x":307,"y":271,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -482,7 +1018,7 @@
 },
 "stoneTiles-top-right.png":
 {
-	"frame": {"x":73,"y":145,"w":16,"h":16},
+	"frame": {"x":325,"y":271,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -490,7 +1026,7 @@
 },
 "stoneTiles-top-stone-1.png":
 {
-	"frame": {"x":91,"y":73,"w":16,"h":16},
+	"frame": {"x":289,"y":289,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -498,7 +1034,7 @@
 },
 "stoneTiles-top-stone-2.png":
 {
-	"frame": {"x":109,"y":73,"w":16,"h":16},
+	"frame": {"x":289,"y":307,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -506,7 +1042,7 @@
 },
 "stoneTiles-top-stone-3.png":
 {
-	"frame": {"x":127,"y":73,"w":16,"h":16},
+	"frame": {"x":289,"y":325,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -514,7 +1050,7 @@
 },
 "stoneTiles-top-stone-4.png":
 {
-	"frame": {"x":145,"y":73,"w":16,"h":16},
+	"frame": {"x":307,"y":289,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -525,8 +1061,8 @@
 	"version": "1.0",
 	"image": "tiles.png",
 	"format": "RGBA8888",
-	"size": {"w":162,"h":162},
+	"size": {"w":342,"h":342},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:6878b14bdcf403ae7e050314e6574f02:9753eaabeb7a0fd6d8e88d24fe561649:accbe1e7e294ded8391337fc1c446319$"
+	"smartupdate": "$TexturePacker:SmartUpdate:4e7dc0e0667ec0f7b7940282456a7289:e1b3d7fe38d34bc2786df1ec3aefeb68:accbe1e7e294ded8391337fc1c446319$"
 }
 }
