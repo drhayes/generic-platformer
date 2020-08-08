@@ -1,11 +1,15 @@
 local Object = require 'lib.classic'
 local baton = require 'lib.baton'
 local config = require 'gameConfig'
+local lume = require 'lib.lume'
 
 local InputService = Object:extend()
 
 function InputService:new()
-  self.input = baton.new(config.input.mappings)
+  local inputConfig = lume.clone(config.input.mappings)
+  inputConfig.joystick = love.joystick.getJoysticks()[1]
+  -- joystick = love.joystick.getJoysticks()[1],
+  self.input = baton.new(inputConfig)
 end
 
 function InputService:update(dt)
