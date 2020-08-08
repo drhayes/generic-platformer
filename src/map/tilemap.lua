@@ -5,6 +5,7 @@ local SecretAreaLayer = require 'map.secretAreaLayer'
 local SpriteSpec = require 'sprites.spriteSpec'
 local config = require 'gameConfig'
 local CameraLayer = require 'map.cameraLayer'
+local BackgroundLayer = require 'map.backgroundLayer'
 
 local TILE_SIZE = config.map.tileSize
 
@@ -56,7 +57,13 @@ function Tilemap:new(spec)
   end
 
   local layers = {}
-  -- Now iterates layers to create Grid instances and add tile objects to in them.
+  -- Is there a background color? If so, let's put in a background layer...
+  if spec.tilemapData.backgroundcolor then
+    local color = spec.tilemapData.backgroundcolor
+    table.insert(layers, BackgroundLayer(color[1] / 255, color[2] / 255, color[3] / 255))
+  end
+
+  -- Now iterate layers and add'em in.
   for i = 1, #spec.tilemapData.layers do
     local layer = spec.tilemapData.layers[i]
     if layer.type == 'tilelayer' and not layer.properties.isSecretArea then
