@@ -4,6 +4,8 @@ local lume = require 'lib.lume'
 local DrawService = Object:extend()
 
 local LAYERS = {
+  backgroundColor = 25,
+  farBackground = 50,
   background = 100,
   player = 200,
   default = 500,
@@ -54,7 +56,7 @@ function DrawService:draw(offsetX, offsetY, scale, alpha)
   local drawables = self.drawables
   for i = 1, #drawables do
     local drawable = drawables[i]
-    drawable:draw()
+    drawable:draw(offsetX, offsetY, scale, alpha)
   end
   lg.pop()
 end

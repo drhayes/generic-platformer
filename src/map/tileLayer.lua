@@ -22,6 +22,7 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   self.opacity = layerData.opacity or 1
   self.properties = layerData.properties
   self.layer = layerData.properties.layer or 'background'
+  self.parallax = layerData.properties.parallax or 0
   self.width = 1
   self.height = 1
 
@@ -121,10 +122,12 @@ function TileLayer:initialize(eventBus, tileAtlas)
   self.canvas = canvas
 end
 
-function TileLayer:draw()
+function TileLayer:draw(offsetX, offsetY)
   lg.push()
   lg.setColor(1, 1, 1, self.opacity)
-  lg.draw(self.canvas, 0, 0, 0)
+  local dx = offsetX * self.parallax
+  local dy = offsetY * self.parallax
+  lg.draw(self.canvas, dx, dy, 0)
   lg.pop()
 end
 
