@@ -10,11 +10,16 @@ local lf = love.filesystem
 
 local identity = function(x) return x end
 
+local function doNewFont(filename)
+  return lily.newFont(filename, 32)
+end
+
 function PreloadGame:new(registry, eventBus)
   PreloadGame.super.new(self, registry, eventBus)
   self.images = {}
   self.jsons = {}
   self.tilemaps = {}
+  self.fonts = {}
 end
 
 function PreloadGame:enter()
@@ -27,6 +32,7 @@ function PreloadGame:enter()
   self:slurpDirectory('media/images', self.images, lily.newImage)
   self:slurpDirectory('media/json', self.jsons, lily.read, json.parse)
   self:slurpDirectory('media/tilemaps', self.tilemaps, lily.read, loadstring)
+  self:slurpDirectory('media/fonts', self.fonts, doNewFont)
 end
 
 function PreloadGame:slurpDirectory(directory, resourceTable, read, parse)
@@ -60,6 +66,11 @@ function PreloadGame:leave()
   -- The tilemaps.
   for name, map in pairs(self.tilemaps) do
     self.eventBus:emit('loadedTilemap', name, map)
+  end
+
+  -- The fonts.
+  for name, font in pairs(self.fonts) do
+    love.graphics.setFont(font)
   end
 
   local registry = self.registry

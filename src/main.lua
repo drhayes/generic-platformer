@@ -61,11 +61,11 @@ function love.draw()
 
   lg.setColor(0, 0, 0, 0.4)
   local w, h = lg.getWidth(), lg.getHeight()
-  lg.rectangle('fill', 0, h - 20, w, h)
+  lg.rectangle('fill', 0, h - 34, w, h)
 
   lg.setColor(1, 1, 1)
-  lg.print('FPS: ' .. love.timer.getFPS(), 0, h - 18)
-  lg.print('Memory: ' .. math.floor(collectgarbage('count')) .. ' kb', 80, h - 18)
+  lg.print('FPS: ' .. love.timer.getFPS(), 0, h - 32)
+  lg.print('Memory: ' .. math.floor(collectgarbage('count')) .. ' kb', 96, h - 32)
 
   lg.pop()
 end
