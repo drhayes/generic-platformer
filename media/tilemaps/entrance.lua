@@ -717,6 +717,427 @@ return {
           height = 16
         }
       }
+    },
+    {
+      name = "marble",
+      firstgid = 100,
+      filename = "../../assets/tilemaps/marble.tsx",
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 0,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 1,
+        height = 1
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 66,
+      tiles = {
+        {
+          id = 0,
+          image = "../../tmp/tiles/marbleTiles-bottom-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 1,
+          image = "../../tmp/tiles/marbleTiles-bottom-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 2,
+          image = "../../tmp/tiles/marbleTiles-bottom-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 3,
+          image = "../../tmp/tiles/marbleTiles-bottom-left-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 4,
+          image = "../../tmp/tiles/marbleTiles-bottom-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 5,
+          image = "../../tmp/tiles/marbleTiles-bottom-right-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 6,
+          image = "../../tmp/tiles/marbleTiles-damaged-top-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 7,
+          image = "../../tmp/tiles/marbleTiles-damaged-top-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 8,
+          image = "../../tmp/tiles/marbleTiles-damaged-top-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 9,
+          image = "../../tmp/tiles/marbleTiles-doorway-bottom-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 10,
+          image = "../../tmp/tiles/marbleTiles-doorway-bottom-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 11,
+          image = "../../tmp/tiles/marbleTiles-doorway-top-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 12,
+          image = "../../tmp/tiles/marbleTiles-doorway-top-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 13,
+          image = "../../tmp/tiles/marbleTiles-fragment-top-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 14,
+          image = "../../tmp/tiles/marbleTiles-fragment-top-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 15,
+          image = "../../tmp/tiles/marbleTiles-fragment-top-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 16,
+          image = "../../tmp/tiles/marbleTiles-fragment-top-4.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 17,
+          image = "../../tmp/tiles/marbleTiles-grass-middle-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 18,
+          image = "../../tmp/tiles/marbleTiles-grass-middle-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 19,
+          image = "../../tmp/tiles/marbleTiles-grass-middle-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 20,
+          image = "../../tmp/tiles/marbleTiles-grass-middle-4.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 21,
+          image = "../../tmp/tiles/marbleTiles-grass-middle-5.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 22,
+          image = "../../tmp/tiles/marbleTiles-grass-middle-6.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 23,
+          image = "../../tmp/tiles/marbleTiles-grass-top-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 24,
+          image = "../../tmp/tiles/marbleTiles-grass-top-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 25,
+          image = "../../tmp/tiles/marbleTiles-grass-top-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 26,
+          image = "../../tmp/tiles/marbleTiles-grass-top-4.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 27,
+          image = "../../tmp/tiles/marbleTiles-grass-top-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 28,
+          image = "../../tmp/tiles/marbleTiles-grass-top-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 29,
+          image = "../../tmp/tiles/marbleTiles-interior-bottom-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 30,
+          image = "../../tmp/tiles/marbleTiles-interior-bottom-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 31,
+          image = "../../tmp/tiles/marbleTiles-interior-top-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 32,
+          image = "../../tmp/tiles/marbleTiles-interior-top-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 33,
+          image = "../../tmp/tiles/marbleTiles-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 34,
+          image = "../../tmp/tiles/marbleTiles-left-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 35,
+          image = "../../tmp/tiles/marbleTiles-left-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 36,
+          image = "../../tmp/tiles/marbleTiles-left-4.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 37,
+          image = "../../tmp/tiles/marbleTiles-left-5.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 38,
+          image = "../../tmp/tiles/marbleTiles-left-6.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 39,
+          image = "../../tmp/tiles/marbleTiles-middle-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 40,
+          image = "../../tmp/tiles/marbleTiles-middle-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 41,
+          image = "../../tmp/tiles/marbleTiles-middle-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 42,
+          image = "../../tmp/tiles/marbleTiles-middle-4.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 43,
+          image = "../../tmp/tiles/marbleTiles-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 44,
+          image = "../../tmp/tiles/marbleTiles-right-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 45,
+          image = "../../tmp/tiles/marbleTiles-right-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 46,
+          image = "../../tmp/tiles/marbleTiles-right-4.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 47,
+          image = "../../tmp/tiles/marbleTiles-right-5.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 48,
+          image = "../../tmp/tiles/marbleTiles-right-6.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 49,
+          image = "../../tmp/tiles/marbleTiles-seam-ns.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 50,
+          image = "../../tmp/tiles/marbleTiles-seam-nse.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 51,
+          image = "../../tmp/tiles/marbleTiles-seam-nsw.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 52,
+          image = "../../tmp/tiles/marbleTiles-seam-nwe.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 53,
+          image = "../../tmp/tiles/marbleTiles-seam-swe.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 54,
+          image = "../../tmp/tiles/marbleTiles-seam-we.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 55,
+          image = "../../tmp/tiles/marbleTiles-top-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 56,
+          image = "../../tmp/tiles/marbleTiles-top-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 57,
+          image = "../../tmp/tiles/marbleTiles-top-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 58,
+          image = "../../tmp/tiles/marbleTiles-top-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 59,
+          image = "../../tmp/tiles/marbleTiles-top-left-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 60,
+          image = "../../tmp/tiles/marbleTiles-top-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 61,
+          image = "../../tmp/tiles/marbleTiles-top-right-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 62,
+          image = "../../tmp/tiles/marbleTiles-wear-left-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 63,
+          image = "../../tmp/tiles/marbleTiles-wear-left-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 64,
+          image = "../../tmp/tiles/marbleTiles-wear-right-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 65,
+          image = "../../tmp/tiles/marbleTiles-wear-right-2.png",
+          width = 16,
+          height = 16
+        }
+      }
     }
   },
   layers = {
@@ -911,10 +1332,10 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 1073741866, 20,
             48, 48, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 19, 60,
             1073741865, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1610612794,
-            1073741886, 20, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2147483664,
-            48, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            21, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            20, 20, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1073741886, 20, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            48, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 158, 108, 108, 114, 0,
+            21, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 133, 111, 112, 144, 0,
+            20, 20, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 138, 109, 110, 148, 0,
             20, 20, 48, 48, 48, 48, 54, 0, 40, 0, 0, 40, 0, 46, 48, 48, 48, 48, 48, 48,
             20, 20, 20, 20, 22, 1073741874, 16, 0, 1073741835, 0, 0, 1073741835, 0, 29, 1, 21, 20, 20, 20, 20,
             20, 20, 20, 20, 20, 37, 0, 0, 20, 0, 0, 20, 0, 6, 60, 20, 20, 20, 24, 20,
@@ -994,7 +1415,7 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1093,7 +1514,7 @@ return {
       draworder = "topdown",
       id = 4,
       name = "physics",
-      visible = false,
+      visible = true,
       opacity = 0.4,
       offsetx = 0,
       offsety = 0,
