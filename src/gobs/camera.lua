@@ -23,6 +23,7 @@ end
 
 function Camera:update(dt)
   local view = self.view
+  local oldX, oldY = view.center.x, view.center.y
 
   if self.player then
     view.center.x, view.center.y = self.player.x, self.player.y
@@ -50,6 +51,9 @@ function Camera:update(dt)
     if view:bottom() > currentRegion:bottom() then
       view.center.y = currentRegion:bottom() - view.halfSize.y
     end
+  else
+    -- No region? Give up and maintain.
+    view.center.x, view.center.y = oldX, oldY
   end
 
   self.offsetX, self.offsetY = view:left(), view:top()
