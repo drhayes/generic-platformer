@@ -39,7 +39,7 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
       for x = 0, width - 1 do
         local tileIndex = 1 + y * width + x
         local tileGid = chunk.data[tileIndex]
-        if tileGid ~= 0 then
+        if tileGid ~= nil and tileGid ~= 0 then
           -- Check for horizontal flipping, vertical flipping, and rotation!
           local isFlippedHorizontal = bit.band(tileGid, FLIPPED_HORIZONTAL) ~= 0
           local isFlippedVertical = bit.band(tileGid, FLIPPED_VERTICAL) ~= 0

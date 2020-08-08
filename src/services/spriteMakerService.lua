@@ -1,6 +1,7 @@
 local Object = require 'lib.classic'
 
 local GoldCoin = require 'sprites.goldCoin'
+local LevelDoor = require 'sprites.levelDoor'
 local Player = require 'sprites.player'
 local SmallChest = require 'sprites.smallChest'
 local Spawner = require 'sprites.spawner'
@@ -13,6 +14,7 @@ function SpriteMakerService:new(eventBus, registry)
 
   self.mapping = {
     goldCoin = GoldCoin,
+    levelDoor = LevelDoor,
     player = Player,
     smallChest = SmallChest,
     spawner = Spawner,
