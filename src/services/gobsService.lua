@@ -34,4 +34,9 @@ function GobsService:onAddGob(gob)
   self.eventBus:emit('gobAdded', gob)
 end
 
+function GobsService:clear()
+  lume.clear(self.gobs)
+  self.eventBus:emit('gobsCleared')
+end
+
 return GobsService

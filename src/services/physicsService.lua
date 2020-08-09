@@ -2,12 +2,16 @@ local Object = require 'lib.classic'
 local PhysicsBody = require 'physics.physicsBody'
 local AABB = require 'core.aabb'
 local TilemapCollider = require 'physics.tilemapCollider'
+local lume = require 'lib.lume'
 
 local PhysicsService = Object:extend()
 
 function PhysicsService:new(eventBus)
   self.eventBus = eventBus
   self.bodies = {}
+
+  self.eventBus:on('gobRemoved', self.onGobRemoved, self)
+  self.eventBus:on('gobsCleared', self.onGobsCleared, self)
 end
 
 -- TODO: Consider taking x, y, w, h, ox, oy here.
@@ -42,6 +46,20 @@ function PhysicsService:checkCollisions(body, deltaX, deltaY)
     end
   end
   return result
+end
+
+function PhysicsService:onGobRemoved(gob)
+  -- TODO: This probably doesn't work... yet!
+  for i = #self.bodies, 1, -1 do
+    local body = self.bodies[i]
+    if body.parent == gob then
+      table.remove(self.bodies, i)
+    end
+  end
+end
+
+function PhysicsService:onGobsCleared()
+  lume.clear(self.bodies)
 end
 
 return PhysicsService

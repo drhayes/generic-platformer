@@ -1790,7 +1790,11 @@ return {
           rotation = 0,
           gid = 68,
           visible = true,
-          properties = {}
+          properties = {
+            ["levelName"] = "sword",
+            ["posX"] = 296,
+            ["posY"] = 216
+          }
         }
       }
     }

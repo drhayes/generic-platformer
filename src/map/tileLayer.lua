@@ -17,6 +17,10 @@ end
 
 function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   offsetX, offsetY = offsetX or 0, offsetY or 0
+  -- Check for that unruly "zstd" compression.
+  if layerData.encoding ~= 'lua' then
+    error('tilelayer not in lua encoding')
+  end
   self.name = layerData.name
   self.visible = layerData.visible or true
   self.opacity = layerData.opacity or 1

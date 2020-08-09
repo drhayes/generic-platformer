@@ -279,6 +279,12 @@
  <objectgroup id="3" name="sprites">
   <object id="2" gid="66" x="208" y="-112" width="16" height="16"/>
   <object id="15" gid="67" x="-64" y="-80" width="16" height="16"/>
-  <object id="27" gid="68" x="261" y="-103.875" width="22" height="24"/>
+  <object id="27" gid="68" x="261" y="-103.875" width="22" height="24">
+   <properties>
+    <property name="levelName" value="sword"/>
+    <property name="posX" type="float" value="296"/>
+    <property name="posY" type="float" value="216"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -25,6 +25,7 @@ function DrawService:new(eventBus, windowFactor)
 
   eventBus:on('gobAdded', self.onGobAdded, self)
   eventBus:on('gobRemoved', self.onGobRemoved, self)
+  eventBus:on('gobsCleared', self.onGobsCleared, self)
 end
 
 function DrawService:onGobAdded(gob)
@@ -38,6 +39,10 @@ function DrawService:onGobRemoved(gob)
   if gob.draw then
     lume.remove(self.drawables, gob)
   end
+end
+
+function DrawService:onGobsCleared()
+  lume.clear(self.drawables)
 end
 
 local lg = love.graphics

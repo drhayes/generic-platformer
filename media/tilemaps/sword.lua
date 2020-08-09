@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 5,
+  nextobjectid = 6,
   properties = {},
   tilesets = {
     {
@@ -465,8 +465,8 @@ return {
       name = "environment",
       firstgid = 66,
       filename = "../../assets/tilemaps/environment.tsx",
-      tilewidth = 16,
-      tileheight = 16,
+      tilewidth = 22,
+      tileheight = 24,
       spacing = 0,
       margin = 0,
       columns = 0,
@@ -482,7 +482,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 2,
+      tilecount = 3,
       tiles = {
         {
           id = 0,
@@ -497,6 +497,13 @@ return {
           image = "../../tmp/sprites/smallChest-000.png",
           width = 16,
           height = 16
+        },
+        {
+          id = 2,
+          type = "levelDoor",
+          image = "../../tmp/sprites/levelDoor-000.png",
+          width = 22,
+          height = 24
         }
       }
     }
@@ -592,22 +599,7 @@ return {
       offsetx = 0,
       offsety = 0,
       properties = {},
-      objects = {
-        {
-          id = 2,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = -224,
-          y = -48,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          gid = 66,
-          visible = true,
-          properties = {}
-        }
-      }
+      objects = {}
     },
     {
       type = "objectgroup",
@@ -659,6 +651,21 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 5,
+          name = "",
+          type = "",
+          shape = "point",
+          x = -192,
+          y = -32,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["isInitial"] = true
+          }
         }
       }
     }

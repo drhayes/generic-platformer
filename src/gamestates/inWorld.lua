@@ -16,6 +16,7 @@ function InWorld:new(registry, eventBus)
   self:subscribe('spawnSpriteByType', self.onSpawnSpriteByType)
   self:subscribe('spawnSpriteBySpec', self.onSpawnSpriteBySpec)
   self:subscribe('switchCamera', self.onSwitchCamera)
+  self:subscribe('switchLevels', self.onSwitchLevels)
 end
 
 function InWorld:enter()
@@ -63,6 +64,9 @@ function InWorld:switchTilemap(key)
     return
   end
 
+  local gobsService = self.registry:get('gobs')
+  gobsService:clear()
+
   self.currentTilemap = tilemap
   local physicsService = self.registry:get('physics')
   tilemap:initialize(self.eventBus, self.tileAtlas, physicsService)
@@ -94,6 +98,11 @@ end
 
 function InWorld:onSwitchCamera(camera)
   self.camera = camera
+end
+
+function InWorld:onSwitchLevels(levelName, posX, posY)
+  self:switchTilemap(levelName .. '.lua')
+  self.eventBus:emit('spawnSpriteByType', 'player', posX, posY)
 end
 
 return InWorld
