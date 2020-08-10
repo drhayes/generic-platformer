@@ -32,7 +32,7 @@ function PlayerFalling:update(dt)
   end
 
 
-  player.body:update(dt)
+  -- player.body:update(dt)
 
   if body.moveVelocity.x ~= 0 then
     animation.current = 'runningfalling'
@@ -41,10 +41,10 @@ function PlayerFalling:update(dt)
   end
   animation.flippedH = body.moveVelocity.x < 0
 
-  player.animation:update(dt)
+  -- player.animation:update(dt)
 
-  player.x = body.position.x
-  player.y = body.position.y
+  -- player.x = body.position.x
+  -- player.y = body.position.y
 
   if body.velocity.y >= config.player.fallingDeathVelocity then
     player.removeMe = true

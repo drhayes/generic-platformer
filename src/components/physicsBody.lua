@@ -1,16 +1,16 @@
-local Object = require 'lib.classic'
+local Component = require 'components.component'
 local Vector = require 'lib.brinevector'
 local AABB = require 'core.aabb'
 local bit = bit or bit32 or require 'bit32'
 
 -- local SUPERTINY = 1e-5
 
-local PhysicsBody = Object:extend()
+local PhysicsBody = Component:extend()
 
 local function no() return false end
 
-function PhysicsBody:new(parent, checkCollisionsCallback)
-  self.parent = parent
+function PhysicsBody:new(checkCollisionsCallback)
+  PhysicsBody.super.new(self)
   self.checkCollisions = checkCollisionsCallback or no
 
   -- This is the position of the entity, literally its x,y.
@@ -81,6 +81,7 @@ function PhysicsBody:runColliders(otherBody, collisionNormalX, collisionNormalY)
 end
 
 function PhysicsBody:update(dt)
+  PhysicsBody.super.update(self, dt)
   -- Store last frame's stuff.
   self.oldPosition.x, self.oldPosition.y = self.position.x, self.position.y
   self.oldVelocity.x, self.oldVelocity.y = self.velocity.x, self.velocity.y
@@ -130,6 +131,8 @@ function PhysicsBody:update(dt)
   if self.isOnGround then
     self.fallingVelocity.y = 0
   end
+
+  self.parent.x, self.parent.y = self.position.x, self.position.y
 end
 
 function PhysicsBody:moveX(amount)
@@ -165,5 +168,12 @@ function PhysicsBody:moveY(amount)
 end
 
 function PhysicsBody:collisionResolution() end
+
+local lg = love.graphics
+
+function PhysicsBody:debugDraw()
+  lg.setColor(0, 1, 0, .3)
+  lg.rectangle('fill', self.aabb:bounds())
+end
 
 return PhysicsBody

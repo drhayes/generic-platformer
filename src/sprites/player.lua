@@ -3,7 +3,7 @@ local collisionLayers = require 'physics.collisionLayers'
 local config = require 'gameConfig'
 local TreasureCollider = require 'physics.treasureCollider'
 local UsableCollider = require 'physics.usableCollider'
-local StateMachine = require 'core.stateMachine'
+local StateMachine = require 'components.stateMachine'
 
 local PlayerNormal = require 'sprites.playerStates.playerNormal'
 local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
@@ -13,6 +13,7 @@ local PlayerJumping = require 'sprites.playerStates.playerJumping'
 local Player = GameObject:extend()
 
 function Player:new(spec)
+  Player.super.new(self)
   self.x, self.y = spec.x, spec.y
   self.layer = 'player'
   self.isPlayer = true
@@ -20,6 +21,7 @@ function Player:new(spec)
 
   self.input = spec.inputService
   self.animation = spec.animationService:create('player')
+  self:add(self.animation)
 
   local body = spec.physicsService:newBody(self)
   body.position.x, body.position.y = spec.x, spec.y
@@ -34,6 +36,7 @@ function Player:new(spec)
   self.body = body
   table.insert(body.colliders, TreasureCollider(self))
   table.insert(body.colliders, UsableCollider(self))
+  self:add(self.body)
 
   local stateMachine = StateMachine()
   self.stateMachine = stateMachine
@@ -42,22 +45,23 @@ function Player:new(spec)
   stateMachine:add('normal', PlayerNormal(self))
   stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))
+  self:add(self.stateMachine)
 end
 
-function Player:update(dt)
-  self.stateMachine:update(dt)
-end
+-- function Player:update(dt)
+  -- self.stateMachine:update(dt)
+-- end
 
-local lg = love.graphics
+-- local lg = love.graphics
 
-function Player:draw()
-  lg.push()
-  lg.setColor(1, 1, 1, 1)
-  self.animation:draw(self.x, self.y)
-  -- lg.setColor(0, 1, 0, .3)
-  -- lg.rectangle('fill', self.body.aabb:bounds())
-  lg.pop()
-end
+-- function Player:draw()
+--   lg.push()
+--   lg.setColor(1, 1, 1, 1)
+--   self.animation:draw(self.x, self.y)
+--   -- lg.setColor(0, 1, 0, .3)
+--   -- lg.rectangle('fill', self.body.aabb:bounds())
+--   lg.pop()
+-- end
 
 function Player:setUseObject(obj)
   self.useObject = obj

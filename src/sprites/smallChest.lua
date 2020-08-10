@@ -4,6 +4,7 @@ local collisionLayers = require 'physics.collisionLayers'
 local SmallChest = GameObject:extend()
 
 function SmallChest:new(spec)
+  SmallChest.super.new(self)
   self.x, self.y = spec.x, spec.y
   self.layer = 'background'
   self.eventBus = spec.eventBus
@@ -15,6 +16,7 @@ function SmallChest:new(spec)
     self.hasOpened = true
     self:spillRiches()
   end
+  self:add(self.animation)
 
   local body = spec.physicsService:newBody(self)
   body.position.x, body.position.y = spec.x, spec.y
@@ -25,15 +27,16 @@ function SmallChest:new(spec)
   body.aabbOffset.y = 4
   body.collisionLayers = collisionLayers.usables
   self.body = body
+  self:add(self.body)
 
   self.isUsable = true
   self.hasOpened = false
 end
 
 function SmallChest:update(dt)
-  self.body:update(dt)
-  self.animation:update(dt)
-
+  -- self.body:update(dt)
+  -- self.animation:update(dt)
+  SmallChest.super.update(self, dt)
   if self.goldCoroutine then
     local ok, message = coroutine.resume(self.goldCoroutine, dt)
     if not ok then
@@ -42,14 +45,14 @@ function SmallChest:update(dt)
   end
 end
 
-local lg = love.graphics
+-- local lg = love.graphics
 
-function SmallChest:draw()
-  lg.push()
-  lg.setColor(1, 1, 1, 1)
-  self.animation:draw(self.x, self.y)
-  lg.pop()
-end
+-- function SmallChest:draw()
+--   lg.push()
+--   lg.setColor(1, 1, 1, 1)
+--   self.animation:draw(self.x, self.y)
+--   lg.pop()
+-- end
 
 function SmallChest:used(user)
   self.isUsable = false

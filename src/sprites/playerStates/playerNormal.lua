@@ -31,7 +31,7 @@ function PlayerNormal:update(dt)
     return 'jumping'
   end
 
-  body:update(dt)
+  -- body:update(dt)
 
   animation.current = 'idle'
 
@@ -44,10 +44,10 @@ function PlayerNormal:update(dt)
     return 'falling'
   end
 
-  animation:update(dt)
+  -- animation:update(dt)
 
-  player.x = body.position.x
-  player.y = body.position.y
+  -- player.x = body.position.x
+  -- player.y = body.position.y
 
   if self.useObject and self.body.aabb:overlaps(self.useObject.body.aabb) then
     if input:pressed('up') and body.isOnGround then

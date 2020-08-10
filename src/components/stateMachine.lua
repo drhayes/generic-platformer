@@ -1,8 +1,9 @@
-local Object = require 'lib.classic'
+local Component = require 'components.component'
 
-local StateMachine = Object:extend()
+local StateMachine = Component:extend()
 
 function StateMachine:new()
+  StateMachine.super.new(self)
   self.states = {}
 end
 
@@ -14,10 +15,13 @@ function StateMachine:add(name, state)
 end
 
 function StateMachine:update(dt)
+  StateMachine.super.update(self, dt)
+
   if not self.current then
     self.current = self.initial
     self.current:enter()
   end
+
   local transitionTo = self.current:update(dt)
   if transitionTo then
     local nextState = self.states[transitionTo]
@@ -30,6 +34,7 @@ function StateMachine:update(dt)
 end
 
 function StateMachine:draw()
+  StateMachine.super.draw(self)
   if not self.current then return end
   self.current:draw()
 end

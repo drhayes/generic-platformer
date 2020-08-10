@@ -6,6 +6,7 @@ local AABB = require 'core.aabb'
 local Camera = GameObject:extend()
 
 function Camera:new(eventBus)
+  Camera.super.new(self)
   self.eventBus = eventBus
 
   self.offsetX, self.offsetY, self.scale = 0, 0, 1
@@ -22,6 +23,7 @@ function Camera:lookAt(x, y)
 end
 
 function Camera:update(dt)
+  Camera.super.update(self, dt)
   local view = self.view
   local oldX, oldY = view.center.x, view.center.y
 

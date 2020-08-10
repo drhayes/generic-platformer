@@ -1,5 +1,5 @@
 local Object = require 'lib.classic'
-local PhysicsBody = require 'physics.physicsBody'
+local PhysicsBody = require 'components.physicsBody'
 local AABB = require 'core.aabb'
 local TilemapCollider = require 'physics.tilemapCollider'
 local lume = require 'lib.lume'
@@ -15,9 +15,9 @@ function PhysicsService:new(eventBus)
 end
 
 -- TODO: Consider taking x, y, w, h, ox, oy here.
-function PhysicsService:newBody(parent)
+function PhysicsService:newBody()
   local callback = self:createCheckCollisionsCallback()
-  local body = PhysicsBody(parent, callback)
+  local body = PhysicsBody(callback)
   table.insert(body.colliders, TilemapCollider(body))
   -- body.collisionResolution = collisionResolution
   table.insert(self.bodies, body)

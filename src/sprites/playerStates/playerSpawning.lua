@@ -7,13 +7,21 @@ function PlayerSpawning:new(player)
   player.animation.current = 'spawning'
 end
 
+function PlayerSpawning:enter()
+  self.player.body.active = false
+end
+
 function PlayerSpawning:update(dt)
   local player = self.player
-  player.animation:update(dt)
+  -- player.animation:update(dt)
   local animation = player.animation.animations[player.animation.current]
   if animation.status == 'paused' then
     return 'normal'
   end
+end
+
+function PlayerSpawning:leave()
+  self.player.body.active = true
 end
 
 return PlayerSpawning

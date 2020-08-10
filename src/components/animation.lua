@@ -1,8 +1,9 @@
-local Object = require 'lib.classic'
+local Component = require 'components.component'
 
-local Animation = Object:extend()
+local Animation = Component:extend()
 
 function Animation:new(spriteAtlas)
+  Animation.super.new(self)
   self.spriteAtlas = spriteAtlas
   self.current = nil
   self.oldCurrent = nil
@@ -19,6 +20,7 @@ function Animation:add(name, animation)
 end
 
 function Animation:update(dt)
+  Animation.super.new(self, dt)
   local animation = self.animations[self.current]
   if not animation then return end
 
@@ -30,8 +32,14 @@ function Animation:update(dt)
   animation:update(dt)
 end
 
-function Animation:draw(x, y, r, sx, sy, ox, oy, kx, ky)
-  ox, oy = ox or 0, oy or 0
+local lg = love.graphics
+
+-- function Animation:draw(x, y, r, sx, sy, ox, oy, kx, ky)
+function Animation:draw(offsetX, offsetY, scale, alpha)
+  Animation.super.draw(self)
+  lg.push()
+  lg.setColor(1, 1, 1, 1)
+  local ox, oy = self.parent.x, self.parent.y
   local animation = self.animations[self.current]
   if not animation then return end
 
@@ -39,9 +47,11 @@ function Animation:draw(x, y, r, sx, sy, ox, oy, kx, ky)
   animation.flippedV = self.flippedV
   local spriteAtlas = self.spriteAtlas
   local width, height = animation:getDimensions()
-  ox = ox + math.floor(width / 2)
-  oy = oy + math.floor(height / 2)
-  animation:draw(spriteAtlas.image, x, y, r, sx, sy, ox, oy, kx, ky)
+  -- ox = ox - math.floor(width / 2)
+  -- oy = oy - math.floor(height / 2)
+  -- animation:draw(spriteAtlas.image, x, y, r, sx, sy, ox, oy, kx, ky)
+  animation:draw(spriteAtlas.image, ox, oy, 0, 1, 1, math.floor(width / 2), math.floor(height / 2))
+  lg.pop()
 end
 
 return Animation

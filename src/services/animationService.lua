@@ -1,5 +1,5 @@
 local Object = require 'lib.classic'
-local Animation = require 'core.animation'
+local Animation = require 'components.animation'
 local anim8 = require 'lib.anim8'
 
 local AnimationService = Object:extend()

@@ -3,6 +3,7 @@ local GameObject = require 'gobs.gameObject'
 local Spawner = GameObject:extend()
 
 function Spawner:new(spec)
+  Spawner.super.new(self)
   self.x, self.y = spec.x, spec.y
   self.timer = 0
   self.threshold = 1
@@ -14,6 +15,7 @@ function Spawner:new(spec)
 end
 
 function Spawner:update(dt)
+  Spawner.super.update(self, dt)
   if not self.running then return end
 
   self.timer = self.timer + dt
@@ -25,6 +27,10 @@ end
 
 function Spawner:onPlayerDead()
   self.running = true
+end
+
+function Spawner:__tostring()
+  return 'Spawner'
 end
 
 return Spawner

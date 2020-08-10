@@ -1,4 +1,4 @@
-local Gameobject = require 'gobs.gameObject'
+local GameObject = require 'gobs.gameObject'
 local Grid = require 'core.grid'
 local bit = bit or bit32 or require 'bit32' -- luacheck: ignore
 local config = require 'gameConfig'
@@ -8,7 +8,7 @@ local FLIPPED_VERTICAL = 0x40000000
 local FLIPPED_DIAGONALLY = 0x20000000
 local TILE_SIZE = config.map.tileSize
 
-local TileLayer = Gameobject:extend()
+local TileLayer = GameObject:extend()
 
 local function basename(str)
   local name = string.gsub(str, "(.*/)(.*)", "%2")
@@ -16,6 +16,7 @@ local function basename(str)
 end
 
 function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
+  TileLayer.super.new(self)
   offsetX, offsetY = offsetX or 0, offsetY or 0
   -- Check for that unruly "zstd" compression.
   if layerData.encoding ~= 'lua' then
@@ -127,12 +128,17 @@ function TileLayer:initialize(eventBus, tileAtlas)
 end
 
 function TileLayer:draw(offsetX, offsetY)
+  TileLayer.super.draw(self)
   lg.push()
   lg.setColor(1, 1, 1, self.opacity)
   local dx = offsetX * self.parallax
   local dy = offsetY * self.parallax
   lg.draw(self.canvas, dx, dy, 0)
   lg.pop()
+end
+
+function TileLayer:__tostring()
+  return 'TileLayer'
 end
 
 return TileLayer
