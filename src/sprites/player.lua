@@ -5,10 +5,10 @@ local TreasureCollider = require 'physics.treasureCollider'
 local UsableCollider = require 'physics.usableCollider'
 local StateMachine = require 'core.stateMachine'
 
-local PlayerNormal = require 'sprites.player.playerNormal'
-local PlayerSpawning = require 'sprites.player.playerSpawning'
-local PlayerFalling = require 'sprites.player.playerFalling'
-local PlayerJumping = require 'sprites.player.playerJumping'
+local PlayerNormal = require 'sprites.playerStates.playerNormal'
+local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
+local PlayerFalling = require 'sprites.playerStates.playerFalling'
+local PlayerJumping = require 'sprites.playerStates.playerJumping'
 
 local Player = GameObject:extend()
 

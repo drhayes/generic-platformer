@@ -1,5 +1,5 @@
 local TileLayer = require 'map.tileLayer'
-local Player = require 'sprites.player.player'
+local Player = require 'sprites.player'
 local config = require 'gameConfig'
 local Grid = require 'core.grid'
 

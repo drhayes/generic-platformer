@@ -1,5 +1,5 @@
 local GameObject = require 'gobs.gameObject'
-local Player = require 'sprites.player.player'
+local Player = require 'sprites.player'
 local config = require 'gameConfig'
 local AABB = require 'core.aabb'
 
