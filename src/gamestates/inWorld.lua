@@ -2,12 +2,15 @@ local Gamestate = require 'gamestates.gamestate'
 local Tilemap = require 'map.tilemap'
 local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
+local GobsService = require 'services.gobsService'
+
 
 local InWorld = Gamestate:extend()
 
 function InWorld:new(registry, eventBus)
   InWorld.super.new(self, registry, eventBus)
 
+  self.gobs = GobsService(eventBus)
   self.tilemaps = {}
 
   self:subscribe('loadedTilemap', self.onLoadedTilemap)
@@ -26,8 +29,7 @@ function InWorld:enter()
 end
 
 function InWorld:update(dt)
-  local gobsService = self.registry:get('gobs')
-  gobsService:update(dt)
+  self.gobs:update(dt)
   if not self.currentTilemap then
     self:switchTilemap('entrance.lua')
   end
@@ -64,8 +66,7 @@ function InWorld:switchTilemap(key)
     return
   end
 
-  local gobsService = self.registry:get('gobs')
-  gobsService:clear()
+  self.gobs:clear()
 
   self.currentTilemap = tilemap
   local physicsService = self.registry:get('physics')

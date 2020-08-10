@@ -8,7 +8,6 @@ local lily = require 'lib.lily'
 
 local Registry = require 'services.registry'
 local DrawService = require 'services.drawService'
-local GobsService = require 'services.gobsService'
 local InputService = require 'services.inputService'
 local SpriteMaker = require 'services.spriteMakerService'
 local PhysicsService = require 'services.physicsService'
@@ -41,7 +40,6 @@ function love.load()
   local eventBus = EventEmitter()
 
   local registry = Registry()
-  registry:add('gobs', GobsService(eventBus))
   registry:add('draw', DrawService(eventBus, windowFactor))
   registry:add('input', InputService())
   registry:add('spriteMaker', SpriteMaker(eventBus, registry))
