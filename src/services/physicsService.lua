@@ -19,8 +19,7 @@ end
 function PhysicsService:newBody()
   local callback = self:createCheckCollisionsCallback()
   local body = PhysicsBody(callback)
-  table.insert(body.colliders, TilemapCollider(body))
-  -- body.collisionResolution = collisionResolution
+  body:addCollider(TilemapCollider())
   table.insert(self.bodies, body)
   return body
 end

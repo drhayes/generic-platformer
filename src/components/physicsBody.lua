@@ -59,6 +59,11 @@ function PhysicsBody:new(checkCollisionsCallback)
   self.aabbOffset = Vector()
 end
 
+function PhysicsBody:addCollider(collider)
+  collider.body = self
+  table.insert(self.colliders, collider)
+end
+
 -- Do I collide with this mask?
 function PhysicsBody:collidesWith(mask)
   return bit.band(self.collisionMask, mask) ~= 0

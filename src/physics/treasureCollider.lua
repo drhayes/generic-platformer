@@ -5,7 +5,6 @@ local TreasureCollider = Collider:extend()
 
 function TreasureCollider:new(player)
   self.player = player
-  TreasureCollider.super.new(self, player.body)
 end
 
 function TreasureCollider:collide(otherBody, collisionNormalX, collisionNormalY)

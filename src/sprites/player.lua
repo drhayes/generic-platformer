@@ -28,11 +28,10 @@ function Player:new(spec)
   body.aabb.halfSize.y = 5
   body.aabbOffset.y = 3
   body.gravityForce.y = (2 * config.player.jumpHeight) / math.pow(config.player.timeToJumpApex, 2)
-  self.jumpVelocity = body.gravityForce.y * config.player.timeToJumpApex
   body.collisionLayers = collisionLayers.player
   body.collisionMask = collisionLayers.tilemap + collisionLayers.treasure + collisionLayers.usables
-  table.insert(body.colliders, TreasureCollider(self))
-  table.insert(body.colliders, UsableCollider(self))
+  body:addCollider(TreasureCollider(self))
+  body:addCollider(UsableCollider(self))
   self.body = self:add(body)
 
   local stateMachine = StateMachine()

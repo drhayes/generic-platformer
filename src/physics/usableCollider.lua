@@ -5,7 +5,6 @@ local UsableCollider = Collider:extend()
 
 function UsableCollider:new(player)
   self.player = player
-  UsableCollider.super.new(self, player.body)
 end
 
 function UsableCollider:collide(otherBody)
