@@ -3,9 +3,10 @@ local config = require 'gameConfig'
 
 local PlayerFalling = State:extend()
 
-function PlayerFalling:new(player)
+function PlayerFalling:new(player, eventBus)
   self.player = player
   self.jumpVelocity = player.body.gravityForce.y * config.player.timeToJumpApex
+  self.eventBus = eventBus
 end
 
 function PlayerFalling:enter()
@@ -49,7 +50,8 @@ function PlayerFalling:update(dt)
   player.y = body.position.y
 
   if body.velocity.y >= config.player.fallingDeathVelocity then
-    log.debug('death')
+    player.removeMe = true
+    self.eventBus:emit('playerDead')
   end
 
   if player.body.isOnGround then

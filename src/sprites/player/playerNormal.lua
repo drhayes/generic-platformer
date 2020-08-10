@@ -25,7 +25,6 @@ function PlayerNormal:update(dt)
 
   if input:pressed('jump') then
     return 'jumping'
-    -- body.jumpVelocity.y = -self.jumpVelocity
   end
 
   body:update(dt)
@@ -45,8 +44,6 @@ function PlayerNormal:update(dt)
 
   player.x = body.position.x
   player.y = body.position.y
-
-  body.jumpVelocity.y = 0
 
   if self.useObject and self.body.aabb:overlaps(self.useObject.body.aabb) then
     if input:pressed('up') and body.isOnGround then

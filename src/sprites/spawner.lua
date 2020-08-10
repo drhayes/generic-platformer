@@ -8,7 +8,9 @@ function Spawner:new(spec)
   self.threshold = 1
   self.running = true
 
-  self.eventBus = spec.eventBus
+  local eventBus = spec.eventBus
+  eventBus:on('playerDead', self.onPlayerDead, self)
+  self.eventBus = eventBus
 end
 
 function Spawner:update(dt)
@@ -19,6 +21,10 @@ function Spawner:update(dt)
     self.running = false
     self.eventBus:emit('spawnSpriteByType', 'player', self.x, self.y)
   end
+end
+
+function Spawner:onPlayerDead()
+  self.running = true
 end
 
 return Spawner
