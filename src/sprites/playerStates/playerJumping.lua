@@ -24,12 +24,6 @@ function PlayerJumping:update(dt)
     animation.flippedH = body.moveVelocity.x < 0
   end
 
-  -- body:update(dt)
-  -- animation:update(dt)
-
-  -- player.x = body.position.x
-  -- player.y = body.position.y
-
   return 'falling'
 end
 

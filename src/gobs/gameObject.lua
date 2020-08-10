@@ -48,4 +48,20 @@ function GameObject:draw(offsetX, offsetY, scale, alpha)
   end
 end
 
+-- Called when GameObject is added to game.
+function GameObject:gobAdded()
+  for i = 1, #self.components do
+    local component = self.components[i]
+    component:gobAdded()
+  end
+end
+
+-- Called when GameObject is removed from game.
+function GameObject:gobRemoved()
+  for i = 1, #self.components do
+    local component = self.components[i]
+    component:gobRemoved()
+  end
+end
+
 return GameObject

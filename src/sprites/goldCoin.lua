@@ -35,20 +35,8 @@ end
 function GoldCoin:update(dt)
   GoldCoin.super.update(self, dt)
   local body = self.body
-  -- body:update(dt)
   body.jumpVelocity.x, body.jumpVelocity.y = 0, 0
-  -- self.animation:update(dt)
-  -- self.x, self.y = body.position.x, body.position.y
 end
-
--- local lg = love.graphics
-
--- function GoldCoin:draw()
---   lg.push()
---   lg.setColor(1, 1, 1, 1)
---   self.animation:draw(self.x, self.y)
---   lg.pop()
--- end
 
 function GoldCoin:__tostring()
   return 'GoldCoin'

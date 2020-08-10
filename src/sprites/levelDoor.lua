@@ -23,19 +23,6 @@ function LevelDoor:new(spec)
   self.eventBus = spec.eventBus
 end
 
--- function LevelDoor:update(dt)
---   self.body:update(dt)
--- end
-
--- local lg = love.graphics
-
--- function LevelDoor:draw()
---   lg.push()
---   lg.setColor(0, 1, 0, .3)
---   lg.rectangle('fill', self.body.aabb:bounds())
---   lg.pop()
--- end
-
 function LevelDoor:used(user)
   self.eventBus:emit('switchLevels', self.levelName, self.posX, self.posY)
 end

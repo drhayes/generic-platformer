@@ -48,21 +48,6 @@ function Player:new(spec)
   self:add(self.stateMachine)
 end
 
--- function Player:update(dt)
-  -- self.stateMachine:update(dt)
--- end
-
--- local lg = love.graphics
-
--- function Player:draw()
---   lg.push()
---   lg.setColor(1, 1, 1, 1)
---   self.animation:draw(self.x, self.y)
---   -- lg.setColor(0, 1, 0, .3)
---   -- lg.rectangle('fill', self.body.aabb:bounds())
---   lg.pop()
--- end
-
 function Player:setUseObject(obj)
   self.useObject = obj
 end

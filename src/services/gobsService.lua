@@ -24,17 +24,32 @@ function GobsService:update(dt)
   -- Remove'em.
   for i = 1, #removals do
     local gob = removals[i]
-    lume.remove(gobs, gob)
-    self.eventBus:emit('gobRemoved', gob)
+    self:remove(gob)
   end
 end
 
-function GobsService:onAddGob(gob)
+function GobsService:add(gob)
   table.insert(self.gobs, gob)
+  gob:gobAdded()
   self.eventBus:emit('gobAdded', gob)
 end
 
+function GobsService:remove(gob)
+  lume.remove(self.gobs, gob)
+  gob:gobRemoved()
+  self.eventBus:emit('gobRemoved', gob)
+end
+
+-- This is a command received from the event bus.
+function GobsService:onAddGob(gob)
+  self:add(gob)
+end
+
 function GobsService:clear()
+  for i = 1, #self.gobs do
+    local gob = self.gobs[i]
+    gob:gobRemoved()
+  end
   lume.clear(self.gobs)
   self.eventBus:emit('gobsCleared')
 end

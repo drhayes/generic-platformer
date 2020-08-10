@@ -34,7 +34,7 @@ end
 
 local lg = love.graphics
 
--- function Animation:draw(x, y, r, sx, sy, ox, oy, kx, ky)
+-- TODO: I bet this won't work long term.
 function Animation:draw(offsetX, offsetY, scale, alpha)
   Animation.super.draw(self)
   lg.push()

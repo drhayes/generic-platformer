@@ -34,8 +34,6 @@ function SmallChest:new(spec)
 end
 
 function SmallChest:update(dt)
-  -- self.body:update(dt)
-  -- self.animation:update(dt)
   SmallChest.super.update(self, dt)
   if self.goldCoroutine then
     local ok, message = coroutine.resume(self.goldCoroutine, dt)
@@ -44,15 +42,6 @@ function SmallChest:update(dt)
     end
   end
 end
-
--- local lg = love.graphics
-
--- function SmallChest:draw()
---   lg.push()
---   lg.setColor(1, 1, 1, 1)
---   self.animation:draw(self.x, self.y)
---   lg.pop()
--- end
 
 function SmallChest:used(user)
   self.isUsable = false

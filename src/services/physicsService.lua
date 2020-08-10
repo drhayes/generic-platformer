@@ -10,6 +10,7 @@ function PhysicsService:new(eventBus)
   self.eventBus = eventBus
   self.bodies = {}
 
+  -- TODO: Can get rid of these because the PhysicsBody will get gobRemoved call on it.
   self.eventBus:on('gobRemoved', self.onGobRemoved, self)
   self.eventBus:on('gobsCleared', self.onGobsCleared, self)
 end

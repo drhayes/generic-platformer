@@ -5,7 +5,6 @@ local PlayerFalling = State:extend()
 
 function PlayerFalling:new(player, eventBus)
   self.player = player
-  self.jumpVelocity = player.body.gravityForce.y * config.player.timeToJumpApex
   self.eventBus = eventBus
 end
 
@@ -27,12 +26,8 @@ function PlayerFalling:update(dt)
 
   if input:pressed('jump') and body.velocity.y > 0 and player.jumpForgivenessTimer <= config.player.jumpForgivenessThresholdSeconds then
     return 'jumping'
-    -- body.jumpVelocity.y = -self.jumpVelocity
-    -- self.jumpForgivenessTimer = config.player.jumpForgivenessThresholdSeconds
   end
 
-
-  -- player.body:update(dt)
 
   if body.moveVelocity.x ~= 0 then
     animation.current = 'runningfalling'
@@ -40,11 +35,6 @@ function PlayerFalling:update(dt)
     animation.current = 'falling'
   end
   animation.flippedH = body.moveVelocity.x < 0
-
-  -- player.animation:update(dt)
-
-  -- player.x = body.position.x
-  -- player.y = body.position.y
 
   if body.velocity.y >= config.player.fallingDeathVelocity then
     player.removeMe = true

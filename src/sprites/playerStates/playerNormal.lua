@@ -5,7 +5,6 @@ local PlayerNormal = State:extend()
 
 function PlayerNormal:new(player)
   self.player = player
-  self.jumpVelocity = player.body.gravityForce.y * config.player.timeToJumpApex
 end
 
 function PlayerNormal:enter()
@@ -31,8 +30,6 @@ function PlayerNormal:update(dt)
     return 'jumping'
   end
 
-  -- body:update(dt)
-
   animation.current = 'idle'
 
   if body.moveVelocity.x ~= 0 and body.velocity.x ~= 0 and body.isOnGround then
@@ -43,11 +40,6 @@ function PlayerNormal:update(dt)
   if not body.isOnGround and body.velocity.y > 0 then
     return 'falling'
   end
-
-  -- animation:update(dt)
-
-  -- player.x = body.position.x
-  -- player.y = body.position.y
 
   if player.useObject and player.body.aabb:overlaps(player.useObject.body.aabb) then
     if input:pressed('up') and body.isOnGround then
