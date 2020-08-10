@@ -3,6 +3,12 @@ local collisionLayers = require 'physics.collisionLayers'
 local config = require 'gameConfig'
 local TreasureCollider = require 'physics.treasureCollider'
 local UsableCollider = require 'physics.usableCollider'
+local StateMachine = require 'core.stateMachine'
+
+local PlayerNormal = require 'sprites.player.playerNormal'
+local PlayerSpawning = require 'sprites.player.playerSpawning'
+local PlayerFalling = require 'sprites.player.playerFalling'
+local PlayerJumping = require 'sprites.player.playerJumping'
 
 local Player = GameObject:extend()
 
@@ -12,13 +18,7 @@ function Player:new(spec)
   self.isPlayer = true
 
   self.input = spec.inputService
-
   self.animation = spec.animationService:create('player')
-  self.animation.current = 'spawning'
-  self.animation.animations.spawning.doneSpawning = function()
-    self.animation.current = 'idle'
-    self.isSpawning = false
-  end
 
   local body = spec.physicsService:newBody(self)
   body.position.x, body.position.y = spec.x, spec.y
@@ -34,90 +34,17 @@ function Player:new(spec)
   table.insert(body.colliders, TreasureCollider(self))
   table.insert(body.colliders, UsableCollider(self))
 
-  self.jumpForgivenessTimer = math.huge
-
-  self.isSpawning = true
+  local stateMachine = StateMachine()
+  self.stateMachine = stateMachine
+  stateMachine:add('spawning', PlayerSpawning(self))
+  -- Depends on body in player.
+  stateMachine:add('normal', PlayerNormal(self))
+  stateMachine:add('falling', PlayerFalling(self))
+  stateMachine:add('jumping', PlayerJumping(self))
 end
 
 function Player:update(dt)
-  if self.isSpawning then
-    self.animation:update(dt)
-    return
-  end
-
-  local body, animation = self.body, self.animation
-  -- Reset control velocities.
-  body.jumpVelocity.x, body.jumpVelocity.y = 0, 0
-  body.moveVelocity.x, body.moveVelocity.y = 0, 0
-
-  local input = self.input
-
-  if input:down('right') then
-    body.moveVelocity.x = config.player.runVelocity
-  elseif input:down('left') then
-    body.moveVelocity.x = -config.player.runVelocity
-  else
-    body.moveVelocity.x = 0
-  end
-
-  if input:pressed('jump') and self.jumpForgivenessTimer <= config.player.jumpForgivenessThresholdSeconds then
-    body.jumpVelocity.y = -self.jumpVelocity
-    self.jumpForgivenessTimer = config.player.jumpForgivenessThresholdSeconds
-  end
-
-  body:update(dt)
-
-  if body.isOnGround then
-    animation.current = 'idle'
-    self.jumpForgivenessTimer = 0
-  else
-    self.jumpForgivenessTimer = self.jumpForgivenessTimer + dt
-  end
-
-  if body.moveVelocity.x ~= 0 and body.velocity.x ~= 0 and body.isOnGround then
-    animation.current = 'running'
-    animation.flippedH = body.moveVelocity.x < 0
-  end
-
-  -- If we're jumping, do that.
-  if body.jumpVelocity.y < 0 then
-    if body.moveVelocity.x == 0 then
-      animation.current = 'jumping'
-    else
-      animation.current = 'runningjump'
-      animation.flippedH = body.moveVelocity.x < 0
-    end
-  end
-
-  -- If we're falling, that overrides most animations.
-  if not body.isOnGround and body.velocity.y > 0 then
-    if body.moveVelocity.x ~= 0 then
-      animation.current = 'runningfalling'
-    else
-      animation.current = 'falling'
-    end
-    animation.flippedH = body.moveVelocity.x < 0
-  end
-
-  animation:update(dt)
-
-  self.x = body.position.x
-  self.y = body.position.y
-
-  body.jumpVelocity.y = 0
-
-  if self.useObject and self.body.aabb:overlaps(self.useObject.body.aabb) then
-    if input:pressed('up') and body.isOnGround then
-      self.useObject:used(self)
-      self.useObject = nil
-    end
-  else
-    self.useObject = nil
-  end
-
-  if body.velocity.y >= config.player.fallingDeathVelocity then
-    log.debug('death')
-  end
+  self.stateMachine:update(dt)
 end
 
 local lg = love.graphics

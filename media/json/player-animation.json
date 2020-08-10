@@ -478,7 +478,7 @@
    { "name": "spawning", "from": 49, "to": 56, "direction": "forward" }
   ],
   "layers": [
-   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 2, "data": "pauseAtEnd" }, { "frame": 15, "data": "pauseAtEnd" }, { "frame": 56, "data": "doneSpawning" }] }
+   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 2, "data": "pauseAtEnd" }, { "frame": 15, "data": "pauseAtEnd" }, { "frame": 56, "data": "pauseAtEnd" }] }
   ]
  }
 }

@@ -1,6 +1,7 @@
 return {
   player = {
     runVelocity = 65,
+    airVelocity = 50,
     jumpHeight = 40,
     timeToJumpApex = .3,
     jumpForgivenessThresholdSeconds = .4,

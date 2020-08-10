@@ -6,8 +6,8 @@ function StateMachine:new()
   self.states = {}
 end
 
-function StateMachine:add(state)
-  self.states[getmetatable(state)] = state
+function StateMachine:add(name, state)
+  self.states[name] = state
   if not self.initial then
     self.initial = state
   end
@@ -22,12 +22,9 @@ function StateMachine:update(dt)
   if transitionTo then
     local nextState = self.states[transitionTo]
     if nextState then
-      local oldState = self.current
-      oldState:leave()
+      self.current:leave()
       self.current = nextState
       self.current:enter()
-    else
-      self.current = nil
     end
   end
 end

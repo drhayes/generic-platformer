@@ -2,7 +2,7 @@ local Object = require 'lib.classic'
 
 local GoldCoin = require 'sprites.goldCoin'
 local LevelDoor = require 'sprites.levelDoor'
-local Player = require 'sprites.player'
+local Player = require 'sprites.player.player'
 local SmallChest = require 'sprites.smallChest'
 local Spawner = require 'sprites.spawner'
 
