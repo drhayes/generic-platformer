@@ -49,13 +49,13 @@ function PlayerNormal:update(dt)
   -- player.x = body.position.x
   -- player.y = body.position.y
 
-  if self.useObject and self.body.aabb:overlaps(self.useObject.body.aabb) then
+  if player.useObject and player.body.aabb:overlaps(player.useObject.body.aabb) then
     if input:pressed('up') and body.isOnGround then
-      self.useObject:used(self)
-      self.useObject = nil
+      player.useObject:used(self)
+      player.useObject = nil
     end
   else
-    self.useObject = nil
+    player.useObject = nil
   end
 end
 
