@@ -62,5 +62,9 @@ function SecretAreaLayer:update(dt)
   end
 end
 
+function SecretAreaLayer:__tostring()
+  return 'SecretAreaLayer'
+end
+
 
 return SecretAreaLayer

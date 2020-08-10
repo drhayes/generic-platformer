@@ -36,7 +36,6 @@ function Player:new(spec)
 
   local stateMachine = StateMachine()
   stateMachine:add('spawning', PlayerSpawning(self))
-  -- Depends on body in player.
   stateMachine:add('normal', PlayerNormal(self))
   stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))

@@ -70,4 +70,8 @@ function Camera:onGobAdded(gob)
   self.player = gob
 end
 
+function Camera:__tostring()
+  return 'Camera'
+end
+
 return Camera
