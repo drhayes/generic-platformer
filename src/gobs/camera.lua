@@ -10,7 +10,6 @@ function Camera:new(eventBus)
   self.eventBus = eventBus
 
   self.offsetX, self.offsetY, self.scale = 0, 0, 1
-  self.alpha = 1
   self.regions = {}
   self.view = AABB(self.x, self.y, config.graphics.width, config.graphics.height)
 

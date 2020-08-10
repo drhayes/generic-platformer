@@ -4,7 +4,6 @@ local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
 local GobsList = require 'gobs.gobsList'
 
-
 local InWorld = Gamestate:extend()
 
 function InWorld:new(registry, eventBus)
@@ -44,12 +43,10 @@ function InWorld:draw()
   if not self.camera then return end
 
   local camera = self.camera
-  local drawService = self.registry:get('draw')
-  drawService:draw(
+  self.gobs:draw(
     camera.offsetX,
     camera.offsetY,
-    camera.scale,
-    camera.alpha
+    camera.scale * self.windowFactor
   )
 end
 
