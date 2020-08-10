@@ -87,7 +87,7 @@ end
 
 function PreloadGame:update(dt)
   if self.resourceCount == 0 then
-    self.eventBus:emit('switchState', 'inWorld')
+    self.parent:switch('inWorld')
   end
 end
 

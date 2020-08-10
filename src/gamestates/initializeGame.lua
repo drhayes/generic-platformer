@@ -7,7 +7,7 @@ function InitializeGame:enter()
   log.debug('  Initialize')
   log.debug('--------------')
 
-  self.eventBus:emit('switchState', 'preloadGame')
+  self.parent:switch('preloadGame')
 end
 
 function InitializeGame:leave()

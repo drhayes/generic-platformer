@@ -1,24 +1,18 @@
 local Object = require 'lib.classic'
-local InWorld = require 'gamestates.inWorld'
-local PreloadGame = require 'gamestates.preloadGame'
-local InitializeGame = require 'gamestates.initializeGame'
 
 local StateSwitcher = Object:extend()
 
-function StateSwitcher:new(registry, eventBus)
-  self.registry = registry
-  self.eventBus = eventBus
-  self.states = {
-    inWorld = InWorld(registry, eventBus),
-    preloadGame = PreloadGame(registry, eventBus),
-    initializeGame = InitializeGame(registry, eventBus)
-  }
+function StateSwitcher:new()
+  self.states = {}
   self.currentState = nil
-
-  self.eventBus:on('switchState', self.onSwitchState, self)
 end
 
-function StateSwitcher:onSwitchState(newStateName)
+function StateSwitcher:add(name, gamestate)
+  self.states[name] = gamestate
+  gamestate.parent = self
+end
+
+function StateSwitcher:switch(newStateName)
   local newState = self.states[newStateName]
   if not newState then
     log.error('Bad state name', newStateName)

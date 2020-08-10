@@ -3,7 +3,6 @@ inspect = require 'lib.inspect' -- luacheck: ignore
 log = require 'lib.log' -- luacheck: ignore
 local config = require 'gameConfig'
 local EventEmitter = require 'core.eventEmitter'
-local StateSwitcher = require 'gamestates.stateSwitcher'
 local lily = require 'lib.lily'
 
 local Registry = require 'services.registry'
@@ -11,8 +10,13 @@ local InputService = require 'services.inputService'
 local SpriteMaker = require 'services.spriteMakerService'
 local PhysicsService = require 'services.physicsService'
 
-
+local StateSwitcher = require 'gamestates.stateSwitcher'
+local InWorld = require 'gamestates.inWorld'
+local PreloadGame = require 'gamestates.preloadGame'
+local InitializeGame = require 'gamestates.initializeGame'
 local stateSwitcher
+
+
 
 function love.load()
   log.level = 'debug' -- luacheck: ignore
@@ -44,8 +48,14 @@ function love.load()
   registry:add('physics', PhysicsService(eventBus))
 
   stateSwitcher = StateSwitcher(registry, eventBus)
+  stateSwitcher:add('initializeGame', InitializeGame(registry, eventBus))
+  stateSwitcher:add('preloadGame', PreloadGame(registry, eventBus))
+  stateSwitcher:add('inWorld', InWorld(registry, eventBus))
+
   eventBus:emit('setWindowFactor', windowFactor)
-  eventBus:emit('switchState', 'initializeGame')
+
+  -- Let's get this show on the road.
+  stateSwitcher:switch('initializeGame')
 end
 
 local lg = love.graphics
