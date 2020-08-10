@@ -1,16 +1,15 @@
 local Object = require 'lib.classic'
 local lume = require 'lib.lume'
 
-local GobsService = Object:extend()
+local GobsList = Object:extend()
 
-function GobsService:new(eventBus)
+function GobsList:new(eventBus)
   self.eventBus = eventBus
   self.gobs = {}
-  eventBus:on('addGob', self.onAddGob, self)
 end
 
 local removals = {}
-function GobsService:update(dt)
+function GobsList:update(dt)
   local gobs = self.gobs
   lume.clear(removals)
   -- Update'em.
@@ -28,24 +27,19 @@ function GobsService:update(dt)
   end
 end
 
-function GobsService:add(gob)
+function GobsList:add(gob)
   table.insert(self.gobs, gob)
   gob:gobAdded()
   self.eventBus:emit('gobAdded', gob)
 end
 
-function GobsService:remove(gob)
+function GobsList:remove(gob)
   lume.remove(self.gobs, gob)
   gob:gobRemoved()
   self.eventBus:emit('gobRemoved', gob)
 end
 
--- This is a command received from the event bus.
-function GobsService:onAddGob(gob)
-  self:add(gob)
-end
-
-function GobsService:clear()
+function GobsList:clear()
   for i = 1, #self.gobs do
     local gob = self.gobs[i]
     gob:gobRemoved()
@@ -54,4 +48,4 @@ function GobsService:clear()
   self.eventBus:emit('gobsCleared')
 end
 
-return GobsService
+return GobsList

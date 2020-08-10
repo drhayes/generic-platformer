@@ -2,7 +2,7 @@ local Gamestate = require 'gamestates.gamestate'
 local Tilemap = require 'map.tilemap'
 local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
-local GobsService = require 'services.gobsService'
+local GobsList = require 'gobs.gobsList'
 
 
 local InWorld = Gamestate:extend()
@@ -10,9 +10,11 @@ local InWorld = Gamestate:extend()
 function InWorld:new(registry, eventBus)
   InWorld.super.new(self, registry, eventBus)
 
-  self.gobs = GobsService(eventBus)
+  self.gobs = GobsList(eventBus)
   self.tilemaps = {}
 
+  -- TODO: Get rid of this event, probably.
+  self:subscribe('addGob', self.onAddGob)
   self:subscribe('loadedTilemap', self.onLoadedTilemap)
   self:subscribe('setTileAtlas', self.onSetTileAtlas)
   self:subscribe('setWindowFactor', self.onSetWindowFactor)
@@ -51,6 +53,10 @@ function InWorld:draw()
   )
 end
 
+
+function InWorld:onAddGob(gob)
+  self.gobs:add(gob)
+end
 
 function InWorld:onLoadedTilemap(key, data)
   local rawTilemap = data()
