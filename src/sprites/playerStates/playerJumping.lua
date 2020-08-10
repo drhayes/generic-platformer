@@ -8,6 +8,10 @@ function PlayerJumping:new(player)
   self.jumpVelocity = player.body.gravityForce.y * config.player.timeToJumpApex
 end
 
+function PlayerJumping:enter()
+  self.player.jumpForgivenessTimer = math.huge
+end
+
 function PlayerJumping:update(dt)
   local player = self.player
   local body, animation = player.body, player.animation

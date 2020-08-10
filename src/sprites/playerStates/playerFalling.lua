@@ -9,10 +9,6 @@ function PlayerFalling:new(player, eventBus)
   self.eventBus = eventBus
 end
 
-function PlayerFalling:enter()
-  self.jumpForgivenessTimer = 0
-end
-
 function PlayerFalling:update(dt)
   local player = self.player
   local body, input, animation = player.body, player.input, player.animation
@@ -27,11 +23,12 @@ function PlayerFalling:update(dt)
     body.moveVelocity.x = 0
   end
 
-  self.jumpForgivenessTimer = self.jumpForgivenessTimer + dt
+  player.jumpForgivenessTimer = player.jumpForgivenessTimer + dt
 
-  if input:pressed('jump') and body.velocity.y > 0 and self.jumpForgivenessTimer <= config.player.jumpForgivenessThresholdSeconds then
-    body.jumpVelocity.y = -self.jumpVelocity
-    self.jumpForgivenessTimer = config.player.jumpForgivenessThresholdSeconds
+  if input:pressed('jump') and body.velocity.y > 0 and player.jumpForgivenessTimer <= config.player.jumpForgivenessThresholdSeconds then
+    return 'jumping'
+    -- body.jumpVelocity.y = -self.jumpVelocity
+    -- self.jumpForgivenessTimer = config.player.jumpForgivenessThresholdSeconds
   end
 
 

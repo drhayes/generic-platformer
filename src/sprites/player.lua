@@ -16,6 +16,7 @@ function Player:new(spec)
   self.x, self.y = spec.x, spec.y
   self.layer = 'player'
   self.isPlayer = true
+  self.jumpForgivenessTimer = 0
 
   self.input = spec.inputService
   self.animation = spec.animationService:create('player')

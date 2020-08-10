@@ -4,7 +4,7 @@ return {
     airVelocity = 50,
     jumpHeight = 40,
     timeToJumpApex = .3,
-    jumpForgivenessThresholdSeconds = .4,
+    jumpForgivenessThresholdSeconds = .2,
     fallingDeathVelocity = 600,
   },
 

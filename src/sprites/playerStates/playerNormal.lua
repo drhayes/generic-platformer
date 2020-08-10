@@ -8,6 +8,10 @@ function PlayerNormal:new(player)
   self.jumpVelocity = player.body.gravityForce.y * config.player.timeToJumpApex
 end
 
+function PlayerNormal:enter()
+  self.player.jumpForgivenessTimer = 0
+end
+
 function PlayerNormal:update(dt)
   local player = self.player
   local body, animation, input = player.body, player.animation, player.input
