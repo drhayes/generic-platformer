@@ -46,8 +46,14 @@ function InWorld:draw()
   self.gobs:draw(
     camera.offsetX,
     camera.offsetY,
-    camera.scale * self.windowFactor
+    camera.scale -- * self.windowFactor
   )
+
+  if self.switchLevels then
+    self.switchLevels = false
+    self:switchTilemap(self.switchLevelName)
+    self.eventBus:emit('spawnSpriteByType', 'player', self.switchPosX, self.switchPosY)
+  end
 end
 
 
@@ -105,8 +111,10 @@ function InWorld:onSwitchCamera(camera)
 end
 
 function InWorld:onSwitchLevels(levelName, posX, posY)
-  self:switchTilemap(levelName .. '.lua')
-  self.eventBus:emit('spawnSpriteByType', 'player', posX, posY)
+  self.switchLevels = true
+  self.switchLevelName = levelName .. '.lua'
+  self.switchPosX = posX
+  self.switchPosY = posY
 end
 
 return InWorld
