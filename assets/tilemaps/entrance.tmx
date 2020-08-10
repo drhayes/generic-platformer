@@ -277,7 +277,7 @@
   <object id="25" gid="63" x="320" y="-144" width="16" height="64"/>
  </objectgroup>
  <objectgroup id="3" name="sprites">
-  <object id="2" gid="66" x="208" y="-112" width="16" height="16"/>
+  <object id="2" gid="66" x="-240" y="-208" width="16" height="16"/>
   <object id="15" gid="67" x="-64" y="-80" width="16" height="16"/>
   <object id="27" gid="68" x="261" y="-103.875" width="22" height="24">
    <properties>

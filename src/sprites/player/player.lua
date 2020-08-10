@@ -114,6 +114,10 @@ function Player:update(dt)
   else
     self.useObject = nil
   end
+
+  if body.velocity.y >= config.player.fallingDeathVelocity then
+    log.debug('death')
+  end
 end
 
 local lg = love.graphics
