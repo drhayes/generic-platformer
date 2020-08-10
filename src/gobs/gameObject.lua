@@ -43,7 +43,7 @@ function GameObject:draw(offsetX, offsetY, scale, alpha)
     local component = self.components[i]
     if component.active then
       component:draw(offsetX, offsetY, scale, alpha)
-      component:debugDraw()
+      -- component:debugDraw()
     end
   end
 end
