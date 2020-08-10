@@ -3,8 +3,7 @@ local GameObject = require 'gobs.gameObject'
 local Spawner = GameObject:extend()
 
 function Spawner:new(spec)
-  Spawner.super.new(self)
-  self.x, self.y = spec.x, spec.y
+  Spawner.super.new(self, spec.x, spec.y)
   self.timer = 0
   self.threshold = 1
   self.running = true

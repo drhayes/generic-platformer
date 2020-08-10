@@ -3,14 +3,15 @@ local lume = require 'lib.lume'
 
 local GameObject = Object:extend()
 
-function GameObject:new()
+function GameObject:new(x, y)
   self.components = {}
-  self.x, self.y = 0, 0
+  self.x, self.y = x or 0, y or 0
 end
 
 function GameObject:add(component)
   table.insert(self.components, component)
   component:added(self)
+  return component
 end
 
 function GameObject:remove(component)

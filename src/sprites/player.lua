@@ -13,17 +13,15 @@ local PlayerJumping = require 'sprites.playerStates.playerJumping'
 local Player = GameObject:extend()
 
 function Player:new(spec)
-  Player.super.new(self)
-  self.x, self.y = spec.x, spec.y
+  Player.super.new(self, spec.x, spec.y)
   self.layer = 'player'
   self.isPlayer = true
   self.jumpForgivenessTimer = 0
 
   self.input = spec.inputService
-  self.animation = spec.animationService:create('player')
-  self:add(self.animation)
+  self.animation = self:add(spec.animationService:create('player'))
 
-  local body = spec.physicsService:newBody(self)
+  local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
   body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
   body.aabb.halfSize.x = 2
@@ -33,19 +31,17 @@ function Player:new(spec)
   self.jumpVelocity = body.gravityForce.y * config.player.timeToJumpApex
   body.collisionLayers = collisionLayers.player
   body.collisionMask = collisionLayers.tilemap + collisionLayers.treasure + collisionLayers.usables
-  self.body = body
   table.insert(body.colliders, TreasureCollider(self))
   table.insert(body.colliders, UsableCollider(self))
-  self:add(self.body)
+  self.body = self:add(body)
 
   local stateMachine = StateMachine()
-  self.stateMachine = stateMachine
   stateMachine:add('spawning', PlayerSpawning(self))
   -- Depends on body in player.
   stateMachine:add('normal', PlayerNormal(self))
   stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))
-  self:add(self.stateMachine)
+  self:add(stateMachine)
 end
 
 function Player:setUseObject(obj)

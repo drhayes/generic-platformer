@@ -4,8 +4,7 @@ local collisionLayers = require 'physics.collisionLayers'
 local SmallChest = GameObject:extend()
 
 function SmallChest:new(spec)
-  SmallChest.super.new(self)
-  self.x, self.y = spec.x, spec.y
+  SmallChest.super.new(self, spec.x, spec.y)
   self.layer = 'background'
   self.eventBus = spec.eventBus
 
@@ -18,7 +17,7 @@ function SmallChest:new(spec)
   end
   self:add(self.animation)
 
-  local body = spec.physicsService:newBody(self)
+  local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
   body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
   body.aabb.halfSize.x = 6

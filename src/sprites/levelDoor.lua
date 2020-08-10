@@ -4,19 +4,17 @@ local collisionLayers = require 'physics.collisionLayers'
 local LevelDoor = GameObject:extend()
 
 function LevelDoor:new(spec)
-  LevelDoor.super.new(self)
-  self.x, self.y = spec.x, spec.y
+  LevelDoor.super.new(self, spec.x, spec.y)
   self.levelName = spec.properties.levelName
   self.posX = spec.properties.posX
   self.posY = spec.properties.posY
 
-  local body = spec.physicsService:newBody(self)
+  local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
   body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
   body.aabb.halfSize.x, body.aabb.halfSize.y = 11, 12
   body.collisionLayers = collisionLayers.usables
-  self.body = body
-  self:add(self.body)
+  self.body = self:add(body)
 
   self.isUsable = true
 

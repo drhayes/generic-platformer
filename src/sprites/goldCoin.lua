@@ -7,14 +7,12 @@ local APEX_TIME = .5
 local GoldCoin = GameObject:extend()
 
 function GoldCoin:new(spec)
-  GoldCoin.super.new(self)
-  self.x, self.y = spec.x, spec.y
+  GoldCoin.super.new(self, spec.x, spec.y)
   self.layer = 'player'
 
-  self.animation = spec.animationService:create('goldCoin')
-  self:add(self.animation)
+  self.animation = self:add(spec.animationService:create('goldCoin'))
 
-  local body = spec.physicsService:newBody(self)
+  local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
   body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
   body.aabb.halfSize.x = 1
@@ -22,8 +20,7 @@ function GoldCoin:new(spec)
   body.collisionLayers = collisionLayers.treasure
   body.collisionMask = collisionLayers.tilemap
   body.resolutionType = 'bounceOnce'
-  self.body = body
-  self:add(self.body)
+  self.body = self:add(body)
 
   body.gravityForce.y = (2 * JUMP_HEIGHT) / math.pow(APEX_TIME, 2)
   local speed = body.gravityForce.y * APEX_TIME
