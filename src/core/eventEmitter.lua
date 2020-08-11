@@ -81,4 +81,9 @@ function EventEmitter:off(eventName, listener)
   end
 end
 
+function EventEmitter:once(eventName, listener, ...)
+  self:on(eventName, listener, ...)
+  self:on(eventName, self.off, self, eventName, listener)
+end
+
 return EventEmitter

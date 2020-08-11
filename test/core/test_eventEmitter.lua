@@ -100,6 +100,24 @@ describe('EventEmitter', function()
     a1 = nil
     ee:off('cat', o.thing)
     ee:emit('cat', 1)
-    assert.are.equal(a1, nil)
+    assert.are.equal(nil, a1)
+  end)
+
+  it('can create a one-off subscription', function()
+    local a1
+    local o = {
+      thing = function(self, arg1)
+        a1 = arg1
+      end
+    }
+
+    local ee = EventEmitter()
+    ee:once('cat', o.thing, o)
+    ee:emit('cat', 1)
+    assert.are.equal(1, a1)
+
+    a1 = nil
+    ee:emit('cat', 1)
+    assert.are.equal(nil, a1)
   end)
 end)
