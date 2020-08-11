@@ -66,4 +66,19 @@ function EventEmitter:rebroadcast(emitter, event)
   emitter:on(event, self.emit, self, event)
 end
 
+function EventEmitter:off(eventName, listener)
+  if not self.subscribers then return end
+  if not self.subscribers[eventName] then return end
+
+  -- Find the sub this listener applies to.
+  local subscriptions = self.subscribers[eventName]
+  for i = 1, #subscriptions do
+    local sub = subscriptions[i]
+    if sub.listener == listener then
+      table.remove(subscriptions, i)
+      break
+    end
+  end
+end
+
 return EventEmitter

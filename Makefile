@@ -61,6 +61,9 @@ clean:
 	rm -rf $(JSON_DIR)/sprites.json
 	rm -rf $(TILEMAPS_DIR)
 
+.PHONY: test
+test:
+	@busted --lua=`which luajit` test/
 
 ###############
 # Directories #
