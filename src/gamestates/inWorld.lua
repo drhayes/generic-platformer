@@ -3,6 +3,9 @@ local Tilemap = require 'map.tilemap'
 local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
 local GobsList = require 'gobs.gobsList'
+local config = require 'gameConfig'
+
+local lg = love.graphics
 
 local InWorld = Gamestate:extend()
 
@@ -27,6 +30,8 @@ function InWorld:enter()
   log.debug('-----------')
   log.debug('  InWorld')
   log.debug('-----------')
+
+  self.canvas = lg.newCanvas(config.graphics.width, config.graphics.height)
 end
 
 function InWorld:update(dt)
@@ -43,11 +48,19 @@ function InWorld:draw()
   if not self.camera then return end
 
   local camera = self.camera
-  self.gobs:draw(
-    camera.offsetX,
-    camera.offsetY,
-    camera.scale -- * self.windowFactor
-  )
+  lg.setCanvas(self.canvas)
+  lg.setScissor(0, 0, config.graphics.width, config.graphics.height)
+  lg.clear()
+  lg.push()
+  lg.translate(-camera.offsetX, -camera.offsetY)
+  self.gobs:draw()
+  lg.setScissor()
+  lg.pop()
+
+  lg.setCanvas()
+  lg.push()
+  lg.draw(self.canvas, 0, 0, 0, self.windowFactor)
+  lg.pop()
 
   if self.switchLevels then
     self.switchLevels = false

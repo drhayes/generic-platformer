@@ -44,21 +44,11 @@ function GobsList:update(dt)
   end
 end
 
-local lg = love.graphics
-
-function GobsList:draw(offsetX, offsetY, scale)
-  offsetX = offsetX or 0
-  offsetY = offsetY or 0
-  scale = scale or 1
-
-  lg.push()
-  lg.scale(scale)
-  lg.translate(-offsetX, -offsetY)
+function GobsList:draw()
   for i = 1, #self.gobs do
     local gob = self.gobs[i]
-    gob:draw(offsetX, offsetY, scale)
+    gob:draw()
   end
-  lg.pop()
 end
 
 function GobsList:add(gob)

@@ -39,11 +39,11 @@ function GameObject:update(dt)
   end
 end
 
-function GameObject:draw(offsetX, offsetY, scale)
+function GameObject:draw()
   for i = 1, #self.components do
     local component = self.components[i]
     if component.active then
-      component:draw(offsetX, offsetY, scale)
+      component:draw()
       -- component:debugDraw()
     end
   end

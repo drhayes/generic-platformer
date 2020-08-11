@@ -2,6 +2,7 @@ local GameObject = require 'gobs.gameObject'
 local Player = require 'sprites.player'
 local config = require 'gameConfig'
 local AABB = require 'core.aabb'
+local lume = require 'lib.lume'
 
 local Camera = GameObject:extend()
 
@@ -27,7 +28,8 @@ function Camera:update(dt)
   local oldX, oldY = view.center.x, view.center.y
 
   if self.player then
-    view.center.x, view.center.y = self.player.x, self.player.y
+    view.center.x = lume.smooth(view.center.x, self.player.x, .5)
+    view.center.y = lume.smooth(view.center.y, self.player.y, .5)
   end
 
   -- What region are we in?
@@ -55,6 +57,10 @@ function Camera:update(dt)
   else
     -- No region? Give up and maintain.
     view.center.x, view.center.y = oldX, oldY
+  end
+
+  if view:left() ~= self.offsetX or view:top() ~= self.offsetY then
+    self.eventBus:emit('cameraOffsetChanged', view:left(), view:top())
   end
 
   self.offsetX, self.offsetY = view:left(), view:top()

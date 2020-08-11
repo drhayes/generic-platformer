@@ -4,6 +4,10 @@ local Animation = Component:extend()
 
 function Animation:new(spriteAtlas)
   Animation.super.new(self)
+  self.x, self.y = 0, 0
+  self.rotation = 0
+  self.scaleX, self.scaleY = 1, 1
+  self.color = { r = 1, g = 1, b = 1, a = 1 }
   self.spriteAtlas = spriteAtlas
   self.current = nil
   self.oldCurrent = nil
@@ -34,12 +38,12 @@ end
 
 local lg = love.graphics
 
--- TODO: I bet this won't work long term.
-function Animation:draw(offsetX, offsetY, scale, alpha)
+function Animation:draw()
   Animation.super.draw(self)
+  local color = self.color
   lg.push()
-  lg.setColor(1, 1, 1, 1)
-  local ox, oy = self.parent.x, self.parent.y
+  lg.setColor(color.r, color.g, color.b, color.a)
+  local x, y = self.x + self.parent.x, self.y + self.parent.y
   local animation = self.animations[self.current]
   if not animation then return end
 
@@ -47,10 +51,13 @@ function Animation:draw(offsetX, offsetY, scale, alpha)
   animation.flippedV = self.flippedV
   local spriteAtlas = self.spriteAtlas
   local width, height = animation:getDimensions()
-  -- ox = ox - math.floor(width / 2)
-  -- oy = oy - math.floor(height / 2)
-  -- animation:draw(spriteAtlas.image, x, y, r, sx, sy, ox, oy, kx, ky)
-  animation:draw(spriteAtlas.image, ox, oy, 0, 1, 1, math.floor(width / 2), math.floor(height / 2))
+  animation:draw(
+    spriteAtlas.image,
+    x, y,
+    self.rotation,
+    self.scaleX, self.scaleY,
+    math.floor(width / 2), math.floor(height / 2)
+  )
   lg.pop()
 end
 

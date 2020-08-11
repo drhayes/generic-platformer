@@ -30,6 +30,7 @@ function TileLayer:new(layerData, tilesByGid, offsetX, offsetY)
   self.parallax = layerData.properties.parallax or 0
   self.width = 1
   self.height = 1
+  self.offsetX, self.offsetY = 0, 0
 
   local grid = Grid()
   self.grid = grid
@@ -125,16 +126,23 @@ function TileLayer:initialize(eventBus, tileAtlas)
   lg.pop()
   lg.setCanvas()
   self.canvas = canvas
+
+  eventBus:on('cameraOffsetChanged', self.onCameraOffsetChanged, self)
 end
 
-function TileLayer:draw(offsetX, offsetY)
+function TileLayer:draw()
   TileLayer.super.draw(self)
+  local offsetX, offsetY = self.offsetX, self.offsetY
   lg.push()
   lg.setColor(1, 1, 1, self.opacity)
   local dx = offsetX * self.parallax
   local dy = offsetY * self.parallax
   lg.draw(self.canvas, dx, dy, 0)
   lg.pop()
+end
+
+function TileLayer:onCameraOffsetChanged(offsetX, offsetY)
+  self.offsetX, self.offsetY = offsetX, offsetY
 end
 
 function TileLayer:__tostring()
