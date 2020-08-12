@@ -1145,6 +1145,121 @@ return {
           height = 16
         }
       }
+    },
+    {
+      name = "stoneArch",
+      firstgid = 167,
+      filename = "../../assets/tilemaps/stoneArch.tsx",
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 0,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 1,
+        height = 1
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 15,
+      tiles = {
+        {
+          id = 0,
+          image = "../../tmp/tiles/stoneArchTiles-arch-1.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 1,
+          image = "../../tmp/tiles/stoneArchTiles-arch-2.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 2,
+          image = "../../tmp/tiles/stoneArchTiles-arch-3.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 3,
+          image = "../../tmp/tiles/stoneArchTiles-arch-4.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 4,
+          image = "../../tmp/tiles/stoneArchTiles-arch-5.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 5,
+          image = "../../tmp/tiles/stoneArchTiles-arch-6.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 6,
+          image = "../../tmp/tiles/stoneArchTiles-arch-7.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 7,
+          image = "../../tmp/tiles/stoneArchTiles-arch-8.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 8,
+          image = "../../tmp/tiles/stoneArchTiles-arch-9.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 9,
+          image = "../../tmp/tiles/stoneArchTiles-arch-10.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 10,
+          image = "../../tmp/tiles/stoneArchTiles-arch-11.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 11,
+          image = "../../tmp/tiles/stoneArchTiles-dark.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 12,
+          image = "../../tmp/tiles/stoneArchTiles-normal.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 13,
+          image = "../../tmp/tiles/stoneArchTiles-arch-12.png",
+          width = 16,
+          height = 16
+        },
+        {
+          id = 14,
+          image = "../../tmp/tiles/stoneArchTiles-arch-13.png",
+          width = 16,
+          height = 16
+        }
+      }
     }
   },
   layers = {
@@ -1153,7 +1268,7 @@ return {
       draworder = "topdown",
       id = 7,
       name = "camera",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1340,9 +1455,9 @@ return {
             48, 48, 54, 0, 0, 0, 0, 0, 1073741854, 3221225514, 39, 0, 0, 0, 0, 0, 0, 4, 19, 60,
             1073741865, 20, 2147483677, 0, 0, 0, 0, 0, 536870969, 2684354611, 3221225517, 0, 0, 0, 0, 0, 0, 0, 0, 1610612794,
             1073741886, 20, 35, 0, 0, 0, 0, 0, 2147483664, 3221225517, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            48, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 116, 108, 109, 115, 0,
-            21, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 134, 112, 113, 145, 0,
-            20, 20, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 139, 110, 111, 149, 0,
+            48, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 167, 168, 0, 0, 0,
+            21, 20, 2147483677, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 170, 171, 0, 0, 0,
+            20, 20, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 174, 175, 0, 0, 0,
             20, 20, 48, 48, 48, 54, 0, 46, 54, 0, 46, 54, 0, 46, 48, 48, 48, 48, 48, 48,
             20, 20, 20, 20, 3221225514, 16, 0, 6, 16, 0, 6, 16, 0, 29, 1, 21, 20, 20, 20, 20,
             20, 20, 20, 20, 37, 0, 0, 0, 0, 0, 0, 0, 0, 6, 60, 20, 20, 20, 24, 20,
@@ -1422,9 +1537,9 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 169, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 180, 172, 173, 0,
+            54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 181, 176, 177, 0,
             0, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 2147483664, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1521,7 +1636,7 @@ return {
       draworder = "topdown",
       id = 4,
       name = "physics",
-      visible = true,
+      visible = false,
       opacity = 0.4,
       offsetx = 0,
       offsety = 0,
