@@ -15,7 +15,7 @@ function PlayerSpawning:update(dt)
   local player = self.player
   local animation = player.animation.animations[player.animation.current]
   if animation.status == 'paused' then
-    return 'normal'
+    return 'introFalling'
   end
 end
 

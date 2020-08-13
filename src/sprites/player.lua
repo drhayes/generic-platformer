@@ -7,6 +7,7 @@ local StateMachine = require 'components.stateMachine'
 
 local PlayerNormal = require 'sprites.playerStates.playerNormal'
 local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
+local PlayerIntroFalling = require 'sprites.playerStates.playerIntroFalling'
 local PlayerFalling = require 'sprites.playerStates.playerFalling'
 local PlayerJumping = require 'sprites.playerStates.playerJumping'
 
@@ -36,6 +37,7 @@ function Player:new(spec)
 
   local stateMachine = StateMachine()
   stateMachine:add('spawning', PlayerSpawning(self))
+  stateMachine:add('introFalling', PlayerIntroFalling(self))
   stateMachine:add('normal', PlayerNormal(self))
   stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))
