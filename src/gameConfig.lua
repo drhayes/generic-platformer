@@ -26,6 +26,7 @@ return {
       'usables',
       'tilemap',
       'treasure',
+      'levelExits',
     },
   },
 

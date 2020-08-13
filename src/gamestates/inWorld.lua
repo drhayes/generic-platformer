@@ -23,7 +23,7 @@ function InWorld:new(registry, eventBus)
   self:subscribe('spawnSpriteByType', self.onSpawnSpriteByType)
   self:subscribe('spawnSpriteBySpec', self.onSpawnSpriteBySpec)
   self:subscribe('switchCamera', self.onSwitchCamera)
-  self:subscribe('switchLevels', self.onSwitchLevels)
+  self:subscribe('startLevelExit', self.onStartLevelExit)
 end
 
 function InWorld:enter()
@@ -123,11 +123,12 @@ function InWorld:onSwitchCamera(camera)
   self.camera = camera
 end
 
-function InWorld:onSwitchLevels(levelName, posX, posY)
-  self.switchLevels = true
-  self.switchLevelName = levelName .. '.lua'
-  self.switchPosX = posX
-  self.switchPosY = posY
+function InWorld:onStartLevelExit(levelName, posX, posY)
+  log.debug('start level exit')
+  -- self.switchLevels = true
+  -- self.switchLevelName = levelName .. '.lua'
+  -- self.switchPosX = posX
+  -- self.switchPosY = posY
 end
 
 return InWorld

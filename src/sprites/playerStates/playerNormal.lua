@@ -49,6 +49,10 @@ function PlayerNormal:update(dt)
   else
     player.useObject = nil
   end
+
+  if player.isExitingLevel then
+    return 'exitingLevelDoor'
+  end
 end
 
 return PlayerNormal

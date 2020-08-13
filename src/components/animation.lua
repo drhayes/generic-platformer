@@ -34,6 +34,7 @@ function Animation:update(dt)
   end
 
   animation:update(dt)
+  self.frame = animation.position
 end
 
 local lg = love.graphics

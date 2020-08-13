@@ -13,16 +13,16 @@ function LevelDoor:new(spec)
   body.position.x, body.position.y = spec.x, spec.y
   body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
   body.aabb.halfSize.x, body.aabb.halfSize.y = 11, 12
-  body.collisionLayers = collisionLayers.usables
-  self.body = self:add(body)
-
-  self.isUsable = true
+  body.collisionLayers = collisionLayers.levelExits
+  self:add(body)
 
   self.eventBus = spec.eventBus
 end
 
-function LevelDoor:used(user)
-  self.eventBus:emit('switchLevels', self.levelName, self.posX, self.posY)
+function LevelDoor:startLevelExit()
+  if self.isAlreadyStarted then return end
+  self.isAlreadyStarted = true
+  self.eventBus:emit('startLevelExit', self.levelName, self.posX, self.posY)
 end
 
 function LevelDoor:__tostring()

@@ -1,15 +1,18 @@
 local GameObject = require 'gobs.gameObject'
 local collisionLayers = require 'physics.collisionLayers'
 local config = require 'gameConfig'
+local StateMachine = require 'components.stateMachine'
+
+local LevelExitsCollider = require 'physics.levelExitsCollider'
 local TreasureCollider = require 'physics.treasureCollider'
 local UsableCollider = require 'physics.usableCollider'
-local StateMachine = require 'components.stateMachine'
 
 local PlayerNormal = require 'sprites.playerStates.playerNormal'
 local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
 local PlayerIntroFalling = require 'sprites.playerStates.playerIntroFalling'
 local PlayerFalling = require 'sprites.playerStates.playerFalling'
 local PlayerJumping = require 'sprites.playerStates.playerJumping'
+local PlayerExitingLevelDoor = require 'sprites.playerStates.playerExitingLevelDoor'
 
 local Player = GameObject:extend()
 
@@ -30,9 +33,10 @@ function Player:new(spec)
   body.aabbOffset.y = 3
   body.gravityForce.y = (2 * config.player.jumpHeight) / math.pow(config.player.timeToJumpApex, 2)
   body.collisionLayers = collisionLayers.player
-  body.collisionMask = collisionLayers.tilemap + collisionLayers.treasure + collisionLayers.usables
+  body.collisionMask = collisionLayers.tilemap + collisionLayers.treasure + collisionLayers.usables + collisionLayers.levelExits
   body:addCollider(TreasureCollider(self))
   body:addCollider(UsableCollider(self))
+  body:addCollider(LevelExitsCollider(self))
   self.body = self:add(body)
 
   local stateMachine = StateMachine()
@@ -41,7 +45,8 @@ function Player:new(spec)
   stateMachine:add('normal', PlayerNormal(self))
   stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))
-  self:add(stateMachine)
+  stateMachine:add('exitingLevelDoor', PlayerExitingLevelDoor(self))
+  self.stateMachine = self:add(stateMachine)
 end
 
 function Player:setUseObject(obj)
