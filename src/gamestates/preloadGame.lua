@@ -3,6 +3,7 @@ local lily = require 'lib.lily'
 local Atlas = require 'core.atlas'
 local json = require 'lib.json'
 local AnimationService = require 'services.animationService'
+local SoundService = require 'services.soundService'
 
 local PreloadGame = Gamestate:extend()
 
@@ -14,12 +15,17 @@ local function doNewFont(filename)
   return lily.newFont(filename, 32)
 end
 
+local function doNewSound(sound)
+  return lily.newSource(sound, 'static')
+end
+
 function PreloadGame:new(registry, eventBus)
   PreloadGame.super.new(self, registry, eventBus)
   self.images = {}
   self.jsons = {}
   self.tilemaps = {}
   self.fonts = {}
+  self.sounds = {}
 end
 
 function PreloadGame:enter()
@@ -33,6 +39,7 @@ function PreloadGame:enter()
   self:slurpDirectory('media/json', self.jsons, lily.read, json.parse)
   self:slurpDirectory('media/tilemaps', self.tilemaps, lily.read, loadstring)
   self:slurpDirectory('media/fonts', self.fonts, doNewFont)
+  self:slurpDirectory('media/sfx', self.sounds, doNewSound)
 end
 
 function PreloadGame:slurpDirectory(directory, resourceTable, read, parse)
@@ -83,6 +90,13 @@ function PreloadGame:leave()
   end
   local animationService = AnimationService(animationJsons, spriteAtlas)
   registry:add('animation', animationService)
+
+  -- Gather the sounds and make a sound service.
+  local soundService = SoundService()
+  for name, sound in pairs(self.sounds) do
+    soundService:add(name:gsub('.wav', ''), sound)
+  end
+  registry:add('sound', soundService)
 end
 
 function PreloadGame:update(dt)

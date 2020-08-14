@@ -133,7 +133,8 @@ end
 function TileLayer:draw()
   TileLayer.super.draw(self)
   local offsetX, offsetY = self.offsetX, self.offsetY
-  lg.push()
+  lg.push('all')
+  lg.setBlendMode('alpha')
   lg.setColor(1, 1, 1, self.opacity)
   local dx = offsetX * self.parallax
   local dy = offsetY * self.parallax

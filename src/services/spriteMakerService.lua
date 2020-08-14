@@ -32,6 +32,7 @@ function SpriteMakerService:create(spec)
   spec.animationService = self.registry:get('animation')
   spec.inputService = self.registry:get('input')
   spec.physicsService = self.registry:get('physics')
+  spec.soundService = self.registry:get('sound')
 
   return spriteClass(spec)
 end

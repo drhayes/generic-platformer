@@ -23,6 +23,8 @@ function Player:new(spec)
   self.jumpForgivenessTimer = 0
 
   self.input = spec.inputService
+  self.sound = spec.soundService
+
   self.animation = self:add(spec.animationService:create('player'))
 
   local body = spec.physicsService:newBody()
@@ -47,6 +49,17 @@ function Player:new(spec)
   stateMachine:add('jumping', PlayerJumping(self))
   stateMachine:add('exitingLevelDoor', PlayerExitingLevelDoor(self))
   self.stateMachine = self:add(stateMachine)
+end
+
+function Player:update(dt)
+  Player.super.update(self, dt)
+
+  -- Play footsteps if we're running.
+  local animation, sound = self.animation, self.sound
+  if animation.current == 'running' and self.currentFrame ~= animation.frame and (animation.frame == 4 or animation.frame == 8) then
+    sound:play('footstep')
+    self.currentFrame = animation.frame
+  end
 end
 
 function Player:setUseObject(obj)
