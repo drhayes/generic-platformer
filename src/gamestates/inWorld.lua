@@ -4,6 +4,8 @@ local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
 local GobsList = require 'gobs.gobsList'
 local config = require 'gameConfig'
+local Coroutine = require 'gobs.coroutine'
+local lume = require 'lib.lume'
 
 local lg = love.graphics
 
@@ -32,6 +34,8 @@ function InWorld:enter()
   log.debug('-----------')
 
   self.canvas = lg.newCanvas(config.graphics.width, config.graphics.height)
+  self.fadeTint = 0
+  self.fadeDelta = 1
 end
 
 function InWorld:update(dt)
@@ -42,6 +46,8 @@ function InWorld:update(dt)
 
   local inputService = self.registry:get('input')
   inputService:update(dt)
+
+  self.fadeTint = lume.clamp(self.fadeTint + self.fadeDelta * dt, 0, 1)
 end
 
 function InWorld:draw()
@@ -59,6 +65,7 @@ function InWorld:draw()
 
   lg.setCanvas()
   lg.push()
+  lg.setColor(self.fadeTint, self.fadeTint, self.fadeTint, 1)
   lg.draw(self.canvas, 0, 0, 0, self.windowFactor)
   lg.pop()
 
@@ -124,11 +131,18 @@ function InWorld:onSwitchCamera(camera)
 end
 
 function InWorld:onStartLevelExit(levelName, posX, posY)
-  log.debug('start level exit')
-  -- self.switchLevels = true
-  -- self.switchLevelName = levelName .. '.lua'
-  -- self.switchPosX = posX
-  -- self.switchPosY = posY
+  self.gobs:add(Coroutine(function(co, dt)
+    co:wait(.5)
+    self.fadeDelta = -1
+    co:waitUntil(function() return self.fadeTint == 0 end)
+    co:wait(.2)
+    self.switchLevels = true
+    self.switchLevelName = levelName .. '.lua'
+    self.switchPosX = posX
+    self.switchPosY = posY
+    self.fadeDelta = 1
+    co:waitUntil(function() return self.fadeTint == 1 end)
+  end))
 end
 
 return InWorld
