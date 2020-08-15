@@ -51,17 +51,6 @@ function Player:new(spec)
   self.stateMachine = self:add(stateMachine)
 end
 
-function Player:update(dt)
-  Player.super.update(self, dt)
-
-  -- Play footsteps if we're running.
-  local animation, sound = self.animation, self.sound
-  if animation.current == 'running' and self.currentFrame ~= animation.frame and (animation.frame == 4 or animation.frame == 8) then
-    sound:play('footstep')
-    self.currentFrame = animation.frame
-  end
-end
-
 function Player:setUseObject(obj)
   self.useObject = obj
 end

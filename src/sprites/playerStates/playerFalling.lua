@@ -42,6 +42,7 @@ function PlayerFalling:update(dt)
   end
 
   if player.body.isOnGround then
+    player.sound:play('land')
     return 'normal'
   end
 end

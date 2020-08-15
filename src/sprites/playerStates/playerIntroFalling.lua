@@ -15,6 +15,7 @@ function PlayerIntroFalling:update(dt)
   local body = player.body
 
   if body.isOnGround then
+    player.sound:play('land')
     return 'normal'
   end
 end

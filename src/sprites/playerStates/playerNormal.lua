@@ -9,6 +9,7 @@ end
 
 function PlayerNormal:enter()
   self.player.jumpForgivenessTimer = 0
+  self.currentFrame = math.huge
 end
 
 function PlayerNormal:update(dt)
@@ -24,6 +25,7 @@ function PlayerNormal:update(dt)
     body.moveVelocity.x = -config.player.runVelocity
   else
     body.moveVelocity.x = 0
+    self.currentFrame = math.huge
   end
 
   if input:pressed('jump') then
@@ -52,6 +54,11 @@ function PlayerNormal:update(dt)
 
   if player.isExitingLevel then
     return 'exitingLevelDoor'
+  end
+
+  if animation.current == 'running' and (animation.frame == 1 or animation.frame == 5) and self.currentFrame ~= animation.frame then
+    player.sound:play('footstep')
+    self.currentFrame = animation.frame
   end
 end
 
