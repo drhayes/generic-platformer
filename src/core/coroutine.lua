@@ -1,14 +1,12 @@
-local GameObject = require 'gobs.gameObject'
+local Object = require 'lib.classic'
 
-local Coroutine = GameObject:extend()
+local Coroutine = Object:extend()
 
 function Coroutine:new(func)
-  Coroutine.super.new(self)
   self.coroutine = coroutine.create(func)
 end
 
 function Coroutine:update(dt)
-  Coroutine.super.update(self, dt)
   local ok, message = coroutine.resume(self.coroutine, self, dt)
   if not ok then
     log.error(message)
@@ -20,7 +18,6 @@ function Coroutine:update(dt)
 end
 
 function Coroutine:wait(limit)
-  log.debug('wait')
   local count = 0
   while count < limit do
     local _, dt = coroutine.yield()
@@ -31,7 +28,6 @@ end
 function Coroutine:waitUntil(condition)
   log.debug('wait until')
   while not condition() do
-    log.debug('loopin')
     coroutine.yield()
   end
 end

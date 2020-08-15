@@ -4,8 +4,8 @@ local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
 local GobsList = require 'gobs.gobsList'
 local config = require 'gameConfig'
-local Coroutine = require 'gobs.coroutine'
 local lume = require 'lib.lume'
+local CoroutineList = require 'core.coroutineList'
 
 local lg = love.graphics
 
@@ -15,6 +15,7 @@ function InWorld:new(registry, eventBus)
   InWorld.super.new(self, registry, eventBus)
 
   self.gobs = GobsList(eventBus)
+  self.coroutines = CoroutineList()
   self.tilemaps = {}
   self.gobsById = {}
 
@@ -44,6 +45,8 @@ function InWorld:update(dt)
   if not self.currentTilemap then
     self:switchTilemap('entrance.lua')
   end
+
+  self.coroutines:update(dt)
 
   local inputService = self.registry:get('input')
   inputService:update(dt)
@@ -135,7 +138,7 @@ function InWorld:onSwitchCamera(camera)
 end
 
 function InWorld:onStartLevelExit(levelName, toId)
-  self.gobs:add(Coroutine(function(co, dt)
+  self.coroutines:add(function(co, dt)
     co:wait(.5)
     self.fadeDelta = -1
     co:waitUntil(function() return self.fadeTint == 0 end)
@@ -145,10 +148,7 @@ function InWorld:onStartLevelExit(levelName, toId)
     self.switchToId = toId
     self.fadeDelta = 1
     log.debug('fading in')
-    -- DUH. This Coroutine is a GameObject and is getting tossed out by
-    -- the tilemap switch. ARGH.
     co:waitUntil(function()
-      log.debug(self.fadeTint)
       return self.fadeTint == 1
     end)
     log.debug('looking for exit')
@@ -163,7 +163,7 @@ function InWorld:onStartLevelExit(levelName, toId)
       log.debug('about to spawn player')
       self.eventBus:emit('addGob', player)
     end
-  end))
+  end)
 end
 
 return InWorld
