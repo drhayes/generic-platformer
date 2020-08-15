@@ -9,13 +9,18 @@ end
 
 function Coroutine:update(dt)
   Coroutine.super.update(self, dt)
-  local ok = coroutine.resume(self.coroutine, self, dt)
-  if not ok or coroutine.status(self.coroutine) == 'dead' then
+  local ok, message = coroutine.resume(self.coroutine, self, dt)
+  if not ok then
+    log.error(message)
+  end
+  if coroutine.status(self.coroutine) == 'dead' then
+    log.debug('dead coroutine', ok, message)
     self.removeMe = true
   end
 end
 
 function Coroutine:wait(limit)
+  log.debug('wait')
   local count = 0
   while count < limit do
     local _, dt = coroutine.yield()
@@ -24,7 +29,9 @@ function Coroutine:wait(limit)
 end
 
 function Coroutine:waitUntil(condition)
+  log.debug('wait until')
   while not condition() do
+    log.debug('loopin')
     coroutine.yield()
   end
 end

@@ -16,6 +16,7 @@ function InWorld:new(registry, eventBus)
 
   self.gobs = GobsList(eventBus)
   self.tilemaps = {}
+  self.gobsById = {}
 
   -- TODO: Get rid of this event, probably.
   self:subscribe('addGob', self.onAddGob)
@@ -72,13 +73,15 @@ function InWorld:draw()
   if self.switchLevels then
     self.switchLevels = false
     self:switchTilemap(self.switchLevelName)
-    self.eventBus:emit('spawnSpriteByType', 'player', self.switchPosX, self.switchPosY)
   end
 end
 
 
 function InWorld:onAddGob(gob)
   self.gobs:add(gob)
+  if gob.id then
+    self.gobsById[gob.id] = gob
+  end
 end
 
 function InWorld:onLoadedTilemap(key, data)
@@ -96,6 +99,7 @@ function InWorld:switchTilemap(key)
   end
 
   self.gobs:clear()
+  lume.clear(self.gobsById)
 
   self.currentTilemap = tilemap
   local physicsService = self.registry:get('physics')
@@ -130,7 +134,7 @@ function InWorld:onSwitchCamera(camera)
   self.camera = camera
 end
 
-function InWorld:onStartLevelExit(levelName, posX, posY)
+function InWorld:onStartLevelExit(levelName, toId)
   self.gobs:add(Coroutine(function(co, dt)
     co:wait(.5)
     self.fadeDelta = -1
@@ -138,10 +142,27 @@ function InWorld:onStartLevelExit(levelName, posX, posY)
     co:wait(.2)
     self.switchLevels = true
     self.switchLevelName = levelName .. '.lua'
-    self.switchPosX = posX
-    self.switchPosY = posY
+    self.switchToId = toId
     self.fadeDelta = 1
-    co:waitUntil(function() return self.fadeTint == 1 end)
+    log.debug('fading in')
+    -- DUH. This Coroutine is a GameObject and is getting tossed out by
+    -- the tilemap switch. ARGH.
+    co:waitUntil(function()
+      log.debug(self.fadeTint)
+      return self.fadeTint == 1
+    end)
+    log.debug('looking for exit')
+    local levelExit = self.gobsById[toId]
+    log.debug(levelExit)
+    if levelExit then
+      log.debug('found exit')
+      local spriteMaker = self.registry:get('spriteMaker')
+      local playerSpec = SpriteSpec('player')
+      playerSpec.x, playerSpec.y = levelExit.x, levelExit.y
+      local player = spriteMaker:create(playerSpec)
+      log.debug('about to spawn player')
+      self.eventBus:emit('addGob', player)
+    end
   end))
 end
 

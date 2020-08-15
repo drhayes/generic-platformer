@@ -4,10 +4,10 @@ local collisionLayers = require 'physics.collisionLayers'
 local LevelDoor = GameObject:extend()
 
 function LevelDoor:new(spec)
+  self.id = spec.id
   LevelDoor.super.new(self, spec.x, spec.y)
   self.levelName = spec.properties.levelName
-  self.posX = spec.properties.posX
-  self.posY = spec.properties.posY
+  self.toId = spec.properties.toId
 
   local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
@@ -22,7 +22,7 @@ end
 function LevelDoor:startLevelExit()
   if self.isAlreadyStarted then return end
   self.isAlreadyStarted = true
-  self.eventBus:emit('startLevelExit', self.levelName, self.posX, self.posY)
+  self.eventBus:emit('startLevelExit', self.levelName, self.toId)
 end
 
 function LevelDoor:__tostring()

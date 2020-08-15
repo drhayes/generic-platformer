@@ -1956,8 +1956,7 @@ return {
           visible = true,
           properties = {
             ["levelName"] = "sword",
-            ["posX"] = 296,
-            ["posY"] = 216
+            ["toId"] = 13
           }
         }
       }
