@@ -316,11 +316,5 @@
  </objectgroup>
  <objectgroup id="5" name="camera" visible="0">
   <object id="4" x="-272" y="-240" width="496" height="256" visible="0"/>
-  <object id="5" x="-192" y="-32">
-   <properties>
-    <property name="isInitial" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
  </objectgroup>
 </map>

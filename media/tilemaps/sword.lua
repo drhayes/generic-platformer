@@ -1393,21 +1393,6 @@ return {
           rotation = 0,
           visible = false,
           properties = {}
-        },
-        {
-          id = 5,
-          name = "",
-          type = "",
-          shape = "point",
-          x = -192,
-          y = -32,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["isInitial"] = true
-          }
         }
       }
     }

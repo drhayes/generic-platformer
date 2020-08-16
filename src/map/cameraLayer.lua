@@ -15,21 +15,12 @@ function CameraLayer:new(layerData, offsetX, offsetY)
         object.width,
         object.height
       ))
-    elseif object.shape == 'point' and object.properties.isInitial then
-      self.initial = {
-        x = object.x + offsetX,
-        y = object.y + offsetY
-      }
     end
   end
 end
 
 function CameraLayer:initialize(eventBus, _, _)
   self.camera = Camera(eventBus)
-
-  if self.initial then
-    self.camera:lookAt(self.initial.x, self.initial.y)
-  end
 
   for i = 1, #self.regions do
     local region = self.regions[i]

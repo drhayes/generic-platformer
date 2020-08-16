@@ -8,6 +8,7 @@ local lume = require 'lib.lume'
 local CoroutineList = require 'core.coroutineList'
 local Player = require 'sprites.player'
 local Spawner = require 'sprites.spawner'
+local Camera = require 'gobs.camera'
 
 local lg = love.graphics
 
@@ -150,12 +151,17 @@ function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalks
     self.switchLevelName = levelName .. '.lua'
     self.switchToId = toId
     self.fadeDelta = 1
-    co:waitUntil(self.isFadedIn, self)
+    coroutine.yield()
     local levelExit = self.gobsById[toId]
     if not levelExit then
       log.error('no level exit with id', toId)
       return
     end
+    -- Find the camera and point it at us.
+    local camera = self.gobs:findFirst(Camera)
+    camera:lookAt(levelExit.x, levelExit.y)
+
+    co:waitUntil(self.isFadedIn, self)
     local spriteMaker = self.registry:get('spriteMaker')
     local playerSpec = SpriteSpec('player')
     playerSpec.x, playerSpec.y = levelExit.x, levelExit.y
@@ -189,6 +195,16 @@ function InWorld:startInitialSpawnScript(levelName)
   self.coroutines:add(function(co, dt)
     self:switchTilemap(levelName)
     self.fadeDelta = 1
+    coroutine.yield()
+    local spawner = self.gobs:findFirst(Spawner)
+    if not spawner then
+      log.error('could not find initial spawner')
+      return
+    end
+    -- Find the camera and point it at us.
+    local camera = self.gobs:findFirst(Camera)
+    camera:lookAt(spawner.x, spawner.y)
+
     co:waitUntil(self.isFadedIn, self)
     co:wait(.5)
     self.eventBus:emit('spawnPlayer')

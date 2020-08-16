@@ -1275,21 +1275,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 19,
-          name = "",
-          type = "",
-          shape = "point",
-          x = -240,
-          y = -192,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["isInitial"] = true
-          }
-        },
-        {
           id = 23,
           name = "",
           type = "",
