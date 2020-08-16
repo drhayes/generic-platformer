@@ -28,8 +28,8 @@ function Camera:update(dt)
   local oldX, oldY = view.center.x, view.center.y
 
   if self.player then
-    view.center.x = lume.smooth(view.center.x, self.player.x, .5)
-    view.center.y = lume.smooth(view.center.y, self.player.y, .5)
+    view.center.x = lume.smooth(view.center.x, self.player.x, .3)
+    view.center.y = lume.smooth(view.center.y, self.player.y, .3)
   end
 
   -- What region are we in?
