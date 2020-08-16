@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" backgroundcolor="#150d09" nextlayerid="9" nextobjectid="14">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" backgroundcolor="#150d09" nextlayerid="9" nextobjectid="15">
  <tileset firstgid="1" source="stone.tsx"/>
  <tileset firstgid="63" source="collision.tsx"/>
  <tileset firstgid="66" source="environment.tsx"/>
@@ -142,10 +142,10 @@
 </chunk>
    <chunk x="-16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,
-0,0,0,0,0,0,0,0,0,0,0,20,20,20,20,20,
-0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,
-0,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
+20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
+20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
+20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
+20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
 20,20,20,20,20,20,20,20,20,20,20,20,12,2684354598,1610612768,2684354596,
 20,20,20,20,20,20,20,20,20,20,20,20,59,19,18,0,
 20,20,20,20,20,20,20,2684354610,8,9,8,3758096414,2147483652,0,0,0,
@@ -303,6 +303,7 @@
     <property name="toId" type="int" value="27"/>
    </properties>
   </object>
+  <object id="14" gid="66" x="-96" y="-112" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="2" name="physics" opacity="0.2">
   <object id="1" gid="63" x="-256" y="0" width="176" height="16"/>

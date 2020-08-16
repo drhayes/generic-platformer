@@ -73,4 +73,13 @@ function GobsList:clear()
   self.eventBus:emit('gobsCleared')
 end
 
+function GobsList:findFirst(gobType)
+  for i = 1, #self.gobs do
+    local gob = self.gobs[i]
+    if gob:is(gobType) then
+      return gob
+    end
+  end
+end
+
 return GobsList

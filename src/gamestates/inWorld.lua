@@ -7,6 +7,7 @@ local config = require 'gameConfig'
 local lume = require 'lib.lume'
 local CoroutineList = require 'core.coroutineList'
 local Player = require 'sprites.player'
+local Spawner = require 'sprites.spawner'
 
 local lg = love.graphics
 
@@ -168,6 +169,19 @@ function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalks
     co:waitUntil(function() return player.body.moveVelocity.x == 0 end)
     player.stateMachine:switch('normal')
     player.levelExitCollider.enabled = true
+    -- Find the spawner for this level and move it close to the exit we used.
+    local spawner = self.gobs:findFirst(Spawner)
+    if not spawner then
+      log.error('could not find spawner in new level!')
+      return
+    end
+    spawner.x = levelExit.x
+    if playerWalksRight then
+      spawner.x = spawner.x + 32
+    else
+      spawner.x = spawner.x - 32
+    end
+    spawner.y = levelExit.y - 48
   end)
 end
 
