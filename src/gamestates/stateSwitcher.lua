@@ -10,6 +10,15 @@ end
 function StateSwitcher:add(name, gamestate)
   self.states[name] = gamestate
   gamestate.parent = self
+  return gamestate
+end
+
+function StateSwitcher:get(name)
+  local state = self.states[name]
+  if not state then
+    log.warn('tried to get nonexistent state', name)
+  end
+  return state
 end
 
 function StateSwitcher:switch(newStateName)

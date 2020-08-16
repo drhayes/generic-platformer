@@ -4,6 +4,7 @@ local collisionLayers = require 'physics.collisionLayers'
 local UsableCollider = Collider:extend()
 
 function UsableCollider:new(player)
+  UsableCollider.super.new(self)
   self.player = player
 end
 

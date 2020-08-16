@@ -4,6 +4,7 @@ local collisionLayers = require 'physics.collisionLayers'
 local TreasureCollider = Collider:extend()
 
 function TreasureCollider:new(player)
+  TreasureCollider.super.new(self)
   self.player = player
 end
 

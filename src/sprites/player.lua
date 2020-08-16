@@ -39,7 +39,7 @@ function Player:new(spec)
   body.collisionMask = collisionLayers.tilemap + collisionLayers.treasure + collisionLayers.usables + collisionLayers.levelExits
   body:addCollider(TreasureCollider(self))
   body:addCollider(UsableCollider(self))
-  body:addCollider(LevelExitsCollider(self))
+  self.levelExitCollider = body:addCollider(LevelExitsCollider(self))
   self.body = self:add(body)
 
   local stateMachine = StateMachine()

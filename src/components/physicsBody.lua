@@ -62,6 +62,7 @@ end
 function PhysicsBody:addCollider(collider)
   collider.body = self
   table.insert(self.colliders, collider)
+  return collider
 end
 
 -- Do I collide with this mask?
@@ -78,7 +79,7 @@ function PhysicsBody:runColliders(otherBody, collisionNormalX, collisionNormalY)
   local result = false
   for i = 1, #self.colliders do
     local collider = self.colliders[i]
-    if collider:collide(otherBody, collisionNormalX, collisionNormalY) then
+    if collider.enabled and collider:collide(otherBody, collisionNormalX, collisionNormalY) then
       result = true
     end
   end

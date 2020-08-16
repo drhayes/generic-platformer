@@ -4,6 +4,7 @@ local collisionLayers = require 'physics.collisionLayers'
 local LevelExitsCollider = Collider:extend()
 
 function LevelExitsCollider:new(player)
+  LevelExitsCollider.super.new(self)
   self.player = player
 end
 

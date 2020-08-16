@@ -42,15 +42,9 @@ end
 
 function InWorld:update(dt)
   self.gobs:update(dt)
-  if not self.currentTilemap then
-    self:switchTilemap('entrance.lua')
-  end
-
   self.coroutines:update(dt)
-
   local inputService = self.registry:get('input')
   inputService:update(dt)
-
   self.fadeTint = lume.clamp(self.fadeTint + self.fadeDelta * dt, 0, 1)
 end
 

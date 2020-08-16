@@ -12,6 +12,7 @@ local PhysicsService = require 'services.physicsService'
 
 local StateSwitcher = require 'gamestates.stateSwitcher'
 local InWorld = require 'gamestates.inWorld'
+local MainMenu = require 'gamestates.mainMenu'
 local PreloadGame = require 'gamestates.preloadGame'
 local InitializeGame = require 'gamestates.initializeGame'
 local stateSwitcher
@@ -50,6 +51,7 @@ function love.load()
   stateSwitcher = StateSwitcher(registry, eventBus)
   stateSwitcher:add('initializeGame', InitializeGame(registry, eventBus))
   stateSwitcher:add('preloadGame', PreloadGame(registry, eventBus))
+  stateSwitcher:add('mainMenu', MainMenu(registry, eventBus))
   stateSwitcher:add('inWorld', InWorld(registry, eventBus))
 
   eventBus:emit('setWindowFactor', windowFactor)

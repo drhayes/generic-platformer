@@ -101,7 +101,7 @@ end
 
 function PreloadGame:update(dt)
   if self.resourceCount == 0 then
-    self.parent:switch('inWorld')
+    self.parent:switch('mainMenu')
   end
 end
 
