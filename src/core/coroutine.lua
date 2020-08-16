@@ -12,7 +12,6 @@ function Coroutine:update(dt)
     log.error(message)
   end
   if coroutine.status(self.coroutine) == 'dead' then
-    log.debug('dead coroutine', ok, message)
     self.removeMe = true
   end
 end
@@ -25,9 +24,8 @@ function Coroutine:wait(limit)
   end
 end
 
-function Coroutine:waitUntil(condition)
-  log.debug('wait until')
-  while not condition() do
+function Coroutine:waitUntil(condition, arg1)
+  while not condition(arg1) do
     coroutine.yield()
   end
 end

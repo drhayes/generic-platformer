@@ -13,8 +13,8 @@ function MainMenu:enter()
   log.debug('-------------')
 
   local inWorld = self.parent:get('inWorld')
-  inWorld:switchTilemap('entrance.lua')
-
+  -- Kick things off
+  inWorld:startInitialSpawnScript('entrance.lua')
   self.parent:switch('inWorld')
 end
 

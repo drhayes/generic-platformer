@@ -135,16 +135,14 @@ function InWorld:onStartLevelExit(levelName, toId)
   self.coroutines:add(function(co, dt)
     co:wait(.5)
     self.fadeDelta = -1
-    co:waitUntil(function() return self.fadeTint == 0 end)
+    co:waitUntil(self.isFadedOut, self)
     co:wait(.2)
     self.switchLevels = true
     self.switchLevelName = levelName .. '.lua'
     self.switchToId = toId
     self.fadeDelta = 1
     log.debug('fading in')
-    co:waitUntil(function()
-      return self.fadeTint == 1
-    end)
+    co:waitUntil(self.isFadedIn, self)
     log.debug('looking for exit')
     local levelExit = self.gobsById[toId]
     log.debug(levelExit)
@@ -158,6 +156,24 @@ function InWorld:onStartLevelExit(levelName, toId)
       self.eventBus:emit('addGob', player)
     end
   end)
+end
+
+function InWorld:startInitialSpawnScript(levelName)
+  self.coroutines:add(function(co, dt)
+    self:switchTilemap(levelName)
+    self.fadeDelta = 1
+    co:waitUntil(self.isFadedIn, self)
+    co:wait(.5)
+    self.eventBus:emit('spawnPlayer')
+  end)
+end
+
+function InWorld:isFadedIn()
+  return self.fadeTint == 1
+end
+
+function InWorld:isFadedOut()
+  return self.fadeTint == 0
 end
 
 return InWorld

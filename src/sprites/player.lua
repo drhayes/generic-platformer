@@ -17,7 +17,6 @@ local PlayerExitingLevelDoor = require 'sprites.playerStates.playerExitingLevelD
 local Player = GameObject:extend()
 
 function Player:new(spec)
-  log.debug('player')
   Player.super.new(self, spec.x, spec.y)
   self.layer = 'player'
   self.isPlayer = true
