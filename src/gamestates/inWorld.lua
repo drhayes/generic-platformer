@@ -6,6 +6,7 @@ local GobsList = require 'gobs.gobsList'
 local config = require 'gameConfig'
 local lume = require 'lib.lume'
 local CoroutineList = require 'core.coroutineList'
+local Player = require 'sprites.player'
 
 local lg = love.graphics
 
@@ -21,6 +22,7 @@ function InWorld:new(registry, eventBus)
 
   -- TODO: Get rid of this event, probably.
   self:subscribe('addGob', self.onAddGob)
+  self:subscribe('gobAdded', self.onGobAdded)
   self:subscribe('loadedTilemap', self.onLoadedTilemap)
   self:subscribe('setTileAtlas', self.onSetTileAtlas)
   self:subscribe('setWindowFactor', self.onSetWindowFactor)
@@ -81,6 +83,12 @@ function InWorld:onAddGob(gob)
   end
 end
 
+function InWorld:onGobAdded(gob)
+  if gob:is(Player) then
+    self.player = gob
+  end
+end
+
 function InWorld:onLoadedTilemap(key, data)
   local rawTilemap = data()
   local tilemapSpec = TilemapSpec(key, rawTilemap)
@@ -131,7 +139,7 @@ function InWorld:onSwitchCamera(camera)
   self.camera = camera
 end
 
-function InWorld:onStartLevelExit(levelName, toId)
+function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalksRight)
   self.coroutines:add(function(co, dt)
     co:wait(.5)
     self.fadeDelta = -1
@@ -141,20 +149,25 @@ function InWorld:onStartLevelExit(levelName, toId)
     self.switchLevelName = levelName .. '.lua'
     self.switchToId = toId
     self.fadeDelta = 1
-    log.debug('fading in')
     co:waitUntil(self.isFadedIn, self)
-    log.debug('looking for exit')
     local levelExit = self.gobsById[toId]
-    log.debug(levelExit)
-    if levelExit then
-      log.debug('found exit')
-      local spriteMaker = self.registry:get('spriteMaker')
-      local playerSpec = SpriteSpec('player')
-      playerSpec.x, playerSpec.y = levelExit.x, levelExit.y
-      local player = spriteMaker:create(playerSpec)
-      log.debug('about to spawn player')
-      self.eventBus:emit('addGob', player)
+    if not levelExit then
+      log.error('no level exit with id', toId)
+      return
     end
+    local spriteMaker = self.registry:get('spriteMaker')
+    local playerSpec = SpriteSpec('player')
+    playerSpec.x, playerSpec.y = levelExit.x, levelExit.y
+    playerSpec.x = playerSpec.x + offsetX
+    playerSpec.y = playerSpec.y + offsetY
+    local player = spriteMaker:create(playerSpec)
+    player.levelExitCollider.enabled = false
+    player.body.moveVelocity.x = playerWalksRight and 1 or -1
+    player.stateMachine:switch('exitingLevelDoor')
+    self.eventBus:emit('addGob', player)
+    co:waitUntil(function() return player.body.moveVelocity.x == 0 end)
+    player.stateMachine:switch('normal')
+    player.levelExitCollider.enabled = true
   end)
 end
 

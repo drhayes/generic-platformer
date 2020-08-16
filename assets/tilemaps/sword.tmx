@@ -297,6 +297,9 @@
   <object id="13" gid="68" x="-229.091" y="-24.5455" width="22" height="24">
    <properties>
     <property name="levelName" value="entrance"/>
+    <property name="offsetX" type="int" value="12"/>
+    <property name="offsetY" type="int" value="2"/>
+    <property name="playerWalksRight" type="bool" value="false"/>
     <property name="toId" type="int" value="27"/>
    </properties>
   </object>

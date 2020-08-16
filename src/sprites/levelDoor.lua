@@ -8,6 +8,8 @@ function LevelDoor:new(spec)
   LevelDoor.super.new(self, spec.x, spec.y)
   self.levelName = spec.properties.levelName
   self.toId = spec.properties.toId
+  self.offsetX, self.offsetY = spec.properties.offsetX, spec.properties.offsetY
+  self.playerWalksRight = spec.properties.playerWalksRight
 
   local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
@@ -22,7 +24,7 @@ end
 function LevelDoor:startLevelExit()
   if self.isAlreadyStarted then return end
   self.isAlreadyStarted = true
-  self.eventBus:emit('startLevelExit', self.levelName, self.toId)
+  self.eventBus:emit('startLevelExit', self.levelName, self.toId, self.offsetX, self.offsetY, self.playerWalksRight)
 end
 
 function LevelDoor:__tostring()

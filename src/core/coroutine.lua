@@ -24,8 +24,8 @@ function Coroutine:wait(limit)
   end
 end
 
-function Coroutine:waitUntil(condition, arg1)
-  while not condition(arg1) do
+function Coroutine:waitUntil(condition, arg1, arg2)
+  while not condition(arg1, arg2) do
     coroutine.yield()
   end
 end

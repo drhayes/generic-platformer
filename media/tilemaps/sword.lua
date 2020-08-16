@@ -1237,6 +1237,9 @@ return {
           visible = true,
           properties = {
             ["levelName"] = "entrance",
+            ["offsetX"] = 12,
+            ["offsetY"] = 2,
+            ["playerWalksRight"] = false,
             ["toId"] = 27
           }
         }

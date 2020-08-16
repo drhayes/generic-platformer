@@ -270,6 +270,9 @@
   <object id="27" gid="68" x="254.818" y="-104.057" width="22" height="24">
    <properties>
     <property name="levelName" value="sword"/>
+    <property name="offsetX" type="int" value="-12"/>
+    <property name="offsetY" type="int" value="2"/>
+    <property name="playerWalksRight" type="bool" value="true"/>
     <property name="toId" type="int" value="13"/>
    </properties>
   </object>

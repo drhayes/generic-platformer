@@ -14,13 +14,29 @@ function StateMachine:add(name, state)
   end
 end
 
-function StateMachine:update(dt)
-  StateMachine.super.update(self, dt)
+function StateMachine:switch(name)
+  local newState = self.states[name]
+  if not newState then
+    log.error('no state named', name)
+    return
+  end
+  if self.current then
+    self.current:leave()
+  end
+  self.current = newState
+  self.current:enter()
+end
 
+function StateMachine:gobAdded(gob)
+  StateMachine.super.gobAdded(self, gob)
   if not self.current then
     self.current = self.initial
     self.current:enter()
   end
+end
+
+function StateMachine:update(dt)
+  StateMachine.super.update(self, dt)
 
   local transitionTo = self.current:update(dt)
   if transitionTo then
@@ -37,6 +53,10 @@ function StateMachine:draw()
   StateMachine.super.draw(self)
   if not self.current then return end
   self.current:draw()
+end
+
+function StateMachine:isInState(name)
+  return self.current == self.states[name]
 end
 
 return StateMachine

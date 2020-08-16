@@ -1956,6 +1956,9 @@ return {
           visible = true,
           properties = {
             ["levelName"] = "sword",
+            ["offsetX"] = -12,
+            ["offsetY"] = 2,
+            ["playerWalksRight"] = true,
             ["toId"] = 13
           }
         }
