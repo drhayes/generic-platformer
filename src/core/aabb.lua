@@ -61,6 +61,14 @@ function AABB:height()
   return self.halfSize.y * 2
 end
 
+function AABB:isPointInside(x, y)
+  if x < self:left() then return false end
+  if x > self:right() then return false end
+  if y < self:top() then return false end
+  if y > self:bottom() then return false end
+  return true
+end
+
 function AABB:projectionVector(other)
   return Vector(
     self.center.x - other.center.x + self.halfSize.x + other.halfSize.x,

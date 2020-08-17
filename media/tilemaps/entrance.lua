@@ -1268,7 +1268,7 @@ return {
       draworder = "topdown",
       id = 7,
       name = "camera",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -1285,7 +1285,9 @@ return {
           height = 256,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["motion"] = "horizontal"
+          }
         }
       }
     },
