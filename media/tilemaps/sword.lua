@@ -1422,7 +1422,7 @@ return {
           visible = true,
           polyline = {
             { x = 0, y = 0 },
-            { x = 144, y = 0 }
+            { x = 240, y = 0 }
           },
           properties = {}
         },
@@ -1432,14 +1432,14 @@ return {
           type = "",
           shape = "polyline",
           x = 192,
-          y = -272,
+          y = -112,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           polyline = {
             { x = 0, y = 0 },
-            { x = 0, y = -96 }
+            { x = 0, y = -256 }
           },
           properties = {}
         }

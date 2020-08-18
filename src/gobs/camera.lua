@@ -36,9 +36,6 @@ function Camera:new(eventBus)
 end
 
 function Camera:lookAt(x, y)
-  -- self.view.center.x, self.view.center.y = x, y
-  -- self.offsetX, self.offsetY = self.view:left(), self.view:top()
-
   -- Which rail are we closest to?
   local closestRail, dist = nil, math.huge
   local cx, cy
@@ -61,10 +58,12 @@ end
 
 function Camera:update(dt)
   local view = self.view
+  local player = self.player
   local targetX, targetY = self.targetX, self.targetY
-  if self.player then
+  if player then
     targetX, targetY = self.player.x, self.player.y
   end
+  local oldRail = self.closestRail
   local oldX, oldY = view.center.x, view.center.y
 
   -- Which rail are we closest to?
@@ -80,7 +79,13 @@ function Camera:update(dt)
       cx, cy = tx, ty
     end
   end
-  self.closestRail = closestRail
+
+  if oldRail and player and oldRail ~= closestRail and player.body.isOnGround then
+    self.closestRail = closestRail
+  elseif oldRail then
+    -- Find the closest point on the old rail.
+    dist, cx, cy = distToLine(oldRail.x0, oldRail.y0, oldRail.x1, oldRail.y1, targetX, targetY)
+  end
 
   -- Move gently toward whever we're trying to get to.
   local newX = lume.smooth(oldX, cx, .2)

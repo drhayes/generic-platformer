@@ -318,10 +318,10 @@
  </objectgroup>
  <objectgroup id="5" name="camera">
   <object id="19" x="-64" y="-80">
-   <polyline points="0,0 144,0"/>
+   <polyline points="0,0 240,0"/>
   </object>
-  <object id="20" x="192" y="-272">
-   <polyline points="0,0 0,-96"/>
+  <object id="20" x="192" y="-112">
+   <polyline points="0,0 0,-256"/>
   </object>
  </objectgroup>
 </map>
