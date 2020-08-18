@@ -73,7 +73,7 @@ function Camera:update(dt)
     self.counter = 0
   end
 
-  if self.counter > .5 then
+  if self.counter > NEW_RAIL_SNAP_DELAY then
     self.closestRail = closestRail
     self.counter = 0
 
