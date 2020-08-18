@@ -100,30 +100,30 @@ function Camera:onGobAdded(gob)
   self.player = gob
 end
 
-local lg = love.graphics
-function Camera:draw()
-  lg.push()
-  -- Draw rails.
-  for i = 1, #self.rails do
-    local rail = self.rails[i]
-    if self.closestRail == rail then
-      lg.setColor(0, 1, 0, .8)
-    else
-      lg.setColor(0, 1, 0, .2)
-    end
-    lg.line(rail.x0, rail.y0, rail.x1, rail.y1)
-  end
-  -- Draw center.
-  lg.setColor(0, 1, 0, 1)
-  lg.rectangle('line', self.view.center.x - 2, self.view.center.y - 2, 4, 4)
-  -- Write text of rail switch counter.
-  lg.setColor(1, 1, 1)
-  lg.push('all')
-  lg.origin()
-  lg.print('Counter: ' .. self.counter, 20, 20)
-  lg.pop()
-  lg.pop()
-end
+-- local lg = love.graphics
+-- function Camera:draw()
+--   lg.push()
+--   -- Draw rails.
+--   for i = 1, #self.rails do
+--     local rail = self.rails[i]
+--     if self.closestRail == rail then
+--       lg.setColor(0, 1, 0, .8)
+--     else
+--       lg.setColor(0, 1, 0, .2)
+--     end
+--     lg.line(rail.x0, rail.y0, rail.x1, rail.y1)
+--   end
+--   -- Draw center.
+--   lg.setColor(0, 1, 0, 1)
+--   lg.rectangle('line', self.view.center.x - 2, self.view.center.y - 2, 4, 4)
+--   -- Write text of rail switch counter.
+--   lg.setColor(1, 1, 1)
+--   lg.push('all')
+--   lg.origin()
+--   lg.print('Counter: ' .. self.counter, 20, 20)
+--   lg.pop()
+--   lg.pop()
+-- end
 
 function Camera:__tostring()
   return 'Camera'
