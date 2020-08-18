@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 9,
-  nextobjectid = 35,
+  nextobjectid = 37,
   backgroundcolor = { 21, 13, 9 },
   properties = {},
   tilesets = {
@@ -1275,19 +1275,21 @@ return {
       properties = {},
       objects = {
         {
-          id = 23,
+          id = 36,
           name = "",
           type = "",
-          shape = "rectangle",
-          x = -352,
-          y = -256,
-          width = 688,
-          height = 256,
+          shape = "polyline",
+          x = -224,
+          y = -144,
+          width = 0,
+          height = 0,
           rotation = 0,
           visible = true,
-          properties = {
-            ["motion"] = "horizontal"
-          }
+          polyline = {
+            { x = 0, y = 0 },
+            { x = 352, y = 0 }
+          },
+          properties = {}
         }
       }
     },
