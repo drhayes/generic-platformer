@@ -65,9 +65,18 @@ function Camera:update(dt)
     end
   end
 
-  if oldRail and player and player.body.isOnGround and oldRail ~= closestRail then
+  if oldRail ~= closestRail then
+    if player and player.body.isOnGround then
+      self.counter = self.counter + dt
+    end
+  elseif oldRail == closestRail and self.counter > 0 then
+    self.counter = 0
+  end
+
+  if self.counter > .5 then
     self.closestRail = closestRail
-    self.counterFactor = 0
+    self.counter = 0
+
   elseif oldRail then
     -- Find the closest point on the old rail.
     dist, cx, cy = oldRail:nearestPointOnRail(targetX, targetY) -- luacheck: ignore
@@ -111,8 +120,6 @@ function Camera:draw()
   lg.setColor(1, 1, 1)
   lg.push('all')
   lg.origin()
-  lg.scale(1)
-  local w, h = lg.getWidth(), lg.getHeight()
   lg.print('Counter: ' .. self.counter, 20, 20)
   lg.pop()
   lg.pop()
