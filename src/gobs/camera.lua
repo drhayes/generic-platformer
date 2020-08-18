@@ -4,23 +4,7 @@ local config = require 'gameConfig'
 local AABB = require 'core.aabb'
 local lume = require 'lib.lume'
 
-local function distToLine(x0, y0, x1, y1, x, y)
-  local dx, dy = x1 - x0, y1 - y0
-  if dx == 0 and dy == 0 then
-    return lume.distance(x0, y0, x, y), x0, y0
-  end
-
-  local t = ((x - x0) * dx + (y - y0) * dy) / (dx * dx + dy * dy)
-
-  if t < 0 then
-    return lume.distance(x0, y0, x, y), x0, y0
-  elseif t > 1 then
-    return lume.distance(x1, y1, x, y), x1, y1
-  else
-    local cx, cy = x0 + t * dx, y0 + t * dy
-    return lume.distance(cx, cy, x, y), cx, cy
-  end
-end
+local NEW_RAIL_SNAP_DELAY = config.camera.newRailSnapDelay
 
 local Camera = GameObject:extend()
 
@@ -31,6 +15,8 @@ function Camera:new(eventBus)
   self.offsetX, self.offsetY, self.scale = 0, 0, 1
   self.targetX, self.targetY = 0, 0
   self.view = AABB(self.x, self.y, config.graphics.width, config.graphics.height)
+  self.counter = 0
+  self.counterFactor = 0
 
   self.eventBus:on('gobAdded', self.onGobAdded, self)
 end
@@ -42,7 +28,7 @@ function Camera:lookAt(x, y)
   for i = 1, #self.rails do
     local rail = self.rails[i]
     -- Store new distance and temp nearest point.
-    local newDist, tx, ty = distToLine(rail.x0, rail.y0, rail.x1, rail.y1, x, y)
+    local newDist, tx, ty = rail:nearestPointOnRail(x, y)
     if newDist < dist then
       closestRail = rail
       dist = newDist
@@ -71,8 +57,7 @@ function Camera:update(dt)
   local cx, cy
   for i = 1, #self.rails do
     local rail = self.rails[i]
-    -- Store new distance and temp nearest point.
-    local newDist, tx, ty = distToLine(rail.x0, rail.y0, rail.x1, rail.y1, targetX, targetY)
+    local newDist, tx, ty = rail:nearestPointOnRail(targetX, targetY)
     if newDist < dist then
       closestRail = rail
       dist = newDist
@@ -80,11 +65,12 @@ function Camera:update(dt)
     end
   end
 
-  if oldRail and player and oldRail ~= closestRail and player.body.isOnGround then
+  if oldRail and player and player.body.isOnGround and oldRail ~= closestRail then
     self.closestRail = closestRail
+    self.counterFactor = 0
   elseif oldRail then
     -- Find the closest point on the old rail.
-    dist, cx, cy = distToLine(oldRail.x0, oldRail.y0, oldRail.x1, oldRail.y1, targetX, targetY)
+    dist, cx, cy = oldRail:nearestPointOnRail(targetX, targetY) -- luacheck: ignore
   end
 
   -- Move gently toward whever we're trying to get to.
@@ -105,21 +91,32 @@ function Camera:onGobAdded(gob)
   self.player = gob
 end
 
--- local lg = love.graphics
--- function Camera:draw()
---   lg.push()
---   lg.setColor(0, 1, 0, 1)
---   for i = 1, #self.rails do
---     local rail = self.rails[i]
---     if self.closestRail == rail then
---       lg.setLineWidth(2)
---     else
---       lg.setLineWidth(1)
---     end
---     lg.line(rail.x0, rail.y0, rail.x1, rail.y1)
---   end
---   lg.pop()
--- end
+local lg = love.graphics
+function Camera:draw()
+  lg.push()
+  -- Draw rails.
+  for i = 1, #self.rails do
+    local rail = self.rails[i]
+    if self.closestRail == rail then
+      lg.setColor(0, 1, 0, .8)
+    else
+      lg.setColor(0, 1, 0, .2)
+    end
+    lg.line(rail.x0, rail.y0, rail.x1, rail.y1)
+  end
+  -- Draw center.
+  lg.setColor(0, 1, 0, 1)
+  lg.rectangle('line', self.view.center.x - 2, self.view.center.y - 2, 4, 4)
+  -- Write text of rail switch counter.
+  lg.setColor(1, 1, 1)
+  lg.push('all')
+  lg.origin()
+  lg.scale(1)
+  local w, h = lg.getWidth(), lg.getHeight()
+  lg.print('Counter: ' .. self.counter, 20, 20)
+  lg.pop()
+  lg.pop()
+end
 
 function Camera:__tostring()
   return 'Camera'

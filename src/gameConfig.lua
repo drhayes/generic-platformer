@@ -30,6 +30,10 @@ return {
     },
   },
 
+  camera = {
+    newRailSnapDelay = .5,
+  },
+
   input = {
     mappings = {
       controls = {
