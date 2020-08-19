@@ -6,6 +6,7 @@ return {
     timeToJumpApex = .3,
     jumpForgivenessThresholdSeconds = .2,
     fallingDeathVelocity = 600,
+    jumpFloatTime = .5,
   },
 
   map = {

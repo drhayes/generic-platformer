@@ -1598,20 +1598,6 @@ return {
           gid = 63,
           visible = true,
           properties = {}
-        },
-        {
-          id = 25,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 179,
-          y = -384,
-          width = 87.375,
-          height = 16,
-          rotation = 0,
-          gid = 64,
-          visible = true,
-          properties = {}
         }
       }
     },
