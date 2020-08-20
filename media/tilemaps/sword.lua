@@ -8,8 +8,8 @@ return {
   height = 100,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 10,
-  nextobjectid = 41,
+  nextlayerid = 11,
+  nextobjectid = 42,
   backgroundcolor = { 21, 13, 9 },
   properties = {},
   tilesets = {
@@ -1063,7 +1063,7 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2684354564, 536870918,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1073741828, 58, 62, 61,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1073741828, 58, 62, 3221225532,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 47, 2684354561, 20,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2684354566, 62, 20, 20, 20,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2147483709, 20, 20, 20, 20,
@@ -1943,7 +1943,7 @@ return {
           visible = true,
           polyline = {
             { x = 0, y = 0 },
-            { x = 0, y = -256 }
+            { x = 0, y = -224 }
           },
           properties = {}
         },
@@ -1962,6 +1962,34 @@ return {
             { x = 0, y = 0 },
             { x = 0, y = -192 }
           },
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 10,
+      name = "light",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {
+        ["isLight"] = true
+      },
+      objects = {
+        {
+          id = 41,
+          name = "",
+          type = "glimmer",
+          shape = "rectangle",
+          x = 424.273,
+          y = -608,
+          width = 47.2727,
+          height = 112,
+          rotation = 0,
+          visible = true,
           properties = {}
         }
       }
