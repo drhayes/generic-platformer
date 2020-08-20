@@ -4,6 +4,7 @@ local Atlas = require 'core.atlas'
 local json = require 'lib.json'
 local AnimationService = require 'services.animationService'
 local SoundService = require 'services.soundService'
+local ParticleService = require 'services.particleService'
 
 local PreloadGame = Gamestate:extend()
 
@@ -90,6 +91,9 @@ function PreloadGame:leave()
   end
   local animationService = AnimationService(animationJsons, spriteAtlas)
   registry:add('animation', animationService)
+
+  local particleService = ParticleService(spriteAtlas)
+  registry:add('particles', particleService)
 
   -- Gather the sounds and make a sound service.
   local soundService = SoundService()

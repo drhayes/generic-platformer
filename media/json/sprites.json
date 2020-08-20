@@ -64,6 +64,14 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
+"glimmer-000.png":
+{
+	"frame": {"x":1,"y":158,"w":1,"h":1},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":1},
+	"sourceSize": {"w":1,"h":1}
+},
 "goldCoin-000.png":
 {
 	"frame": {"x":1,"y":153,"w":2,"h":3},
@@ -615,6 +623,6 @@
 	"format": "RGBA8888",
 	"size": {"w":162,"h":162},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:4d1955b7546815d50c7a2ab82a42d854:dff6a9f6626078eb945e10be0c77c6d7:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:341043249c5c85685f0500909a446f03:8182532b37ec2b5267c6d283e385dabb:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }
