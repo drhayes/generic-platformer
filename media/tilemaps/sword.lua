@@ -1528,8 +1528,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = -96,
-          y = -112,
+          x = 256,
+          y = -400,
           width = 16,
           height = 16,
           rotation = 0,
@@ -1960,7 +1960,7 @@ return {
           visible = true,
           polyline = {
             { x = 0, y = 0 },
-            { x = 0, y = -192 }
+            { x = 0, y = -176 }
           },
           properties = {}
         }
@@ -1975,9 +1975,7 @@ return {
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      properties = {
-        ["isLight"] = true
-      },
+      properties = {},
       objects = {
         {
           id = 41,
@@ -1985,9 +1983,9 @@ return {
           type = "glimmer",
           shape = "rectangle",
           x = 424.273,
-          y = -608,
+          y = -624,
           width = 47.2727,
-          height = 112,
+          height = 128,
           rotation = 0,
           visible = true,
           properties = {}

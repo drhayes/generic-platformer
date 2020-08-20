@@ -1,5 +1,6 @@
 local Object = require 'lib.classic'
 
+local Glimmer = require 'sprites.glimmer'
 local GoldCoin = require 'sprites.goldCoin'
 local LevelDoor = require 'sprites.levelDoor'
 local Player = require 'sprites.player'
@@ -13,6 +14,7 @@ function SpriteMakerService:new(eventBus, registry)
   self.registry = registry
 
   self.mapping = {
+    glimmer = Glimmer,
     goldCoin = GoldCoin,
     levelDoor = LevelDoor,
     player = Player,

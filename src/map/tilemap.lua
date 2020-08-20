@@ -6,6 +6,7 @@ local SpriteSpec = require 'sprites.spriteSpec'
 local config = require 'gameConfig'
 local CameraLayer = require 'map.cameraLayer'
 local BackgroundLayer = require 'map.backgroundLayer'
+local LightLayer = require 'map.lightLayer'
 
 local TILE_SIZE = config.map.tileSize
 
@@ -76,6 +77,8 @@ function Tilemap:new(spec)
       table.insert(layers, CameraLayer(layer, -minX, -minY))
     elseif layer.name == 'sprites' then
       self:specSprites(layer, -minX, -minY)
+    elseif layer.type == 'objectgroup' and layer.name == 'light' then
+      table.insert(layers, LightLayer(layer, -minX, -minY))
     else
       log.error('unknown layer', layer.name, layer.type)
     end
