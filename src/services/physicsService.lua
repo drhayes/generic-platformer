@@ -16,9 +16,13 @@ function PhysicsService:new(eventBus)
 end
 
 -- TODO: Consider taking x, y, w, h, ox, oy here.
-function PhysicsService:newBody()
+function PhysicsService:newBody(x, y, w, h, ox, oy)
   local callback = self:createCheckCollisionsCallback()
   local body = PhysicsBody(callback)
+  body.position.x, body.position.y = x or 0, y or 0
+  body.aabb.center.x, body.aabb.center.y = x or 0, y or 0
+  body.aabb.halfSize.x, body.aabb.halfSize.y = (w or 0) / 2, (h or 0) / 2
+  body.aabbOffset.x, body.aabbOffset.y = ox or 0, oy or 0
   body:addCollider(TilemapCollider())
   table.insert(self.bodies, body)
   return body

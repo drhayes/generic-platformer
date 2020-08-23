@@ -6,6 +6,7 @@ local LevelDoor = require 'sprites.levelDoor'
 local Player = require 'sprites.player'
 local SmallChest = require 'sprites.smallChest'
 local Spawner = require 'sprites.spawner'
+local Sword = require 'sprites.sword'
 
 local SpriteMakerService = Object:extend()
 
@@ -20,6 +21,7 @@ function SpriteMakerService:new(eventBus, registry)
     player = Player,
     smallChest = SmallChest,
     spawner = Spawner,
+    sword = Sword,
   }
 end
 

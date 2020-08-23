@@ -12,11 +12,7 @@ function GoldCoin:new(spec)
 
   self.animation = self:add(spec.animationService:create('goldCoin'))
 
-  local body = spec.physicsService:newBody()
-  body.position.x, body.position.y = spec.x, spec.y
-  body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
-  body.aabb.halfSize.x = 1
-  body.aabb.halfSize.y = 1.5
+  local body = spec.physicsService:newBody(spec.x, spec.y, 2, 3)
   body.collisionLayers = collisionLayers.treasure
   body.collisionMask = collisionLayers.tilemap
   body.resolutionType = 'bounceOnce'

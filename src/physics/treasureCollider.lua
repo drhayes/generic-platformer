@@ -10,6 +10,8 @@ end
 
 function TreasureCollider:collide(otherBody, collisionNormalX, collisionNormalY)
   if not otherBody:inLayer(collisionLayers.treasure) then return false end
+  if otherBody.parent.alreadyTaken == true then return false end
+  otherBody.parent.alreadyTaken = true
   self.player:pickUpTreasure(otherBody.parent)
 end
 
