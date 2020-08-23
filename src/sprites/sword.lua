@@ -7,9 +7,8 @@ function Sword:new(spec)
   Sword.super.new(self, spec.x, spec.y)
   self.layer = 'background'
 
-  local animation = spec.animationService:create('sword')
-  animation.current = 'floating'
-  self:add(animation)
+  local animation = self:add(spec.animationService:create('sword'))
+  animation.current = 'vertical'
 
   local body = spec.physicsService:newBody(spec.x, spec.y, 8, 16)
   body.collisionLayers = collisionLayers.treasure

@@ -7,12 +7,16 @@ local LevelExitsCollider = require 'physics.levelExitsCollider'
 local TreasureCollider = require 'physics.treasureCollider'
 local UsableCollider = require 'physics.usableCollider'
 
-local PlayerNormal = require 'sprites.playerStates.playerNormal'
-local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
-local PlayerIntroFalling = require 'sprites.playerStates.playerIntroFalling'
-local PlayerFalling = require 'sprites.playerStates.playerFalling'
-local PlayerJumping = require 'sprites.playerStates.playerJumping'
 local PlayerExitingLevelDoor = require 'sprites.playerStates.playerExitingLevelDoor'
+local PlayerFalling = require 'sprites.playerStates.playerFalling'
+local PlayerIntroFalling = require 'sprites.playerStates.playerIntroFalling'
+local PlayerJumping = require 'sprites.playerStates.playerJumping'
+local PlayerNormal = require 'sprites.playerStates.playerNormal'
+local PlayerPresentsSword = require 'sprites.playerStates.playerPresentsSword'
+local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
+
+local GoldCoin = require 'sprites.goldCoin'
+local Sword = require 'sprites.sword'
 
 local Player = GameObject:extend()
 
@@ -26,13 +30,10 @@ function Player:new(spec)
   self.sound = spec.soundService
 
   self.animation = self:add(spec.animationService:create('player'))
+  self.swordAnimation = self:add(spec.animationService:create('sword'))
+  self.swordAnimation.active = false
 
-  local body = spec.physicsService:newBody()
-  body.position.x, body.position.y = spec.x, spec.y
-  body.aabb.center.x, body.aabb.center.y = spec.x, spec.y
-  body.aabb.halfSize.x = 2
-  body.aabb.halfSize.y = 5
-  body.aabbOffset.y = 3
+  local body = spec.physicsService:newBody(spec.x, spec.y, 4, 10, 0, 3)
   body.gravityForce.y = (2 * config.player.jumpHeight) / math.pow(config.player.timeToJumpApex, 2)
   body.collisionLayers = collisionLayers.player
   body.collisionMask = collisionLayers.tilemap + collisionLayers.treasure + collisionLayers.usables + collisionLayers.levelExits
@@ -48,6 +49,7 @@ function Player:new(spec)
   stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))
   stateMachine:add('exitingLevelDoor', PlayerExitingLevelDoor(self))
+  stateMachine:add('presentSword', PlayerPresentsSword(self))
   self.stateMachine = self:add(stateMachine)
 end
 
@@ -57,7 +59,11 @@ end
 
 function Player:pickUpTreasure(treasure)
   log.debug('got treasure!')
-  treasure.removeMe = true
+  if treasure:is(Sword) then
+    self.stateMachine:switch('presentSword')
+  elseif treasure:is(GoldCoin) then
+    log.debug('a coin!')
+  end
 end
 
 function Player:__tostring()

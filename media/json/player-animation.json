@@ -13,7 +13,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 50
+    "duration": 500
    },
    "player-002.png": {
     "frame": { "x": 32, "y": 0, "w": 16, "h": 16 },
@@ -21,7 +21,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 2000
+    "duration": 50
    },
    "player-003.png": {
     "frame": { "x": 48, "y": 0, "w": 16, "h": 16 },
@@ -29,7 +29,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 2000
    },
    "player-004.png": {
     "frame": { "x": 64, "y": 0, "w": 16, "h": 16 },
@@ -117,7 +117,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 2000
+    "duration": 100
    },
    "player-015.png": {
     "frame": { "x": 240, "y": 0, "w": 16, "h": 16 },
@@ -133,7 +133,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 2000
    },
    "player-017.png": {
     "frame": { "x": 272, "y": 0, "w": 16, "h": 16 },
@@ -165,7 +165,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 500
+    "duration": 100
    },
    "player-021.png": {
     "frame": { "x": 336, "y": 0, "w": 16, "h": 16 },
@@ -173,7 +173,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 500
    },
    "player-022.png": {
     "frame": { "x": 352, "y": 0, "w": 16, "h": 16 },
@@ -197,7 +197,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 500
+    "duration": 100
    },
    "player-025.png": {
     "frame": { "x": 400, "y": 0, "w": 16, "h": 16 },
@@ -205,7 +205,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 500
    },
    "player-026.png": {
     "frame": { "x": 416, "y": 0, "w": 16, "h": 16 },
@@ -373,7 +373,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 300
+    "duration": 100
    },
    "player-047.png": {
     "frame": { "x": 752, "y": 0, "w": 16, "h": 16 },
@@ -381,7 +381,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 100
+    "duration": 300
    },
    "player-048.png": {
     "frame": { "x": 768, "y": 0, "w": 16, "h": 16 },
@@ -389,7 +389,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 300
+    "duration": 100
    },
    "player-049.png": {
     "frame": { "x": 784, "y": 0, "w": 16, "h": 16 },
@@ -397,7 +397,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
-    "duration": 50
+    "duration": 300
    },
    "player-050.png": {
     "frame": { "x": 800, "y": 0, "w": 16, "h": 16 },
@@ -453,6 +453,14 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "sourceSize": { "w": 16, "h": 16 },
+    "duration": 50
+   },
+   "player-057.png": {
+    "frame": { "x": 912, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
     "duration": 300
    }
  },
@@ -460,25 +468,26 @@
   "app": "http://www.aseprite.org/",
   "version": "1.2.16.3-x64",
   "format": "RGBA8888",
-  "size": { "w": 912, "h": 16 },
+  "size": { "w": 928, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
-   { "name": "jumping", "from": 1, "to": 2, "direction": "forward" },
-   { "name": "running", "from": 3, "to": 10, "direction": "forward" },
-   { "name": "runningjump", "from": 11, "to": 15, "direction": "forward" },
-   { "name": "runningfalling", "from": 15, "to": 15, "direction": "forward" },
-   { "name": "dying", "from": 16, "to": 24, "direction": "forward" },
-   { "name": "dead", "from": 24, "to": 24, "direction": "forward" },
-   { "name": "spell", "from": 25, "to": 31, "direction": "forward" },
-   { "name": "hurt", "from": 32, "to": 38, "direction": "forward" },
-   { "name": "resurrect", "from": 39, "to": 44, "direction": "forward" },
-   { "name": "falling", "from": 45, "to": 45, "direction": "forward" },
-   { "name": "shrug", "from": 46, "to": 48, "direction": "pingpong" },
-   { "name": "spawning", "from": 49, "to": 56, "direction": "forward" }
+   { "name": "present", "from": 1, "to": 1, "direction": "forward" },
+   { "name": "jumping", "from": 2, "to": 3, "direction": "forward" },
+   { "name": "running", "from": 4, "to": 11, "direction": "forward" },
+   { "name": "runningjump", "from": 12, "to": 16, "direction": "forward" },
+   { "name": "runningfalling", "from": 16, "to": 16, "direction": "forward" },
+   { "name": "dying", "from": 17, "to": 25, "direction": "forward" },
+   { "name": "dead", "from": 25, "to": 25, "direction": "forward" },
+   { "name": "spell", "from": 26, "to": 32, "direction": "forward" },
+   { "name": "hurt", "from": 33, "to": 39, "direction": "forward" },
+   { "name": "resurrect", "from": 40, "to": 45, "direction": "forward" },
+   { "name": "falling", "from": 46, "to": 46, "direction": "forward" },
+   { "name": "shrug", "from": 47, "to": 49, "direction": "pingpong" },
+   { "name": "spawning", "from": 50, "to": 57, "direction": "forward" }
   ],
   "layers": [
-   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 2, "data": "pauseAtEnd" }, { "frame": 15, "data": "pauseAtEnd" }, { "frame": 56, "data": "pauseAtEnd" }] }
+   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 3, "data": "pauseAtEnd" }, { "frame": 16, "data": "pauseAtEnd" }, { "frame": 57, "data": "pauseAtEnd" }] }
   ]
  }
 }

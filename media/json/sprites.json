@@ -544,7 +544,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"smallChest-000.png":
+"player-057.png":
 {
 	"frame": {"x":109,"y":91,"w":16,"h":16},
 	"rotated": false,
@@ -552,7 +552,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"smallChest-001.png":
+"smallChest-000.png":
 {
 	"frame": {"x":127,"y":91,"w":16,"h":16},
 	"rotated": false,
@@ -560,7 +560,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"smallChest-002.png":
+"smallChest-001.png":
 {
 	"frame": {"x":145,"y":91,"w":16,"h":16},
 	"rotated": false,
@@ -568,7 +568,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"smallChest-003.png":
+"smallChest-002.png":
 {
 	"frame": {"x":109,"y":109,"w":16,"h":16},
 	"rotated": false,
@@ -576,7 +576,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"smallChest-004.png":
+"smallChest-003.png":
 {
 	"frame": {"x":109,"y":127,"w":16,"h":16},
 	"rotated": false,
@@ -584,7 +584,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"smallChest-005.png":
+"smallChest-004.png":
 {
 	"frame": {"x":109,"y":145,"w":16,"h":16},
 	"rotated": false,
@@ -592,7 +592,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"spawner-000.png":
+"smallChest-005.png":
 {
 	"frame": {"x":127,"y":109,"w":16,"h":16},
 	"rotated": false,
@@ -600,7 +600,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"sword-000.png":
+"spawner-000.png":
 {
 	"frame": {"x":145,"y":109,"w":16,"h":16},
 	"rotated": false,
@@ -608,9 +608,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"sword-001.png":
+"sword-000.png":
 {
 	"frame": {"x":127,"y":127,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"sword-001.png":
+{
+	"frame": {"x":127,"y":145,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -623,6 +631,6 @@
 	"format": "RGBA8888",
 	"size": {"w":162,"h":162},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:341043249c5c85685f0500909a446f03:8182532b37ec2b5267c6d283e385dabb:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:a565372371194060f0080ce8ff3f5ea9:fd941add7a4d5f44ac871e9fa94ce24e:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

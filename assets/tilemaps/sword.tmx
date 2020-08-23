@@ -502,7 +502,7 @@
     <property name="toId" type="int" value="27"/>
    </properties>
   </object>
-  <object id="14" gid="66" x="400" y="-528" width="16" height="16"/>
+  <object id="14" gid="66" x="440.727" y="-549.636" width="16" height="16"/>
   <object id="32" gid="67" x="192" y="-32" width="16" height="16"/>
   <object id="42" gid="69" x="440" y="-516" width="16" height="16"/>
  </objectgroup>

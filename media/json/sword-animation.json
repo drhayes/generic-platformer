@@ -23,7 +23,7 @@
   "size": { "w": 32, "h": 16 },
   "scale": "1",
   "frameTags": [
-   { "name": "floating", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "vertical", "from": 0, "to": 0, "direction": "forward" },
    { "name": "horizontal", "from": 1, "to": 1, "direction": "forward" }
   ],
   "layers": [
