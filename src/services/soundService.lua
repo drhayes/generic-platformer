@@ -11,14 +11,16 @@ function SoundService:add(name, sound)
   self.sounds[name] = ripple.newSound(sound)
 end
 
-function SoundService:play(name)
+function SoundService:play(name, pitch)
+  pitch = pitch or 1
   local sound = self.sounds[name]
   if not sound then
     log.error('Tried to play non-existent sound', name)
     return
   end
 
-  sound:play()
+  local instance = sound:play()
+  instance.pitch = pitch
 end
 
 return SoundService

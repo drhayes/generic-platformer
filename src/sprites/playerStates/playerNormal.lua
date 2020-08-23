@@ -57,7 +57,7 @@ function PlayerNormal:update(dt)
   end
 
   if animation.current == 'running' and (animation.frame == 1 or animation.frame == 5) and self.currentFrame ~= animation.frame then
-    player.sound:play('footstep')
+    player.sound:play('footstep', love.math.random(85, 115) / 100)
     self.currentFrame = animation.frame
   end
 end
