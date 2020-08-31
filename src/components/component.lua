@@ -29,4 +29,8 @@ function Component:gobAdded(gob) end
 -- Called when GameObject is removed from game.
 function Component:gobRemoved(gob) end
 
+function Component:__tostring()
+  return 'Component'
+end
+
 return Component

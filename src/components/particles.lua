@@ -28,5 +28,8 @@ function Particles:draw()
   lg.pop()
 end
 
+function Particles:__tostring()
+  return 'Particles'
+end
 
 return Particles

@@ -1,6 +1,6 @@
 local Object = require 'lib.classic'
 local lume = require 'lib.lume'
-local Coroutine = require 'core.coroutine'
+local Coroutine = require 'components.coroutine'
 
 local CoroutineList = Object:extend()
 

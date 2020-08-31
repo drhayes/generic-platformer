@@ -24,7 +24,7 @@ function Animation:add(name, animation)
 end
 
 function Animation:update(dt)
-  Animation.super.new(self, dt)
+  Animation.super.update(self, dt)
   local animation = self.animations[self.current]
   if not animation then return end
 
@@ -61,5 +61,10 @@ function Animation:draw()
   )
   lg.pop()
 end
+
+function Animation:__tostring()
+  return 'Animation'
+end
+
 
 return Animation

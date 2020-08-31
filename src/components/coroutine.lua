@@ -1,17 +1,23 @@
-local Object = require 'lib.classic'
+local Component = require 'components.component'
 
-local Coroutine = Object:extend()
+local Coroutine = Component:extend()
 
+-- function(co, dt)
+--   co:wait(3)
+--   co:waitUntil(...)
+-- end
 function Coroutine:new(func)
+  Coroutine.super.new(self)
   self.coroutine = coroutine.create(func)
 end
 
 function Coroutine:update(dt)
-  local ok, message = coroutine.resume(self.coroutine, self, dt)
+  local co = self.coroutine
+  local ok, message = coroutine.resume(co, self, dt)
   if not ok then
     log.error(message)
   end
-  if coroutine.status(self.coroutine) == 'dead' then
+  if coroutine.status(co) == 'dead' then
     self.removeMe = true
   end
 end
@@ -28,6 +34,10 @@ function Coroutine:waitUntil(condition, arg1, arg2)
   while not condition(arg1, arg2) do
     coroutine.yield()
   end
+end
+
+function Coroutine:__tostring()
+  return 'Coroutine'
 end
 
 return Coroutine

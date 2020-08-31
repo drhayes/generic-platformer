@@ -182,4 +182,8 @@ function PhysicsBody:debugDraw()
   lg.rectangle('fill', self.aabb:bounds())
 end
 
+function PhysicsBody:__tostring()
+  return 'PhysicsBody'
+end
+
 return PhysicsBody

@@ -47,7 +47,7 @@ function Player:new(spec)
   stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))
   stateMachine:add('exitingLevelDoor', PlayerExitingLevelDoor(self))
-  stateMachine:add('presentSword', PlayerPresentsSword(self))
+  stateMachine:add('presentSword', PlayerPresentsSword(self, spec.animationService:create('sword')))
   self.stateMachine = self:add(stateMachine)
 end
 

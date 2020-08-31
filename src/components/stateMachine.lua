@@ -59,4 +59,8 @@ function StateMachine:isInState(name)
   return self.current == self.states[name]
 end
 
+function StateMachine:__tostring()
+  return 'StateMachine'
+end
+
 return StateMachine
