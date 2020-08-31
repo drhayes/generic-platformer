@@ -30,8 +30,6 @@ function Player:new(spec)
   self.sound = spec.soundService
 
   self.animation = self:add(spec.animationService:create('player'))
-  self.swordAnimation = self:add(spec.animationService:create('sword'))
-  self.swordAnimation.active = false
 
   local body = spec.physicsService:newBody(spec.x, spec.y, 4, 10, 0, 3)
   body.gravityForce.y = (2 * config.player.jumpHeight) / math.pow(config.player.timeToJumpApex, 2)

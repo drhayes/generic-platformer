@@ -14,7 +14,7 @@ function MainMenu:enter()
 
   local inWorld = self.parent:get('inWorld')
   -- Kick things off
-  inWorld:startInitialSpawnScript('sword.lua')
+  inWorld:startInitialSpawnScript('test.lua')
   self.parent:switch('inWorld')
 end
 
