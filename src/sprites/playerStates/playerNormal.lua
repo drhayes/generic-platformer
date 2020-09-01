@@ -32,6 +32,10 @@ function PlayerNormal:update(dt)
     return 'jumping'
   end
 
+  if input:pressed('action') and player.hasSword then
+    return 'swingSword'
+  end
+
   animation.current = 'idle'
 
   if body.moveVelocity.x ~= 0 and body.velocity.x ~= 0 and body.isOnGround then

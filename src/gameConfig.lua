@@ -43,6 +43,7 @@ return {
         up = { 'key:up', 'key:w', 'axis:lefty-', 'button:dpup' },
         down = { 'key:down', 'key:s', 'axis:lefty+', 'button:dpdown' },
         jump = { 'key:space', 'button:a' },
+        action = { 'key:z', 'button:x' },
       },
       pairs = {
         move = { 'left', 'right', 'up', 'down' }

@@ -14,6 +14,7 @@ local PlayerJumping = require 'sprites.playerStates.playerJumping'
 local PlayerNormal = require 'sprites.playerStates.playerNormal'
 local PlayerPresentsSword = require 'sprites.playerStates.playerPresentsSword'
 local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
+local PlayerSwordSwing = require 'sprites.playerStates.playerSwordSwing'
 
 local GoldCoin = require 'sprites.goldCoin'
 local Sword = require 'sprites.sword'
@@ -48,6 +49,7 @@ function Player:new(spec)
   stateMachine:add('jumping', PlayerJumping(self))
   stateMachine:add('exitingLevelDoor', PlayerExitingLevelDoor(self))
   stateMachine:add('presentSword', PlayerPresentsSword(self, spec.animationService:create('sword')))
+  stateMachine:add('swingSword', PlayerSwordSwing(self))
   self.stateMachine = self:add(stateMachine)
 end
 
@@ -58,6 +60,7 @@ end
 function Player:pickUpTreasure(treasure)
   log.debug('got treasure!')
   if treasure:is(Sword) then
+    self.hasSword = true
     self.stateMachine:switch('presentSword')
   elseif treasure:is(GoldCoin) then
     log.debug('a coin!')

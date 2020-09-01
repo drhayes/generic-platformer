@@ -31,6 +31,7 @@ function Animation:update(dt)
   if self.oldCurrent ~= self.current then
     self.oldCurrent = self.current
     animation:gotoFrame(1)
+    animation:resume()
   end
 
   animation:update(dt)
@@ -60,6 +61,16 @@ function Animation:draw()
     math.floor(width / 2), math.floor(height / 2)
   )
   lg.pop()
+end
+
+function Animation:isPaused()
+  -- Are we switching animations? Then we're not paused.
+  if self.oldCurrent ~= self.current then return false end
+  local animation = self.animations[self.current]
+  if not animation then
+    return true
+  end
+  return animation.status == 'paused'
 end
 
 function Animation:__tostring()

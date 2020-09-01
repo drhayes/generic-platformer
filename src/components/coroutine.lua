@@ -36,6 +36,12 @@ function Coroutine:waitUntil(condition, arg1, arg2)
   end
 end
 
+function Coroutine:waitForAnimation(animation)
+  while not animation:isPaused() do
+    coroutine.yield()
+  end
+end
+
 function Coroutine:__tostring()
   return 'Coroutine'
 end
