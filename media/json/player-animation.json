@@ -502,13 +502,45 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 16 },
     "sourceSize": { "w": 22, "h": 16 },
     "duration": 100
+   },
+   "player-063.png": {
+    "frame": { "x": 1386, "y": 0, "w": 22, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 16 },
+    "sourceSize": { "w": 22, "h": 16 },
+    "duration": 50
+   },
+   "player-064.png": {
+    "frame": { "x": 1408, "y": 0, "w": 22, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 16 },
+    "sourceSize": { "w": 22, "h": 16 },
+    "duration": 50
+   },
+   "player-065.png": {
+    "frame": { "x": 1430, "y": 0, "w": 22, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 16 },
+    "sourceSize": { "w": 22, "h": 16 },
+    "duration": 50
+   },
+   "player-066.png": {
+    "frame": { "x": 1452, "y": 0, "w": 22, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 16 },
+    "sourceSize": { "w": 22, "h": 16 },
+    "duration": 200
    }
  },
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.25-x64",
   "format": "RGBA8888",
-  "size": { "w": 1386, "h": 16 },
+  "size": { "w": 1474, "h": 16 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 0, "direction": "forward" },
@@ -525,10 +557,11 @@
    { "name": "falling", "from": 46, "to": 46, "direction": "forward" },
    { "name": "shrug", "from": 47, "to": 49, "direction": "pingpong" },
    { "name": "spawning", "from": 50, "to": 57, "direction": "forward" },
-   { "name": "swordswinging", "from": 58, "to": 62, "direction": "forward" }
+   { "name": "swordswinging", "from": 58, "to": 62, "direction": "forward" },
+   { "name": "swordchopping", "from": 63, "to": 66, "direction": "forward" }
   ],
   "layers": [
-   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 3, "data": "pauseAtEnd" }, { "frame": 16, "data": "pauseAtEnd" }, { "frame": 57, "data": "pauseAtEnd" }, { "frame": 62, "data": "pauseAtEnd" }] }
+   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 3, "data": "pauseAtEnd" }, { "frame": 16, "data": "pauseAtEnd" }, { "frame": 57, "data": "pauseAtEnd" }, { "frame": 62, "data": "pauseAtEnd" }, { "frame": 66, "data": "pauseAtEnd" }] }
   ]
  }
 }

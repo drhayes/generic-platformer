@@ -22,6 +22,10 @@ function PlayerFalling:update(dt)
     body.moveVelocity.x = 0
   end
 
+  if input:pressed('action') and player.hasSword then
+    return 'swingSword'
+  end
+
   player.jumpForgivenessTimer = player.jumpForgivenessTimer + dt
 
   if input:pressed('jump') and body.velocity.y > 0 and player.jumpForgivenessTimer <= config.player.jumpForgivenessThresholdSeconds then

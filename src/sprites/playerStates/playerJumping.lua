@@ -37,6 +37,10 @@ function PlayerJumping:update(dt)
     body.moveVelocity.x = 0
   end
 
+  if input:pressed('action') and player.hasSword then
+    return 'swingSword'
+  end
+
   -- If velocity just flipped and they're still holding jump, halve gravity for a bit.
   if input:down('jump') and body.oldVelocity.y < 0 and body.velocity.y > 0 then
     self.floatCountdown = JUMP_FLOAT_TIME

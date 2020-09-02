@@ -9,9 +9,14 @@ end
 
 function PlayerSwordSwing:enter()
   self.done = false
-  self.player:add(Coroutine(function(co)
-    local animation = self.player.animation
-    animation.current = 'swordswinging'
+  local player = self.player
+  player:add(Coroutine(function(co)
+    local animation = player.animation
+    if player.body.isOnGround then
+      animation.current = 'swordswinging'
+    else
+      animation.current = 'swordchopping'
+    end
     co:waitForAnimation(animation)
     self.done = true
   end)
