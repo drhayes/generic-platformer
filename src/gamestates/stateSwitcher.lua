@@ -33,6 +33,8 @@ function StateSwitcher:switch(newStateName)
   end
   self.currentState = newState
   self.currentState:enter()
+
+  return self.currentState
 end
 
 function StateSwitcher:update(dt)

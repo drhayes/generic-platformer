@@ -12,10 +12,9 @@ function MainMenu:enter()
   log.debug('  Main Menu')
   log.debug('-------------')
 
-  local inWorld = self.parent:get('inWorld')
   -- Kick things off
+  local inWorld = self.parent:switch('inWorld')
   inWorld:startInitialSpawnScript('test.lua')
-  self.parent:switch('inWorld')
 end
 
 return MainMenu
