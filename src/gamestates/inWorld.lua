@@ -33,6 +33,7 @@ function InWorld:new(registry, eventBus)
   self:subscribe('spawnSpriteBySpec', self.onSpawnSpriteBySpec)
   self:subscribe('switchCamera', self.onSwitchCamera)
   self:subscribe('startLevelExit', self.onStartLevelExit)
+  self:subscribe('playerDead', self.onPlayerDead)
 end
 
 function InWorld:enter()
@@ -209,6 +210,15 @@ function InWorld:startInitialSpawnScript(levelName)
     co:waitUntil(self.isFadedIn, self)
     co:wait(.5)
     self.eventBus:emit('spawnPlayer')
+  end)
+end
+
+function InWorld:onPlayerDead()
+  local checkpointService = self.registry:get('checkpoint')
+  self.coroutines:add(function(co, dt)
+    co:wait(2)
+    self.eventBus:emit('spawnPlayer')
+    checkpointService:restore()
   end)
 end
 
