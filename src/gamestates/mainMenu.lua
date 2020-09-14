@@ -1,4 +1,5 @@
 local Gamestate = require 'gamestates.gamestate'
+local config = require 'gameConfig'
 
 local MainMenu = Gamestate:extend()
 
@@ -14,7 +15,7 @@ function MainMenu:enter()
 
   -- Kick things off
   local inWorld = self.parent:switch('inWorld')
-  inWorld:startInitialSpawnScript('test.lua')
+  inWorld:startInitialSpawnScript(config.map.start)
 end
 
 return MainMenu
