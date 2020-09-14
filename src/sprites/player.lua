@@ -58,7 +58,6 @@ function Player:setUseObject(obj)
 end
 
 function Player:pickUpTreasure(treasure)
-  log.debug('got treasure!')
   if treasure:is(Sword) then
     self.hasSword = true
     self.stateMachine:switch('presentSword')
