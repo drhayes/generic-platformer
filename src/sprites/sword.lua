@@ -14,9 +14,7 @@ function Sword:new(spec)
   body.collisionLayers = collisionLayers.treasure
   self:add(body)
 
-  self.originalY = spec.y
-  self.time = 0
-  self.offsetY = 0
+  spec.checkpointService:add(spec)
 end
 
 function Sword:__tostring()

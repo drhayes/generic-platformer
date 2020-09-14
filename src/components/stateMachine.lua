@@ -37,6 +37,7 @@ end
 
 function StateMachine:update(dt)
   StateMachine.super.update(self, dt)
+  -- log.debug('update')
 
   local transitionTo = self.current:update(dt)
   if transitionTo then

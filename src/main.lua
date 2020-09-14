@@ -6,6 +6,7 @@ local EventEmitter = require 'core.eventEmitter'
 local lily = require 'lib.lily'
 
 local Registry = require 'services.registry'
+local CheckpointService = require 'services.checkpointService'
 local InputService = require 'services.inputService'
 local SpriteMaker = require 'services.spriteMakerService'
 local PhysicsService = require 'services.physicsService'
@@ -44,6 +45,7 @@ function love.load()
   local eventBus = EventEmitter()
 
   local registry = Registry()
+  registry:add('checkpoint', CheckpointService(eventBus))
   registry:add('input', InputService())
   registry:add('spriteMaker', SpriteMaker(eventBus, registry))
   registry:add('physics', PhysicsService(eventBus))

@@ -34,6 +34,7 @@ function SpriteMakerService:create(spec)
 
   spec.eventBus = self.eventBus
   spec.animationService = self.registry:get('animation')
+  spec.checkpointService = self.registry:get('checkpoint')
   spec.inputService = self.registry:get('input')
   spec.physicsService = self.registry:get('physics')
   spec.soundService = self.registry:get('sound')

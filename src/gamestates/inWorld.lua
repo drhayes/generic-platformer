@@ -21,6 +21,7 @@ function InWorld:new(registry, eventBus)
   self.coroutines = CoroutineList()
   self.tilemaps = {}
   self.gobsById = {}
+  self.checkpointSpecs = {}
 
   -- TODO: Get rid of this event, probably.
   self:subscribe('addGob', self.onAddGob)

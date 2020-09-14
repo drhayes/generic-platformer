@@ -6,13 +6,6 @@ local PlayerPresentsSword = State:extend()
 function PlayerPresentsSword:new(player, swordAnimation)
   self.player = player
   self.swordAnimation = swordAnimation
-  self.co = Coroutine(function(co)
-    while not self.player.body.isOnGround do
-      coroutine.yield()
-    end
-    co:wait(.8)
-    self.done = true
-  end)
 end
 
 function PlayerPresentsSword:enter()
@@ -27,7 +20,13 @@ function PlayerPresentsSword:enter()
   swordAnim.flippedV = true
   swordAnim.x, swordAnim.y = -2, -11
   -- Start the wait.
-  player:add(self.co)
+  player:add(Coroutine(function(co)
+    while not player.body.isOnGround do
+      coroutine.yield()
+    end
+    co:wait(.8)
+    self.done = true
+  end))
 end
 
 function PlayerPresentsSword:leave()

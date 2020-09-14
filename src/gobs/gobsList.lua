@@ -23,24 +23,45 @@ local GobsList = Object:extend()
 function GobsList:new(eventBus)
   self.eventBus = eventBus
   self.gobs = {}
+  self.additions = {}
+  self.removals = {}
 end
 
-local removals = {}
 function GobsList:update(dt)
   local gobs = self.gobs
-  lume.clear(removals)
+
   -- Update'em.
   for i = 1, #gobs do
     local gob = gobs[i]
     gob:update(dt)
     if gob.removeMe then
-      table.insert(removals, gob)
+      self:remove(gob)
     end
   end
-  -- Remove'em.
+
+  -- Process additions.
+  local additions = self.additions
+  for i = 1, #additions do
+    local gob = additions[i]
+    table.insert(self.gobs, gob)
+    gob:gobAdded()
+    self.eventBus:emit('gobAdded', gob)
+  end
+  if #additions > 0 then
+    table.sort(self.gobs, gobCompare)
+    lume.clear(self.additions)
+  end
+
+  -- Process removals.
+  local removals = self.removals
   for i = 1, #removals do
     local gob = removals[i]
-    self:remove(gob)
+    lume.remove(self.gobs, gob)
+    gob:gobRemoved()
+    self.eventBus:emit('gobRemoved', gob)
+  end
+  if #removals > 0 then
+    lume.clear(self.removals)
   end
 end
 
@@ -52,16 +73,11 @@ function GobsList:draw()
 end
 
 function GobsList:add(gob)
-  table.insert(self.gobs, gob)
-  table.sort(self.gobs, gobCompare)
-  gob:gobAdded()
-  self.eventBus:emit('gobAdded', gob)
+  table.insert(self.additions, gob)
 end
 
 function GobsList:remove(gob)
-  lume.remove(self.gobs, gob)
-  gob:gobRemoved()
-  self.eventBus:emit('gobRemoved', gob)
+  table.insert(self.removals, gob)
 end
 
 function GobsList:clear()

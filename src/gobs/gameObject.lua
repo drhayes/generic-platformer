@@ -9,7 +9,6 @@ function GameObject:new(x, y)
 end
 
 function GameObject:add(component)
-  log.debug(':add', component)
   table.insert(self.components, component)
   component:added(self)
   return component
