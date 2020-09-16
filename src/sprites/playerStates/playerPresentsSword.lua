@@ -18,7 +18,11 @@ function PlayerPresentsSword:enter()
   swordAnim.current = 'vertical'
   swordAnim.flippedH = true
   swordAnim.flippedV = true
-  swordAnim.x, swordAnim.y = -2, -11
+  swordAnim.x, swordAnim.y = -3, -11
+  if playerAnim.flippedH then
+    swordAnim.flippedH = false
+    swordAnim.x = 3
+  end
   -- Start the wait.
   player:add(Coroutine(function(co)
     while not player.body.isOnGround do
