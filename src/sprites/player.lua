@@ -62,7 +62,7 @@ function Player:pickUpTreasure(treasure)
     self.hasSword = true
     self.stateMachine:switch('presentSword')
   elseif treasure:is(GoldCoin) then
-    log.debug('a coin!')
+    self.sound:play('pickup', love.math.random(85, 110) / 100)
   end
 end
 

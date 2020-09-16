@@ -1,5 +1,6 @@
 local GameObject = require 'gobs.gameObject'
 local collisionLayers = require 'physics.collisionLayers'
+local Coroutine = require 'components.coroutine'
 
 local JUMP_HEIGHT = 24
 local APEX_TIME = .5
@@ -13,7 +14,6 @@ function GoldCoin:new(spec)
   self.animation = self:add(spec.animationService:create('goldCoin'))
 
   local body = spec.physicsService:newBody(spec.x, spec.y, 2, 3)
-  body.collisionLayers = collisionLayers.treasure
   body.collisionMask = collisionLayers.tilemap
   body.resolutionType = 'bounceOnce'
   self.body = self:add(body)
@@ -23,6 +23,12 @@ function GoldCoin:new(spec)
   local angle = love.math.randomNormal(math.rad(5), math.rad(-90))
   body.jumpVelocity.x = math.cos(angle) * speed
   body.jumpVelocity.y = math.sin(angle) * speed
+
+  -- For the first bit of time it is in existence, it is not pickupable.
+  self:add(Coroutine(function(co, dt)
+    co:wait(.5)
+    body.collisionLayers = collisionLayers.treasure
+  end))
 end
 
 function GoldCoin:update(dt)
