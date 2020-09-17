@@ -1,5 +1,6 @@
 local GameObject = require 'gobs.gameObject'
 local collisionLayers = require 'physics.collisionLayers'
+local Coroutine = require 'components.coroutine'
 
 local SmallChest = GameObject:extend()
 
@@ -32,37 +33,18 @@ function SmallChest:new(spec)
   self.hasOpened = false
 end
 
-function SmallChest:update(dt)
-  SmallChest.super.update(self, dt)
-  if self.goldCoroutine then
-    local ok, message = coroutine.resume(self.goldCoroutine, dt)
-    if not ok then
-      error(message)
-    end
-  end
-end
-
 function SmallChest:used(user)
   self.isUsable = false
   self.animation.current = 'opening'
 end
 
 function SmallChest:spillRiches()
-  local counter = 10
-  local function spitGold()
-    local wait = 5
-    for i = 1, counter do
-      while wait < .12 do
-        wait = wait + coroutine.yield()
-      end
-
+  self:add(Coroutine(function(co)
+    for i = 1, 10 do
+      co:wait(.12)
       self.eventBus:emit('spawnSpriteByType', 'goldCoin', self.x, self.y)
-      wait = 0
     end
-    self.goldCoroutine = nil
-  end
-
-  self.goldCoroutine = coroutine.create(spitGold)
+  end))
 end
 
 function SmallChest:__tostring()
