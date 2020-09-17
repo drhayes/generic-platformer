@@ -11,11 +11,6 @@ function SmallChest:new(spec)
 
   self.animation = spec.animationService:create('smallChest')
   self.animation.current = 'closed'
-  self.animation.animations.opening.doneOpening = function()
-    self.animation.current = 'open'
-    self.hasOpened = true
-    self:spillRiches()
-  end
   self:add(self.animation)
 
   local body = spec.physicsService:newBody()
@@ -30,16 +25,14 @@ function SmallChest:new(spec)
   self:add(self.body)
 
   self.isUsable = true
-  self.hasOpened = false
 end
 
 function SmallChest:used(user)
   self.isUsable = false
-  self.animation.current = 'opening'
-end
-
-function SmallChest:spillRiches()
   self:add(Coroutine(function(co)
+    local animation = self.animation
+    animation.current = 'opening'
+    co:waitForAnimation(animation)
     for i = 1, 10 do
       co:wait(.12)
       self.eventBus:emit('spawnSpriteByType', 'goldCoin', self.x, self.y)

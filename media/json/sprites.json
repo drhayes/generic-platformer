@@ -112,6 +112,14 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":7},
 	"sourceSize": {"w":6,"h":7}
 },
+"goldCoin-005.png":
+{
+	"frame": {"x":187,"y":136,"w":6,"h":7},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":7},
+	"sourceSize": {"w":6,"h":7}
+},
 "levelDoor-000.png":
 {
 	"frame": {"x":1,"y":1,"w":22,"h":24},
@@ -735,6 +743,6 @@
 	"format": "RGBA8888",
 	"size": {"w":198,"h":198},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:de871f3d2ff56046545cfc8c95572fb0:ef00edc1cddb3773bddf226cf96a8c88:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:6ff033c943f4070cc554325b8116937e:4ea3dc4cf9efa190c1aa266187ff592b:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

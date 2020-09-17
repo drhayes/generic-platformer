@@ -106,8 +106,16 @@
   </data>
  </layer>
  <objectgroup id="2" name="sprites">
-  <object id="1" gid="65" x="-3.81818" y="-24.7273" width="22" height="24"/>
-  <object id="3" gid="63" x="32" y="-96" width="16" height="16"/>
+  <object id="1" gid="65" x="-3.81818" y="-24.7273" width="22" height="24">
+   <properties>
+    <property name="levelName" value="sword"/>
+    <property name="offsetX" type="int" value="0"/>
+    <property name="offsetY" type="int" value="0"/>
+    <property name="playerWalksRight" type="bool" value="false"/>
+    <property name="toId" type="int" value="68"/>
+   </properties>
+  </object>
+  <object id="3" gid="63" x="32" y="-48" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="4" name="physics" opacity="0.18">
   <object id="4" gid="67" x="-28.5" y="0" width="102.682" height="16"/>

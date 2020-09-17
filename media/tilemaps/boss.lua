@@ -795,7 +795,13 @@ return {
           rotation = 0,
           gid = 65,
           visible = true,
-          properties = {}
+          properties = {
+            ["levelName"] = "sword",
+            ["offsetX"] = 0,
+            ["offsetY"] = 0,
+            ["playerWalksRight"] = false,
+            ["toId"] = 68
+          }
         },
         {
           id = 3,
@@ -803,7 +809,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 32,
-          y = -96,
+          y = -48,
           width = 16,
           height = 16,
           rotation = 0,

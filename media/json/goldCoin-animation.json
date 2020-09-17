@@ -13,7 +13,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "sourceSize": { "w": 6, "h": 7 },
-    "duration": 100
+    "duration": 25
    },
    "goldCoin-002.png": {
     "frame": { "x": 12, "y": 0, "w": 6, "h": 7 },
@@ -21,7 +21,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "sourceSize": { "w": 6, "h": 7 },
-    "duration": 100
+    "duration": 25
    },
    "goldCoin-003.png": {
     "frame": { "x": 18, "y": 0, "w": 6, "h": 7 },
@@ -29,7 +29,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "sourceSize": { "w": 6, "h": 7 },
-    "duration": 100
+    "duration": 25
    },
    "goldCoin-004.png": {
     "frame": { "x": 24, "y": 0, "w": 6, "h": 7 },
@@ -37,7 +37,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "sourceSize": { "w": 6, "h": 7 },
-    "duration": 100
+    "duration": 25
    }
  },
  "meta": {
