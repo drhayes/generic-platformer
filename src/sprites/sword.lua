@@ -21,4 +21,6 @@ function Sword:__tostring()
   return 'Sword'
 end
 
+function Sword:pickedUp() end
+
 return Sword

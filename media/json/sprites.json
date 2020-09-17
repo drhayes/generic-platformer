@@ -66,7 +66,7 @@
 },
 "glimmer-000.png":
 {
-	"frame": {"x":193,"y":6,"w":1,"h":1},
+	"frame": {"x":193,"y":1,"w":1,"h":1},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":1},
@@ -74,11 +74,43 @@
 },
 "goldCoin-000.png":
 {
-	"frame": {"x":193,"y":1,"w":2,"h":3},
+	"frame": {"x":1,"y":189,"w":6,"h":7},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":3},
-	"sourceSize": {"w":2,"h":3}
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":7},
+	"sourceSize": {"w":6,"h":7}
+},
+"goldCoin-001.png":
+{
+	"frame": {"x":9,"y":189,"w":6,"h":7},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":7},
+	"sourceSize": {"w":6,"h":7}
+},
+"goldCoin-002.png":
+{
+	"frame": {"x":17,"y":189,"w":6,"h":7},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":7},
+	"sourceSize": {"w":6,"h":7}
+},
+"goldCoin-003.png":
+{
+	"frame": {"x":187,"y":127,"w":6,"h":7},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":7},
+	"sourceSize": {"w":6,"h":7}
+},
+"goldCoin-004.png":
+{
+	"frame": {"x":187,"y":136,"w":6,"h":7},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":7},
+	"sourceSize": {"w":6,"h":7}
 },
 "levelDoor-000.png":
 {
@@ -703,6 +735,6 @@
 	"format": "RGBA8888",
 	"size": {"w":198,"h":198},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:15a79bb85f8d395810aafc9e545ecce8:888ba73e538c4e51fb92afd67b6b96a8:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:de871f3d2ff56046545cfc8c95572fb0:ef00edc1cddb3773bddf226cf96a8c88:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

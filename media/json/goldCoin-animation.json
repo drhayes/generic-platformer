@@ -1,24 +1,57 @@
 { "frames": {
    "goldCoin-000.png": {
-    "frame": { "x": 0, "y": 0, "w": 2, "h": 3 },
+    "frame": { "x": 0, "y": 0, "w": 6, "h": 7 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 2, "h": 3 },
-    "sourceSize": { "w": 2, "h": 3 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
+    "sourceSize": { "w": 6, "h": 7 },
+    "duration": 100
+   },
+   "goldCoin-001.png": {
+    "frame": { "x": 6, "y": 0, "w": 6, "h": 7 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
+    "sourceSize": { "w": 6, "h": 7 },
+    "duration": 100
+   },
+   "goldCoin-002.png": {
+    "frame": { "x": 12, "y": 0, "w": 6, "h": 7 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
+    "sourceSize": { "w": 6, "h": 7 },
+    "duration": 100
+   },
+   "goldCoin-003.png": {
+    "frame": { "x": 18, "y": 0, "w": 6, "h": 7 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
+    "sourceSize": { "w": 6, "h": 7 },
+    "duration": 100
+   },
+   "goldCoin-004.png": {
+    "frame": { "x": 24, "y": 0, "w": 6, "h": 7 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 6, "h": 7 },
+    "sourceSize": { "w": 6, "h": 7 },
     "duration": 100
    }
  },
  "meta": {
   "app": "http://www.aseprite.org/",
-  "version": "1.2.16.3-x64",
+  "version": "1.2.25-x64",
   "format": "RGBA8888",
-  "size": { "w": 2, "h": 3 },
+  "size": { "w": 30, "h": 7 },
   "scale": "1",
   "frameTags": [
-   { "name": "coin", "from": 0, "to": 0, "direction": "forward" }
+   { "name": "coin", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "taken", "from": 1, "to": 4, "direction": "forward" }
   ],
   "layers": [
-   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal", "cels": [{ "frame": 4, "data": "pauseAtEnd" }] }
   ]
  }
 }

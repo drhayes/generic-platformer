@@ -12,6 +12,7 @@ function GoldCoin:new(spec)
   self.layer = 'player'
 
   self.animation = self:add(spec.animationService:create('goldCoin'))
+  self.sound = spec.soundService
 
   local body = spec.physicsService:newBody(spec.x, spec.y, 2, 3)
   body.collisionMask = collisionLayers.tilemap
@@ -35,6 +36,25 @@ function GoldCoin:update(dt)
   GoldCoin.super.update(self, dt)
   local body = self.body
   body.jumpVelocity.x, body.jumpVelocity.y = 0, 0
+end
+
+function GoldCoin:pickedUp()
+  local coin = self
+  self.sound:play('pickup', love.math.random(85, 110) / 100)
+  self:add(Coroutine(function(co)
+    coin.body.gravityForce.y = 0
+    coin.body.moveVelocity.y = -45
+    local startY = coin.y
+    co:waitUntil(self.isHighEnough, self, startY)
+    coin.body.moveVelocity.y = 0
+    coin.animation.current = 'taken'
+    co:waitForAnimation(coin.animation)
+    coin.removeMe = true
+  end))
+end
+
+function GoldCoin:isHighEnough(startY)
+  return startY - self.y > 16
 end
 
 function GoldCoin:__tostring()
