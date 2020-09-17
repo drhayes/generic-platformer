@@ -47,9 +47,10 @@ function PlayerNormal:update(dt)
     return 'falling'
   end
 
-  if player.useObject and player.body.aabb:overlaps(player.useObject.body.aabb) then
+  local useObject = player.useObject
+  if useObject and player.body.aabb:overlaps(useObject.body.aabb) then
     if input:pressed('up') and body.isOnGround then
-      player.useObject:used(self)
+      useObject.usable:useIt(self)
       player.useObject = nil
     end
   else

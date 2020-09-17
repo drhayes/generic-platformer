@@ -15,7 +15,8 @@ function GameObject:add(component)
 end
 
 function GameObject:has(component)
-  return lume.any(self.components, function(c) return c == component end)
+  local componentType = getmetatable(component)
+  return lume.any(self.components, function(c) return c:is(componentType) end)
 end
 
 function GameObject:remove(component)

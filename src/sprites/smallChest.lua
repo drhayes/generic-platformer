@@ -1,6 +1,7 @@
 local GameObject = require 'gobs.gameObject'
 local collisionLayers = require 'physics.collisionLayers'
 local Coroutine = require 'components.coroutine'
+local Usable = require 'components.usable'
 
 local SmallChest = GameObject:extend()
 
@@ -9,9 +10,9 @@ function SmallChest:new(spec)
   self.layer = 'background'
   self.eventBus = spec.eventBus
 
-  self.animation = spec.animationService:create('smallChest')
-  self.animation.current = 'closed'
-  self:add(self.animation)
+  local animation = spec.animationService:create('smallChest')
+  animation.current = 'closed'
+  self.animation = self:add(animation)
 
   local body = spec.physicsService:newBody()
   body.position.x, body.position.y = spec.x, spec.y
@@ -21,22 +22,18 @@ function SmallChest:new(spec)
   body.aabbOffset.x = 2
   body.aabbOffset.y = 4
   body.collisionLayers = collisionLayers.usables
-  self.body = body
-  self:add(self.body)
+  self.body = self:add(body)
 
-  self.isUsable = true
-end
-
-function SmallChest:used(user)
-  self.isUsable = false
-  self:add(Coroutine(function(co)
-    local animation = self.animation
-    animation.current = 'opening'
-    co:waitForAnimation(animation)
-    for i = 1, 10 do
-      co:wait(.12)
-      self.eventBus:emit('spawnSpriteByType', 'goldCoin', self.x, self.y)
-    end
+  self.usable = self:add(Usable(function(user)
+    self:add(Coroutine(function(co)
+      self.usable.isUsable = false
+      animation.current = 'opening'
+      co:waitForAnimation(animation)
+      for i = 1, 10 do
+        co:wait(.12)
+        self.eventBus:emit('spawnSpriteByType', 'goldCoin', self.x, self.y)
+      end
+    end))
   end))
 end
 
