@@ -13,7 +13,11 @@ function PlayerFallingDeath:enter()
   -- Player can't collide with things anymore.
   player.body.collisionMask = 0
   -- Do the scream.
-  player.sound:play('scream')
+  if love.math.random() < .1 then
+    player.sound:play('scream')
+  else
+    player.sound:play('fall')
+  end
   -- Tell camera to stop tracking player.
   eventBus:emit('stopCameraTracking')
   player:add(Coroutine(function(co)
