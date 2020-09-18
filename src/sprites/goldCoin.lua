@@ -43,7 +43,11 @@ function GoldCoin:pickedUp()
   self.sound:play('pickup', love.math.random(85, 110) / 100)
   self:add(Coroutine(function(co)
     coin.body.gravityForce.y = 0
-    coin.body.moveVelocity.y = -45
+    coin.body.fallingVelocity.x = 0
+    coin.body.fallingVelocity.y = 0
+    coin.body.moveVelocity.x = 0
+    coin.body.moveVelocity.y = -70
+    coin.body.collisionMask = 0
     local startY = coin.y
     co:waitUntil(self.isHighEnough, self, startY)
     coin.body.moveVelocity.y = 0
