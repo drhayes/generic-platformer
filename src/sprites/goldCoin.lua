@@ -40,7 +40,7 @@ end
 
 function GoldCoin:pickedUp()
   local coin = self
-  self.sound:play('pickup', love.math.random(85, 110) / 100)
+  self.sound:play('pickup')
   self:add(Coroutine(function(co)
     coin.body.gravityForce.y = 0
     coin.body.fallingVelocity.x = 0
