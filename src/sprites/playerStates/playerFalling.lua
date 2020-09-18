@@ -32,7 +32,6 @@ function PlayerFalling:update(dt)
     return 'jumping'
   end
 
-
   if body.moveVelocity.x ~= 0 then
     animation.current = 'runningfalling'
   else
@@ -41,8 +40,7 @@ function PlayerFalling:update(dt)
   animation.flippedH = body.moveVelocity.x < 0
 
   if body.velocity.y >= config.player.fallingDeathVelocity then
-    player.removeMe = true
-    self.eventBus:emit('playerDead')
+    return 'fallingDeath'
   end
 
   if player.body.isOnGround then

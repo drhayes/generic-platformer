@@ -19,6 +19,8 @@ function Camera:new(eventBus)
   self.counterFactor = 0
 
   self.eventBus:on('gobAdded', self.onGobAdded, self)
+  self.eventBus:on('stopCameraTracking', self.onStopCameraTracking, self)
+  self.eventBus:on('focusCamera', self.lookAt, self)
 end
 
 function Camera:lookAt(x, y)
@@ -39,6 +41,7 @@ function Camera:lookAt(x, y)
 
   local view = self.view
   view.center.x, view.center.y = cx, cy
+  self.targetX, self.targetY = cx, cy
   self.offsetX, self.offsetY = math.floor(view:left()), math.floor(view:top())
 end
 
@@ -98,6 +101,11 @@ end
 function Camera:onGobAdded(gob)
   if not gob:is(Player) then return end
   self.player = gob
+end
+
+function Camera:onStopCameraTracking()
+  self.targetX, self.targetY = self.player.x, self.player.y
+  self.player = nil
 end
 
 -- local lg = love.graphics

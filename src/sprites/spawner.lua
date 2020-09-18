@@ -27,6 +27,7 @@ end
 -- end
 
 function Spawner:onSpawnPlayer()
+  self.eventBus:emit('focusCamera', self.x, self.y)
   self.eventBus:emit('spawnSpriteByType', 'player', self.x, self.y)
 end
 

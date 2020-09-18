@@ -594,7 +594,7 @@
   </object>
   <object id="32" gid="67" x="192" y="-32" width="16" height="16"/>
   <object id="42" gid="69" x="440" y="-516" width="16" height="16"/>
-  <object id="61" gid="66" x="192" y="-48" width="16" height="16"/>
+  <object id="61" gid="66" x="272" y="-400" width="16" height="16"/>
   <object id="68" gid="68" x="845.625" y="-7.75" width="22" height="24">
    <properties>
     <property name="levelName" value="boss"/>

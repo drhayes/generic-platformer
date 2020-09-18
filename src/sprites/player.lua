@@ -9,6 +9,7 @@ local UsableCollider = require 'physics.usableCollider'
 
 local PlayerExitingLevelDoor = require 'sprites.playerStates.playerExitingLevelDoor'
 local PlayerFalling = require 'sprites.playerStates.playerFalling'
+local PlayerFallingDeath = require 'sprites.playerStates.playerFallingDeath'
 local PlayerIntroFalling = require 'sprites.playerStates.playerIntroFalling'
 local PlayerJumping = require 'sprites.playerStates.playerJumping'
 local PlayerNormal = require 'sprites.playerStates.playerNormal'
@@ -16,7 +17,6 @@ local PlayerPresentsSword = require 'sprites.playerStates.playerPresentsSword'
 local PlayerSpawning = require 'sprites.playerStates.playerSpawning'
 local PlayerSwordSwing = require 'sprites.playerStates.playerSwordSwing'
 
-local GoldCoin = require 'sprites.goldCoin'
 local Sword = require 'sprites.sword'
 
 local Player = GameObject:extend()
@@ -45,7 +45,8 @@ function Player:new(spec)
   stateMachine:add('spawning', PlayerSpawning(self))
   stateMachine:add('introFalling', PlayerIntroFalling(self))
   stateMachine:add('normal', PlayerNormal(self))
-  stateMachine:add('falling', PlayerFalling(self, spec.eventBus))
+  stateMachine:add('falling', PlayerFalling(self))
+  stateMachine:add('fallingDeath', PlayerFallingDeath(self, spec.eventBus))
   stateMachine:add('jumping', PlayerJumping(self))
   stateMachine:add('exitingLevelDoor', PlayerExitingLevelDoor(self))
   stateMachine:add('presentSword', PlayerPresentsSword(self, spec.animationService:create('sword')))

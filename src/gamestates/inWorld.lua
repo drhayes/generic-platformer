@@ -213,10 +213,11 @@ function InWorld:startInitialSpawnScript(levelName)
   end)
 end
 
-function InWorld:onPlayerDead()
+function InWorld:onPlayerDead(waitDelta)
+  waitDelta = waitDelta or 0
   local checkpointService = self.registry:get('checkpoint')
   self.coroutines:add(function(co, dt)
-    co:wait(2)
+    co:wait(2 + waitDelta)
     self.eventBus:emit('spawnPlayer')
     checkpointService:restore()
   end)
