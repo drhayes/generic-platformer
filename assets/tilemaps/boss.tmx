@@ -110,7 +110,7 @@
    <properties>
     <property name="levelName" value="sword"/>
     <property name="offsetX" type="int" value="0"/>
-    <property name="offsetY" type="int" value="0"/>
+    <property name="offsetY" type="int" value="3"/>
     <property name="playerWalksRight" type="bool" value="false"/>
     <property name="toId" type="int" value="68"/>
    </properties>

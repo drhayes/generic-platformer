@@ -798,7 +798,7 @@ return {
           properties = {
             ["levelName"] = "sword",
             ["offsetX"] = 0,
-            ["offsetY"] = 0,
+            ["offsetY"] = 3,
             ["playerWalksRight"] = false,
             ["toId"] = 68
           }
