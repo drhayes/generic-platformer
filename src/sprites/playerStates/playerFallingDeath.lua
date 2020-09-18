@@ -10,8 +10,10 @@ end
 
 function PlayerFallingDeath:enter()
   local player, eventBus = self.player, self.eventBus
+  local body = player.body
   -- Player can't collide with things anymore.
-  player.body.collisionMask = 0
+  body.collisionMask = 0
+  body.moveVelocity.x = 0
   -- Do the scream.
   if love.math.random() < .1 then
     player.sound:play('scream')
