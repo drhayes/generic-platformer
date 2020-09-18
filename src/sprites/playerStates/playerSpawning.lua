@@ -1,20 +1,26 @@
 local State = require 'core.state'
+local Coroutine = require 'components.coroutine'
 
 local PlayerSpawning = State:extend()
 
 function PlayerSpawning:new(player)
   self.player = player
-  player.animation.current = 'spawning'
+  self.isDone = false
 end
 
 function PlayerSpawning:enter()
+  local player = self.player
+  player.animation.current = 'spawning'
+  player:add(Coroutine(function(co)
+    co:waitForAnimation(player.animation)
+    player.sound:play('pop')
+    self.isDone = true
+  end))
   self.player.body.active = false
 end
 
 function PlayerSpawning:update(dt)
-  local player = self.player
-  local animation = player.animation.animations[player.animation.current]
-  if animation.status == 'paused' then
+  if self.isDone then
     return 'introFalling'
   end
 end
