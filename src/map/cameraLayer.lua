@@ -1,5 +1,4 @@
 local Object = require 'lib.classic'
-local Camera = require 'gobs.camera'
 local CameraRail = require 'core.cameraRail'
 
 local CameraLayer = Object:extend()
@@ -22,16 +21,12 @@ function CameraLayer:new(layerData, offsetX, offsetY)
   end
 end
 
-function CameraLayer:initialize(eventBus, _, _)
-  self.camera = Camera(eventBus)
-
+function CameraLayer:initialize(_, _, _, scene)
+  local camera = scene.camera
   for i = 1, #self.rails do
     local rail = self.rails[i]
-    self.camera:addRail(rail)
+    camera:addRail(rail)
   end
-
-  eventBus:emit('addGob', self.camera)
-  eventBus:emit('switchCamera', self.camera)
 end
 
 return CameraLayer

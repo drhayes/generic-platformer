@@ -18,6 +18,8 @@ local PreloadGame = require 'scenes.preloadGame'
 local InitializeGame = require 'scenes.initializeGame'
 local sceneManager
 
+local Camera = require 'core.camera'
+
 
 
 function love.load()
@@ -50,7 +52,9 @@ function love.load()
   registry:add('spriteMaker', SpriteMaker(eventBus, registry))
   registry:add('physics', PhysicsService(eventBus))
 
-  sceneManager = SceneManager(registry, eventBus)
+  local camera = Camera(eventBus)
+
+  sceneManager = SceneManager(camera)
   sceneManager:add('initializeGame', InitializeGame(registry, eventBus))
   sceneManager:add('preloadGame', PreloadGame(registry, eventBus))
   sceneManager:add('mainMenu', MainMenu(registry, eventBus))

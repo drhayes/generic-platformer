@@ -57,7 +57,7 @@ function Camera:update(dt)
 
   -- Which rail are we closest to?
   local closestRail, dist = nil, math.huge
-  local cx, cy
+  local cx, cy = 0, 0
   for i = 1, #self.rails do
     local rail = self.rails[i]
     local newDist, tx, ty = rail:nearestPointOnRail(targetX, targetY)
@@ -96,6 +96,7 @@ function Camera:update(dt)
 end
 
 function Camera:addRail(rail)
+  log.debug('addRail')
   table.insert(self.rails, rail)
 end
 

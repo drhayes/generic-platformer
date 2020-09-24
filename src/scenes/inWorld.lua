@@ -8,7 +8,6 @@ local lume = require 'lib.lume'
 local CoroutineList = require 'core.coroutineList'
 local Player = require 'sprites.player'
 local Spawner = require 'sprites.spawner'
-local Camera = require 'gobs.camera'
 
 local lg = love.graphics
 
@@ -31,7 +30,6 @@ function InWorld:new(registry, eventBus)
   self:subscribe('setWindowFactor', self.onSetWindowFactor)
   self:subscribe('spawnSpriteByType', self.onSpawnSpriteByType)
   self:subscribe('spawnSpriteBySpec', self.onSpawnSpriteBySpec)
-  self:subscribe('switchCamera', self.onSwitchCamera)
   self:subscribe('startLevelExit', self.onStartLevelExit)
   self:subscribe('playerDead', self.onPlayerDead)
 end
@@ -47,6 +45,7 @@ function InWorld:enter()
 end
 
 function InWorld:update(dt)
+  if self.camera then self.camera:update(dt) end
   self.gobs:update(dt)
   self.coroutines:update(dt)
   local inputService = self.registry:get('input')
@@ -57,6 +56,7 @@ end
 function InWorld:draw()
   if not self.camera then return end
 
+  -- TODO: Should all move to camera directly.
   local camera = self.camera
   lg.setCanvas(self.canvas)
   lg.setScissor(0, 0, config.graphics.width, config.graphics.height)
@@ -112,7 +112,7 @@ function InWorld:switchTilemap(key)
 
   self.currentTilemap = tilemap
   local physicsService = self.registry:get('physics')
-  tilemap:initialize(self.eventBus, self.tileAtlas, physicsService)
+  tilemap:initialize(self.eventBus, self.tileAtlas, physicsService, self)
 end
 
 function InWorld:onSetTileAtlas(tileAtlas)
@@ -139,10 +139,6 @@ function InWorld:onSpawnSpriteBySpec(spec)
   self.eventBus:emit('addGob', sprite)
 end
 
-function InWorld:onSwitchCamera(camera)
-  self.camera = camera
-end
-
 function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalksRight)
   self.coroutines:add(function(co, dt)
     co:wait(.5)
@@ -160,7 +156,7 @@ function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalks
       return
     end
     -- Find the camera and point it at us.
-    local camera = self.gobs:findFirst(Camera)
+    local camera = self.camera
     camera:lookAt(levelExit.x, levelExit.y)
 
     co:waitUntil(self.isFadedIn, self)
@@ -204,7 +200,7 @@ function InWorld:startInitialSpawnScript(levelName)
       return
     end
     -- Find the camera and point it at us.
-    local camera = self.gobs:findFirst(Camera)
+    local camera = self.camera
     camera:lookAt(spawner.x, spawner.y)
 
     co:waitUntil(self.isFadedIn, self)

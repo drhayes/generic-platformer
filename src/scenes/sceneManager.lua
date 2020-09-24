@@ -2,14 +2,17 @@ local Object = require 'lib.classic'
 
 local SceneManager = Object:extend()
 
-function SceneManager:new()
+function SceneManager:new(camera)
+  log.debug(camera)
   self.scenes = {}
   self.current = nil
+  self.camera = camera
 end
 
 function SceneManager:add(name, scene)
   self.scenes[name] = scene
   scene.parent = self
+  scene.camera = self.camera
   return scene
 end
 

@@ -30,6 +30,7 @@ end
 function Tilemap:new(spec)
   self.name = spec.name
   self.spec = spec.tilemapData
+  self.parent = nil
   self.spriteSpecs = {}
 
   local tilesByGid = parseTilesets(self.spec)
@@ -99,11 +100,11 @@ function Tilemap:specSprites(spriteLayer, offsetX, offsetY)
   end
 end
 
-function Tilemap:initialize(eventBus, tileAtlas, physicsService)
+function Tilemap:initialize(eventBus, tileAtlas, physicsService, scene)
   -- Do the layers.
   for i = 1, #self.layers do
     local layer = self.layers[i]
-    layer:initialize(eventBus, tileAtlas, physicsService)
+    layer:initialize(eventBus, tileAtlas, physicsService, scene)
     if layer.update then
       eventBus:emit('addGob', layer)
     end
