@@ -11,12 +11,12 @@ local InputService = require 'services.inputService'
 local SpriteMaker = require 'services.spriteMakerService'
 local PhysicsService = require 'services.physicsService'
 
-local StateSwitcher = require 'gamestates.stateSwitcher'
-local InWorld = require 'gamestates.inWorld'
-local MainMenu = require 'gamestates.mainMenu'
-local PreloadGame = require 'gamestates.preloadGame'
-local InitializeGame = require 'gamestates.initializeGame'
-local stateSwitcher
+local SceneManager = require 'scenes.sceneManager'
+local InWorld = require 'scenes.inWorld'
+local MainMenu = require 'scenes.mainMenu'
+local PreloadGame = require 'scenes.preloadGame'
+local InitializeGame = require 'scenes.initializeGame'
+local sceneManager
 
 
 
@@ -50,22 +50,22 @@ function love.load()
   registry:add('spriteMaker', SpriteMaker(eventBus, registry))
   registry:add('physics', PhysicsService(eventBus))
 
-  stateSwitcher = StateSwitcher(registry, eventBus)
-  stateSwitcher:add('initializeGame', InitializeGame(registry, eventBus))
-  stateSwitcher:add('preloadGame', PreloadGame(registry, eventBus))
-  stateSwitcher:add('mainMenu', MainMenu(registry, eventBus))
-  stateSwitcher:add('inWorld', InWorld(registry, eventBus))
+  sceneManager = SceneManager(registry, eventBus)
+  sceneManager:add('initializeGame', InitializeGame(registry, eventBus))
+  sceneManager:add('preloadGame', PreloadGame(registry, eventBus))
+  sceneManager:add('mainMenu', MainMenu(registry, eventBus))
+  sceneManager:add('inWorld', InWorld(registry, eventBus))
 
   eventBus:emit('setWindowFactor', windowFactor)
 
   -- Let's get this show on the road.
-  stateSwitcher:switch('initializeGame')
+  sceneManager:switch('initializeGame')
 end
 
 local lg = love.graphics
 
 function love.draw()
-  stateSwitcher:draw()
+  sceneManager:draw()
   lg.push()
   lg.origin()
 
@@ -81,7 +81,7 @@ function love.draw()
 end
 
 function love.update(dt)
-  stateSwitcher:update(dt)
+  sceneManager:update(dt)
 end
 
 function love.quit()

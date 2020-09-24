@@ -1,7 +1,7 @@
-local Gamestate = require 'gamestates.gamestate'
+local Scene = require 'scenes.scene'
 local config = require 'gameConfig'
 
-local MainMenu = Gamestate:extend()
+local MainMenu = Scene:extend()
 
 function MainMenu:new(registry, eventBus)
   self.registry = registry

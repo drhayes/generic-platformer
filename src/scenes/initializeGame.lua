@@ -1,6 +1,6 @@
-local Gamestate = require 'gamestates.gamestate'
+local Scene = require 'scenes.scene'
 
-local InitializeGame = Gamestate:extend()
+local InitializeGame = Scene:extend()
 
 function InitializeGame:enter()
   log.debug('--------------')

@@ -1,4 +1,4 @@
-local Gamestate = require 'gamestates.gamestate'
+local Scene = require 'scenes.scene'
 local lily = require 'lib.lily'
 local Atlas = require 'core.atlas'
 local json = require 'lib.json'
@@ -6,7 +6,7 @@ local AnimationService = require 'services.animationService'
 local SoundService = require 'services.soundService'
 local ParticleService = require 'services.particleService'
 
-local PreloadGame = Gamestate:extend()
+local PreloadGame = Scene:extend()
 
 local lf = love.filesystem
 

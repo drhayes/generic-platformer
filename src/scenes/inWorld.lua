@@ -1,4 +1,4 @@
-local Gamestate = require 'gamestates.gamestate'
+local Scene = require 'scenes.scene'
 local Tilemap = require 'map.tilemap'
 local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
@@ -12,7 +12,7 @@ local Camera = require 'gobs.camera'
 
 local lg = love.graphics
 
-local InWorld = Gamestate:extend()
+local InWorld = Scene:extend()
 
 function InWorld:new(registry, eventBus)
   InWorld.super.new(self, registry, eventBus)
