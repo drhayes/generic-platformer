@@ -86,5 +86,5 @@ end
 
 function love.quit()
   lily.quit()
-  log.info('Quitting Surrender. Have a blessed day.')
+  log.info('Quitting Surrender. Have a day.')
 end

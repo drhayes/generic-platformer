@@ -42,7 +42,7 @@ function Camera:lookAt(x, y)
   local view = self.view
   view.center.x, view.center.y = cx, cy
   self.targetX, self.targetY = cx, cy
-  self.offsetX, self.offsetY = math.floor(view:left()), math.floor(view:top())
+  self.offsetX, self.offsetY = lume.round(view:left()), lume.round(view:top())
 end
 
 function Camera:update(dt)
@@ -86,12 +86,13 @@ function Camera:update(dt)
   end
 
   -- Move gently toward whever we're trying to get to.
-  local newX = lume.smooth(oldX, cx, .2)
-  local newY = lume.smooth(oldY, cy, .2)
+  local newX = lume.lerp(oldX, cx, .1)
+  local newY = lume.lerp(oldY, cy, .1)
 
   -- Update our exposed offsets.
   view.center.x, view.center.y = newX, newY
-  self.offsetX, self.offsetY = math.floor(view:left()), math.floor(view:top())
+  -- self.offsetX, self.offsetY = view:left(), view:top()
+  self.offsetX, self.offsetY = lume.round(view:left()), lume.round(view:top())
 end
 
 function Camera:addRail(rail)
