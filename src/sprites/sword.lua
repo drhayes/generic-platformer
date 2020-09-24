@@ -21,6 +21,8 @@ function Sword:__tostring()
   return 'Sword'
 end
 
-function Sword:pickedUp() end
+function Sword:pickedUp()
+  self.removeMe = true
+end
 
 return Sword
