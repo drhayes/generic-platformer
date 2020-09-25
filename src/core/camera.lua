@@ -4,6 +4,7 @@ local config = require 'gameConfig'
 local AABB = require 'core.aabb'
 local lume = require 'lib.lume'
 
+local lg = love.graphics
 local NEW_RAIL_SNAP_DELAY = config.camera.newRailSnapDelay
 
 local Camera = GameObject:extend()
@@ -17,10 +18,16 @@ function Camera:new(eventBus)
   self.view = AABB(self.x, self.y, config.graphics.width, config.graphics.height)
   self.counter = 0
   self.counterFactor = 0
+  self.canvas = lg.newCanvas(config.graphics.width, config.graphics.height)
+  self.fadeTint = 0
+  self.fadeDelta = 1
+  self.windowFactor = 1
 
   self.eventBus:on('gobAdded', self.onGobAdded, self)
   self.eventBus:on('stopCameraTracking', self.onStopCameraTracking, self)
   self.eventBus:on('focusCamera', self.lookAt, self)
+  self.eventBus:on('setWindowFactor', self.onSetWindowFactor, self)
+  self.eventBus:on('startLevelExit', self.onStartLevelExit, self)
 end
 
 function Camera:lookAt(x, y)
@@ -42,10 +49,11 @@ function Camera:lookAt(x, y)
   local view = self.view
   view.center.x, view.center.y = cx, cy
   self.targetX, self.targetY = cx, cy
-  self.offsetX, self.offsetY = lume.round(view:left()), lume.round(view:top())
+  self.offsetX, self.offsetY = view:left(), view:top()
 end
 
 function Camera:update(dt)
+  self.fadeTint = lume.clamp(self.fadeTint + self.fadeDelta * dt, 0, 1)
   local view = self.view
   local player = self.player
   local targetX, targetY = self.targetX, self.targetY
@@ -57,7 +65,7 @@ function Camera:update(dt)
 
   -- Which rail are we closest to?
   local closestRail, dist = nil, math.huge
-  local cx, cy = 0, 0
+  local cx, cy = targetX, targetY
   for i = 1, #self.rails do
     local rail = self.rails[i]
     local newDist, tx, ty = rail:nearestPointOnRail(targetX, targetY)
@@ -91,12 +99,28 @@ function Camera:update(dt)
 
   -- Update our exposed offsets.
   view.center.x, view.center.y = newX, newY
-  -- self.offsetX, self.offsetY = view:left(), view:top()
-  self.offsetX, self.offsetY = lume.round(view:left()), lume.round(view:top())
+  self.offsetX, self.offsetY = view:left(), view:top()
+  -- self.offsetX, self.offsetY = lume.round(view:left()), lume.round(view:top())
+end
+
+function Camera:draw(gobsList)
+  lg.setCanvas(self.canvas)
+  -- lg.setScissor(0, 0, config.graphics.width, config.graphics.height)
+  lg.clear()
+  lg.push()
+  lg.translate(-self.offsetX, -self.offsetY)
+  gobsList:draw()
+  -- lg.setScissor()
+  lg.pop()
+
+  lg.setCanvas()
+  lg.push()
+  lg.setColor(self.fadeTint, self.fadeTint, self.fadeTint, 1)
+  lg.draw(self.canvas, 0, 0, 0, self.windowFactor)
+  lg.pop()
 end
 
 function Camera:addRail(rail)
-  log.debug('addRail')
   table.insert(self.rails, rail)
 end
 
@@ -108,6 +132,15 @@ end
 function Camera:onStopCameraTracking()
   self.targetX, self.targetY = self.player.x, self.player.y
   self.player = nil
+end
+
+function Camera:onSetWindowFactor(windowFactor)
+  self.windowFactor = windowFactor
+end
+
+function Camera:onStartLevelExit()
+  log.debug('level exit')
+  lume.clear(self.rails)
 end
 
 -- local lg = love.graphics
@@ -134,6 +167,23 @@ end
 --   lg.pop()
 --   lg.pop()
 -- end
+
+function Camera:fadeIn()
+  self.fadeDelta = 1
+end
+
+function Camera:fadeOut()
+  self.fadeDelta = -1
+end
+
+function Camera:isFadedIn()
+  return self.fadeTint == 1
+end
+
+function Camera:isFadedOut()
+  return self.fadeTint == 0
+end
+
 
 function Camera:__tostring()
   return 'Camera'

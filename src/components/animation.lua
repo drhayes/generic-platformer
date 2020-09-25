@@ -1,4 +1,5 @@
 local Component = require 'components.component'
+local lume = require 'lib.lume'
 
 local Animation = Component:extend()
 
@@ -55,10 +56,10 @@ function Animation:draw()
   local width, height = animation:getDimensions()
   animation:draw(
     spriteAtlas.image,
-    x, y,
+    lume.round(x), lume.round(y) - .5,
     self.rotation,
     self.scaleX, self.scaleY,
-    math.floor(width / 2), math.floor(height / 2)
+    lume.round(width / 2), lume.round(height / 2)
   )
   lg.pop()
 end

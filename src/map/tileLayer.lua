@@ -2,6 +2,7 @@ local GameObject = require 'gobs.gameObject'
 local Grid = require 'core.grid'
 local bit = bit or bit32 or require 'bit32' -- luacheck: ignore
 local config = require 'gameConfig'
+local lume = require 'lib.lume'
 
 local FLIPPED_HORIZONTAL = 0x80000000
 local FLIPPED_VERTICAL = 0x40000000
@@ -133,11 +134,10 @@ end
 function TileLayer:draw()
   TileLayer.super.draw(self)
   local offsetX, offsetY = self.offsetX, self.offsetY
-  lg.push('all')
-  lg.setBlendMode('alpha')
+  lg.push()
   lg.setColor(1, 1, 1, self.opacity)
-  local dx = offsetX * self.parallax
-  local dy = offsetY * self.parallax
+  local dx = lume.round(offsetX * self.parallax)
+  local dy = lume.round(offsetY * self.parallax) - .5
   lg.draw(self.canvas, dx, dy, 0)
   lg.pop()
 end

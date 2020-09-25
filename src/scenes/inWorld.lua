@@ -3,13 +3,10 @@ local Tilemap = require 'map.tilemap'
 local TilemapSpec = require 'map.tilemapSpec'
 local SpriteSpec = require 'sprites.spriteSpec'
 local GobsList = require 'gobs.gobsList'
-local config = require 'gameConfig'
 local lume = require 'lib.lume'
 local CoroutineList = require 'core.coroutineList'
 local Player = require 'sprites.player'
 local Spawner = require 'sprites.spawner'
-
-local lg = love.graphics
 
 local InWorld = Scene:extend()
 
@@ -27,7 +24,6 @@ function InWorld:new(registry, eventBus)
   self:subscribe('gobAdded', self.onGobAdded)
   self:subscribe('loadedTilemap', self.onLoadedTilemap)
   self:subscribe('setTileAtlas', self.onSetTileAtlas)
-  self:subscribe('setWindowFactor', self.onSetWindowFactor)
   self:subscribe('spawnSpriteByType', self.onSpawnSpriteByType)
   self:subscribe('spawnSpriteBySpec', self.onSpawnSpriteBySpec)
   self:subscribe('startLevelExit', self.onStartLevelExit)
@@ -38,10 +34,6 @@ function InWorld:enter()
   log.debug('-----------')
   log.debug('  InWorld')
   log.debug('-----------')
-
-  self.canvas = lg.newCanvas(config.graphics.width, config.graphics.height)
-  self.fadeTint = 0
-  self.fadeDelta = 1
 end
 
 function InWorld:update(dt)
@@ -50,35 +42,16 @@ function InWorld:update(dt)
   self.coroutines:update(dt)
   local inputService = self.registry:get('input')
   inputService:update(dt)
-  self.fadeTint = lume.clamp(self.fadeTint + self.fadeDelta * dt, 0, 1)
 end
 
 function InWorld:draw()
   if not self.camera then return end
-
-  -- TODO: Should all move to camera directly.
-  local camera = self.camera
-  lg.setCanvas(self.canvas)
-  lg.setScissor(0, 0, config.graphics.width, config.graphics.height)
-  lg.clear()
-  lg.push()
-  lg.translate(-camera.offsetX, -camera.offsetY)
-  self.gobs:draw()
-  lg.setScissor()
-  lg.pop()
-
-  lg.setCanvas()
-  lg.push()
-  lg.setColor(self.fadeTint, self.fadeTint, self.fadeTint, 1)
-  lg.draw(self.canvas, 0, 0, 0, self.windowFactor)
-  lg.pop()
-
+  self.camera:draw(self.gobs)
   if self.switchLevels then
     self.switchLevels = false
     self:switchTilemap(self.switchLevelName)
   end
 end
-
 
 function InWorld:onAddGob(gob)
   self.gobs:add(gob)
@@ -119,10 +92,6 @@ function InWorld:onSetTileAtlas(tileAtlas)
   self.tileAtlas = tileAtlas
 end
 
-function InWorld:onSetWindowFactor(windowFactor)
-  self.windowFactor = windowFactor
-end
-
 function InWorld:onSpawnSpriteByType(spriteType, x, y)
   local spec = SpriteSpec(spriteType)
   spec.x, spec.y = x, y
@@ -141,25 +110,23 @@ end
 
 function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalksRight)
   self.coroutines:add(function(co, dt)
+    local camera = self.camera
     co:wait(.5)
-    self.fadeDelta = -1
-    co:waitUntil(self.isFadedOut, self)
+    camera:fadeOut()
+    co:waitUntil(camera.isFadedOut, camera)
     co:wait(.2)
     self.switchLevels = true
     self.switchLevelName = levelName .. '.lua'
     self.switchToId = toId
-    self.fadeDelta = 1
+    camera:fadeIn()
     coroutine.yield()
     local levelExit = self.gobsById[toId]
     if not levelExit then
       log.error('no level exit with id', toId)
       return
     end
-    -- Find the camera and point it at us.
-    local camera = self.camera
     camera:lookAt(levelExit.x, levelExit.y)
-
-    co:waitUntil(self.isFadedIn, self)
+    co:waitUntil(camera.isFadedIn, camera)
     local spriteMaker = self.registry:get('spriteMaker')
     local playerSpec = SpriteSpec('player')
     playerSpec.x, playerSpec.y = levelExit.x, levelExit.y
@@ -192,18 +159,16 @@ end
 function InWorld:startInitialSpawnScript(levelName)
   self.coroutines:add(function(co, dt)
     self:switchTilemap(levelName)
-    self.fadeDelta = 1
+    local camera = self.camera
+    camera:fadeIn()
     coroutine.yield()
     local spawner = self.gobs:findFirst(Spawner)
     if not spawner then
       log.error('could not find initial spawner')
       return
     end
-    -- Find the camera and point it at us.
-    local camera = self.camera
     camera:lookAt(spawner.x, spawner.y)
-
-    co:waitUntil(self.isFadedIn, self)
+    co:waitUntil(camera.isFadedIn, camera)
     co:wait(.5)
     self.eventBus:emit('spawnPlayer')
   end)
@@ -217,14 +182,6 @@ function InWorld:onPlayerDead(waitDelta)
     self.eventBus:emit('spawnPlayer')
     checkpointService:restore()
   end)
-end
-
-function InWorld:isFadedIn()
-  return self.fadeTint == 1
-end
-
-function InWorld:isFadedOut()
-  return self.fadeTint == 0
 end
 
 return InWorld
