@@ -44,8 +44,7 @@ function PlayerNormal:update(dt)
   end
 
   if not body.isOnGround and body.velocity.y > 0 then
-    -- log.debug(body.velocity.y, body.position.y - body.oldPosition.y)
-    -- return 'falling'
+    return 'falling'
   end
 
   local useObject = player.useObject

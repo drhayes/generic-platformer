@@ -133,16 +133,9 @@ function PhysicsBody:update(dt)
   self.aabb.center.y = self.position.y + self.aabbOffset.y
 
   -- Did we move at all? If not, and we were already on the ground, we still are.
-  -- if self.position.y - self.oldPosition.y == 0 and self.wasOnGround and not self.isOnGround and self.velocity.y > 0 then
-    -- log.debug(self.velocity.y)
-    -- self.isOnGround = true
-  -- end
-
-  if self.isOnGround then
-    self.fallingVelocity.y = 0
+  if self.position.y - self.oldPosition.y == 0 and self.wasOnGround and not self.isOnGround then
+    self.isOnGround = true
   end
-
-  -- if self.parent.isPlayer then log.debug(self.position.x - self.oldPosition.x, dt) end
 
   self.parent.x, self.parent.y = self.position.x, self.position.y
 end
