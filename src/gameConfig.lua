@@ -33,7 +33,7 @@ return {
   },
 
   camera = {
-    newRailSnapDelay = .3,
+    newRailSnapDelay = .1,
   },
 
   input = {
