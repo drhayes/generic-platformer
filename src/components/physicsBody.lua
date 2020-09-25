@@ -39,8 +39,8 @@ function PhysicsBody:new(checkCollisionsCallback)
   self.wasPushingRightward = false
   self.isPushingRightward = false
 
-  self.wasOnGround = true
-  self.isOnGround = true
+  self.wasOnGround = false
+  self.isOnGround = false
 
   self.wasOnCeiling = false
   self.isOnCeiling = false
