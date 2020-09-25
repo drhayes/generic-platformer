@@ -11,7 +11,7 @@ return {
 
   map = {
     tileSize = 16,
-    start = 'entrance.lua',
+    start = 'boss.lua',
   },
 
   graphics = {

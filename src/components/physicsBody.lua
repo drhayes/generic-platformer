@@ -137,6 +137,7 @@ function PhysicsBody:update(dt)
     self.isOnGround = true
   end
 
+  self.position.x, self.position.y = lume.round(self.position.x), lume.round(self.position.y)
   self.parent.x, self.parent.y = self.position.x, self.position.y
 end
 
