@@ -47,10 +47,6 @@ end
 function InWorld:draw()
   if not self.camera then return end
   self.camera:draw(self.gobs)
-  if self.switchLevels then
-    self.switchLevels = false
-    self:switchTilemap(self.switchLevelName)
-  end
 end
 
 function InWorld:onAddGob(gob)
@@ -108,7 +104,7 @@ function InWorld:onSpawnSpriteBySpec(spec)
   self.eventBus:emit('addGob', sprite)
 end
 
-function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalksRight)
+function InWorld:onStartLevelExit(levelName, toId, playerOffsetX, playerOffsetY, playerWalksRight)
   self.coroutines:add(function(co, dt)
     local camera = self.camera
     co:wait(.5)
@@ -116,11 +112,8 @@ function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalks
     co:waitUntil(camera.isFadedOut, camera)
     co:wait(.2)
     camera:clearRails()
-    self.switchLevels = true
-    self.switchLevelName = levelName .. '.lua'
-    self.switchToId = toId
+    self:switchTilemap(levelName .. '.lua')
     camera:fadeIn()
-    coroutine.yield()
     local levelExit = self.gobsById[toId]
     if not levelExit then
       log.error('no level exit with id', toId)
@@ -128,19 +121,6 @@ function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalks
     end
     camera:lookAt(levelExit.x, levelExit.y)
     co:waitUntil(camera.isFadedIn, camera)
-    local spriteMaker = self.registry:get('spriteMaker')
-    local playerSpec = SpriteSpec('player')
-    playerSpec.x, playerSpec.y = levelExit.x, levelExit.y
-    playerSpec.x = playerSpec.x + offsetX
-    playerSpec.y = playerSpec.y + offsetY
-    local player = spriteMaker:create(playerSpec)
-    player.levelExitCollider.enabled = false
-    player.body.moveVelocity.x = playerWalksRight and 1 or -1
-    player.stateMachine:switch('exitingLevelDoor')
-    self.eventBus:emit('addGob', player)
-    co:waitUntil(function() return player.body.moveVelocity.x == 0 end)
-    player.stateMachine:switch('normal')
-    player.levelExitCollider.enabled = true
     -- Find the spawner for this level and move it close to the exit we used.
     local spawner = self.gobs:findFirst(Spawner)
     if not spawner then
@@ -154,6 +134,19 @@ function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalks
       spawner.x = spawner.x - 32
     end
     spawner.y = levelExit.y - 48
+    local spriteMaker = self.registry:get('spriteMaker')
+    local playerSpec = SpriteSpec('player')
+    playerSpec.x, playerSpec.y = levelExit.x, levelExit.y
+    playerSpec.x = playerSpec.x + playerOffsetX
+    playerSpec.y = playerSpec.y + playerOffsetY
+    local player = spriteMaker:create(playerSpec)
+    player.levelExitCollider.enabled = false
+    player.body.moveVelocity.x = playerWalksRight and 1 or -1
+    player.stateMachine:switch('exitingLevelDoor')
+    self.eventBus:emit('addGob', player)
+    co:waitUntil(function() return player.body.moveVelocity.x == 0 end)
+    player.stateMachine:switch('normal')
+    player.levelExitCollider.enabled = true
   end)
 end
 

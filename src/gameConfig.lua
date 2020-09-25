@@ -34,6 +34,7 @@ return {
 
   camera = {
     newRailSnapDelay = .1,
+    lerpFactor = 0.05,
   },
 
   input = {

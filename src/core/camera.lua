@@ -6,6 +6,7 @@ local lume = require 'lib.lume'
 
 local lg = love.graphics
 local NEW_RAIL_SNAP_DELAY = config.camera.newRailSnapDelay
+local CAMERA_LERP_FACTOR = config.camera.lerpFactor
 
 local Camera = GameObject:extend()
 
@@ -24,6 +25,8 @@ function Camera:new(eventBus)
   self.windowFactor = 1
 
   self.eventBus:on('gobAdded', self.onGobAdded, self)
+  self.eventBus:on('gobRemoved', self.onGobRemoved, self)
+  self.eventBus:on('gobsCleared', self.onGobsCleared, self)
   self.eventBus:on('stopCameraTracking', self.onStopCameraTracking, self)
   self.eventBus:on('focusCamera', self.lookAt, self)
   self.eventBus:on('setWindowFactor', self.onSetWindowFactor, self)
@@ -47,7 +50,7 @@ function Camera:lookAt(x, y)
 
   local view = self.view
   view.center.x, view.center.y = cx, cy
-  self.targetX, self.targetY = cx, cy
+  self.targetX, self.targetY = x, y
   self.offsetX, self.offsetY = view:left(), view:top()
 end
 
@@ -55,10 +58,11 @@ function Camera:update(dt)
   self.fadeTint = lume.clamp(self.fadeTint + self.fadeDelta * dt, 0, 1)
   local view = self.view
   local player = self.player
-  local targetX, targetY = self.targetX, self.targetY
   if player then
-    targetX, targetY = self.player.x, self.player.y
+    self.targetX = player.x
+    self.targetY = player.y
   end
+  local targetX, targetY = self.targetX, self.targetY
   local oldRail = self.closestRail
   local oldX, oldY = view.center.x, view.center.y
 
@@ -93,8 +97,8 @@ function Camera:update(dt)
   end
 
   -- Move gently toward whever we're trying to get to.
-  local newX = lume.lerp(oldX, cx, .1)
-  local newY = lume.lerp(oldY, cy, .1)
+  local newX = lume.lerp(oldX, cx, CAMERA_LERP_FACTOR)
+  local newY = lume.lerp(oldY, cy, CAMERA_LERP_FACTOR)
 
   -- Update our exposed offsets.
   view.center.x, view.center.y = newX, newY
@@ -108,6 +112,23 @@ function Camera:draw(gobsList)
   lg.push()
   lg.translate(-lume.round(self.offsetX), -lume.round(self.offsetY))
   gobsList:draw()
+  -- -- Draw rails.
+  -- for i = 1, #self.rails do
+  --   local rail = self.rails[i]
+  --   if self.closestRail == rail then
+  --     lg.setColor(0, 1, 0, .8)
+  --   else
+  --     lg.setColor(0, 1, 0, .2)
+  --   end
+  --   lg.line(rail.x0, rail.y0, rail.x1, rail.y1)
+  -- end
+  -- -- Draw center.
+  -- lg.setColor(0, 1, 0, 1)
+  -- lg.rectangle('line', self.view.center.x - 2, self.view.center.y - 2, 4, 4)
+  -- -- Draw target.
+  -- lg.setColor(0, 0, 1, 1)
+  -- lg.rectangle('line', self.targetX - 2, self.targetY - 2, 4, 4)
+
   lg.setScissor()
   lg.pop()
 
@@ -116,6 +137,11 @@ function Camera:draw(gobsList)
   lg.setColor(self.fadeTint, self.fadeTint, self.fadeTint, 1)
   lg.draw(self.canvas, 0, 0, 0, self.windowFactor)
   lg.pop()
+
+  -- lg.setColor(0, 1, 0, 1)
+  -- lg.print(self.offsetX .. ' ' .. self.offsetY, 0, 0)
+  -- lg.setColor(0, 0, 1, 1)
+  -- lg.print(self.targetX .. ' ' .. self.targetY, 400, 0)
 end
 
 function Camera:addRail(rail)
@@ -125,6 +151,16 @@ end
 function Camera:onGobAdded(gob)
   if not gob:is(Player) then return end
   self.player = gob
+end
+
+function Camera:onGobRemoved(gob)
+  if gob == self.player then
+    self.player = nil
+  end
+end
+
+function Camera:onGobsCleared()
+  self.player = nil
 end
 
 function Camera:onStopCameraTracking()
