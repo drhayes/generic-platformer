@@ -5,6 +5,7 @@ local AABB = require 'core.aabb'
 local lume = require 'lib.lume'
 
 local lg = love.graphics
+local SCREEN_WIDTH, SCREEN_HEIGHT = config.graphics.width, config.graphics.height
 local NEW_RAIL_SNAP_DELAY = config.camera.newRailSnapDelay
 local CAMERA_LERP_FACTOR = config.camera.lerpFactor
 
@@ -16,13 +17,15 @@ function Camera:new(eventBus)
   self.rails = {}
   self.offsetX, self.offsetY, self.scale = 0, 0, 1
   self.targetX, self.targetY = 0, 0
-  self.view = AABB(self.x, self.y, config.graphics.width, config.graphics.height)
+  self.view = AABB(self.x, self.y, SCREEN_WIDTH, SCREEN_HEIGHT)
   self.counter = 0
   self.counterFactor = 0
-  self.canvas = lg.newCanvas(config.graphics.width, config.graphics.height)
+  self.canvas = lg.newCanvas(SCREEN_WIDTH, SCREEN_HEIGHT)
   self.fadeTint = 0
   self.fadeDelta = 1
   self.windowFactor = 1
+
+  self.screenWidth, self.screenHeight = lg.getDimensions()
 
   self.eventBus:on('gobAdded', self.onGobAdded, self)
   self.eventBus:on('gobRemoved', self.onGobRemoved, self)
@@ -107,11 +110,12 @@ end
 
 function Camera:draw(gobsList)
   lg.setCanvas(self.canvas)
-  lg.setScissor(0, 0, config.graphics.width, config.graphics.height)
-  lg.clear()
+  lg.setScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
   lg.push()
+  lg.clear()
   lg.translate(-lume.round(self.offsetX), -lume.round(self.offsetY))
   gobsList:draw()
+
   -- -- Draw rails.
   -- for i = 1, #self.rails do
   --   local rail = self.rails[i]
@@ -128,11 +132,10 @@ function Camera:draw(gobsList)
   -- -- Draw target.
   -- lg.setColor(0, 0, 1, 1)
   -- lg.rectangle('line', self.targetX - 2, self.targetY - 2, 4, 4)
-
-  lg.setScissor()
   lg.pop()
-
+  lg.setScissor()
   lg.setCanvas()
+
   lg.push()
   lg.setColor(self.fadeTint, self.fadeTint, self.fadeTint, 1)
   lg.draw(self.canvas, 0, 0, 0, self.windowFactor)
