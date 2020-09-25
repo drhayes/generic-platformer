@@ -115,6 +115,7 @@ function InWorld:onStartLevelExit(levelName, toId, offsetX, offsetY, playerWalks
     camera:fadeOut()
     co:waitUntil(camera.isFadedOut, camera)
     co:wait(.2)
+    camera:clearRails()
     self.switchLevels = true
     self.switchLevelName = levelName .. '.lua'
     self.switchToId = toId

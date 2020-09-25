@@ -2,8 +2,7 @@ local Component = require 'components.component'
 local Vector = require 'lib.brinevector'
 local AABB = require 'core.aabb'
 local bit = bit or bit32 or require 'bit32'
-
--- local SUPERTINY = 1e-5
+local lume = require 'lib.lume'
 
 local PhysicsBody = Component:extend()
 
@@ -16,6 +15,10 @@ function PhysicsBody:new(checkCollisionsCallback)
   -- This is the position of the entity, literally its x,y.
   self.oldPosition = Vector()
   self.position = Vector()
+
+  -- Used in whole-pixel movement code.
+  self.remainderX = 0
+  self.remainderY = 0
 
   self.oldVelocity = Vector()
   self.velocity = Vector()
@@ -38,9 +41,6 @@ function PhysicsBody:new(checkCollisionsCallback)
 
   self.wasOnGround = true
   self.isOnGround = true
-
-  self.isOnOneWayUpPlatform = false
-  self.wasOnOneWayUpPlatform = false
 
   self.wasOnCeiling = false
   self.isOnCeiling = false
@@ -95,8 +95,6 @@ function PhysicsBody:update(dt)
   self.wasPushingRightward = self.isPushingRightward
   self.wasOnGround = self.isOnGround
   self.wasOnCeiling = self.isOnCeiling
-  self.wasOnOneWayUpPlatform = self.isOnOneWayUpPlatform
-  self.isOnOneWayUpPlatform = false
 
   self.isOnGround = false
   self.isOnCeiling = false
@@ -134,15 +132,60 @@ function PhysicsBody:update(dt)
   self.aabb.center.x = self.position.x + self.aabbOffset.x
   self.aabb.center.y = self.position.y + self.aabbOffset.y
 
+  -- Did we move at all? If not, and we were already on the ground, we still are.
+  -- if self.position.y - self.oldPosition.y == 0 and self.wasOnGround and not self.isOnGround and self.velocity.y > 0 then
+    -- log.debug(self.velocity.y)
+    -- self.isOnGround = true
+  -- end
+
   if self.isOnGround then
     self.fallingVelocity.y = 0
   end
+
+  -- if self.parent.isPlayer then log.debug(self.position.x - self.oldPosition.x, dt) end
 
   self.parent.x, self.parent.y = self.position.x, self.position.y
 end
 
 function PhysicsBody:moveX(amount)
-  -- if math.abs(amount) < SUPERTINY then return end
+  self.remainderX = self.remainderX + amount
+  local move = lume.round(amount)
+  if move == 0 then return end
+
+  self.remainderX = self.remainderX - move
+  local sign = move < 0 and -1 or 1
+  while move ~= 0 do
+    if not self:checkCollisions(sign, 0) then
+      self.position.x = self.position.x + sign
+      self.aabb.center.x = self.aabb.center.x + sign
+    else
+      -- Done moving!
+      return
+    end
+    move = move - sign
+  end
+end
+
+function PhysicsBody:moveY(amount)
+  self.remainderY = self.remainderY + amount
+  local move = lume.round(amount)
+  if move == 0 then return end
+
+  self.remainderY = self.remainderY - move
+  local sign = move < 0 and -1 or 1
+  while move ~= 0 do
+    if not self:checkCollisions(0, sign) then
+      self.position.y = self.position.y + sign
+      self.aabb.center.y = self.aabb.center.y + sign
+    else
+      -- Done moving!
+      return
+    end
+    move = move - sign
+  end
+end
+--[[
+function PhysicsBody:moveX(amount)
   local sign = amount < 0 and -1 or 1
   while math.abs(amount) > 0 do
     local step = math.min(1, math.abs(amount)) * sign
@@ -172,7 +215,7 @@ function PhysicsBody:moveY(amount)
     amount = amount - step
   end
 end
-
+--]]
 function PhysicsBody:collisionResolution() end
 
 local lg = love.graphics

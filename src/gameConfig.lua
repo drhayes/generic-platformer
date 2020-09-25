@@ -11,7 +11,7 @@ return {
 
   map = {
     tileSize = 16,
-    start = 'sword.lua',
+    start = 'entrance.lua',
   },
 
   graphics = {

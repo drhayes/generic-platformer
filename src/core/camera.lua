@@ -27,7 +27,6 @@ function Camera:new(eventBus)
   self.eventBus:on('stopCameraTracking', self.onStopCameraTracking, self)
   self.eventBus:on('focusCamera', self.lookAt, self)
   self.eventBus:on('setWindowFactor', self.onSetWindowFactor, self)
-  self.eventBus:on('startLevelExit', self.onStartLevelExit, self)
 end
 
 function Camera:lookAt(x, y)
@@ -100,7 +99,6 @@ function Camera:update(dt)
   -- Update our exposed offsets.
   view.center.x, view.center.y = newX, newY
   self.offsetX, self.offsetY = view:left(), view:top()
-  -- self.offsetX, self.offsetY = lume.round(view:left()), lume.round(view:top())
 end
 
 function Camera:draw(gobsList)
@@ -138,9 +136,9 @@ function Camera:onSetWindowFactor(windowFactor)
   self.windowFactor = windowFactor
 end
 
-function Camera:onStartLevelExit()
-  log.debug('level exit')
+function Camera:clearRails()
   lume.clear(self.rails)
+  self.currentRail = nil
 end
 
 -- local lg = love.graphics
