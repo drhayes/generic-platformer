@@ -59,7 +59,7 @@ function Animation:draw()
     lume.round(x), lume.round(y),
     self.rotation,
     self.scaleX, self.scaleY,
-    lume.round(width / 2), lume.round(height / 2)
+    width / 2, height / 2
   )
   lg.pop()
 end

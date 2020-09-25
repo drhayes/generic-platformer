@@ -137,7 +137,6 @@ function PhysicsBody:update(dt)
     self.isOnGround = true
   end
 
-  self.position.x, self.position.y = lume.round(self.position.x), lume.round(self.position.y)
   self.parent.x, self.parent.y = self.position.x, self.position.y
 end
 
@@ -178,38 +177,7 @@ function PhysicsBody:moveY(amount)
     move = move - sign
   end
 end
---[[
-function PhysicsBody:moveX(amount)
-  local sign = amount < 0 and -1 or 1
-  while math.abs(amount) > 0 do
-    local step = math.min(1, math.abs(amount)) * sign
-    if not self:checkCollisions(step, 0) then
-      self.position.x = self.position.x + step
-      self.aabb.center.x = self.aabb.center.x + step
-    else
-      -- Done moving!
-      return
-    end
-    amount = amount - step
-  end
-end
 
-function PhysicsBody:moveY(amount)
-  -- if math.abs(amount) < SUPERTINY then return end
-  local sign = amount < 0 and -1 or 1
-  while math.abs(amount) > 0 do
-    local step = math.min(1, math.abs(amount)) * sign
-    if not self:checkCollisions(0, step) then
-      self.position.y = self.position.y + step
-      self.aabb.center.y = self.aabb.center.y + step
-    else
-      -- Done moving!
-      return
-    end
-    amount = amount - step
-  end
-end
---]]
 function PhysicsBody:collisionResolution() end
 
 local lg = love.graphics
