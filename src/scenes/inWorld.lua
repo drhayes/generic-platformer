@@ -164,7 +164,7 @@ function InWorld:startInitialSpawnScript(levelName)
     camera:lookAt(spawner.x, spawner.y)
     co:waitUntil(camera.isFadedIn, camera)
     co:wait(.5)
-    self.eventBus:emit('spawnPlayer')
+    -- self.eventBus:emit('spawnPlayer')
   end)
 end
 

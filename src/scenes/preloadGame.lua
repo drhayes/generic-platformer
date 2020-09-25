@@ -5,6 +5,7 @@ local json = require 'lib.json'
 local AnimationService = require 'services.animationService'
 local SoundService = require 'services.soundService'
 local ParticleService = require 'services.particleService'
+local font = require 'ui.font'
 
 local PreloadGame = Scene:extend()
 
@@ -76,10 +77,8 @@ function PreloadGame:leave()
     self.eventBus:emit('loadedTilemap', name, map)
   end
 
-  -- The fonts.
-  for name, font in pairs(self.fonts) do
-    love.graphics.setFont(font)
-  end
+  -- Initialize the one and only font.
+  font:init(self.fonts['m5x7.ttf'])
 
   local registry = self.registry
   -- Gather the animation files and create an animation service.
@@ -101,6 +100,7 @@ function PreloadGame:leave()
     soundService:add(name:gsub('.wav', ''), sound)
   end
   registry:add('sound', soundService)
+
 end
 
 function PreloadGame:update(dt)

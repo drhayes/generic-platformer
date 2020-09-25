@@ -3,7 +3,6 @@ local Object = require 'lib.classic'
 local SceneManager = Object:extend()
 
 function SceneManager:new(camera)
-  log.debug(camera)
   self.scenes = {}
   self.current = nil
   self.camera = camera
