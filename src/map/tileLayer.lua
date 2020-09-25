@@ -137,7 +137,7 @@ function TileLayer:draw()
   lg.push()
   lg.setColor(1, 1, 1, self.opacity)
   local dx = lume.round(offsetX * self.parallax)
-  local dy = lume.round(offsetY * self.parallax) - .5
+  local dy = lume.round(offsetY * self.parallax)
   lg.draw(self.canvas, dx, dy, 0)
   lg.pop()
 end

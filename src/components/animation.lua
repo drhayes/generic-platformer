@@ -56,7 +56,7 @@ function Animation:draw()
   local width, height = animation:getDimensions()
   animation:draw(
     spriteAtlas.image,
-    lume.round(x), lume.round(y) - .5,
+    lume.round(x), lume.round(y),
     self.rotation,
     self.scaleX, self.scaleY,
     lume.round(width / 2), lume.round(height / 2)

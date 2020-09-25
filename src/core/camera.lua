@@ -103,12 +103,12 @@ end
 
 function Camera:draw(gobsList)
   lg.setCanvas(self.canvas)
-  -- lg.setScissor(0, 0, config.graphics.width, config.graphics.height)
+  lg.setScissor(0, 0, config.graphics.width, config.graphics.height)
   lg.clear()
   lg.push()
-  lg.translate(-self.offsetX, -self.offsetY)
+  lg.translate(-lume.round(self.offsetX), -lume.round(self.offsetY))
   gobsList:draw()
-  -- lg.setScissor()
+  lg.setScissor()
   lg.pop()
 
   lg.setCanvas()
