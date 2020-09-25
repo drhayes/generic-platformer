@@ -7,6 +7,7 @@ local lily = require 'lib.lily'
 
 local Registry = require 'services.registry'
 local CheckpointService = require 'services.checkpointService'
+local FontService = require 'services.fontService'
 local InputService = require 'services.inputService'
 local SpriteMaker = require 'services.spriteMakerService'
 local PhysicsService = require 'services.physicsService'
@@ -48,6 +49,7 @@ function love.load()
 
   local registry = Registry()
   registry:add('checkpoint', CheckpointService(eventBus))
+  registry:add('fonts', FontService(eventBus))
   registry:add('input', InputService())
   registry:add('spriteMaker', SpriteMaker(eventBus, registry))
   registry:add('physics', PhysicsService(eventBus))
