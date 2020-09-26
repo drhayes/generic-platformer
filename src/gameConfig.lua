@@ -46,6 +46,7 @@ return {
         down = { 'key:down', 'key:s', 'axis:lefty+', 'button:dpdown' },
         jump = { 'key:space', 'button:a' },
         action = { 'key:z', 'button:x' },
+        cancel = { 'key:x', 'button:b' },
       },
       pairs = {
         move = { 'left', 'right', 'up', 'down' }

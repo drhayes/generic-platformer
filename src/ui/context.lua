@@ -52,28 +52,6 @@ function Context:set(control)
   end
 end
 
-function Context:processInput(input)
-  if input:pressed('up') then
-    self:userInput('up')
-  elseif input:pressed('down') then
-    self:userInput('down')
-  elseif input:pressed('left') then
-    self:userInput('left')
-  elseif input:pressed('right') then
-    self:userInput('right')
-  elseif input:pressed('trigger') then
-    self:userInput('trigger')
-  elseif input:pressed('cancel') then
-    self:userInput('cancel')
-  elseif input:pressed('cycle-left') then
-    self:userInput('cycle-left')
-  elseif input:pressed('cycle-right') then
-    self:userInput('cycle-right')
-  elseif input:pressed('cancel') then
-    self:userInput('cancel')
-  end
-end
-
 function Context:userInput(input)
   if not self.focused then return end
   local handled, current = false, self.focused
