@@ -5,17 +5,12 @@ local json = require 'lib.json'
 local AnimationService = require 'services.animationService'
 local SoundService = require 'services.soundService'
 local ParticleService = require 'services.particleService'
-local font = require 'ui.font'
 
 local PreloadGame = Scene:extend()
 
 local lf = love.filesystem
 
 local identity = function(x) return x end
-
-local function doNewFont(filename)
-  return lily.newFont(filename, 32)
-end
 
 local function doNewSound(sound)
   return lily.newSource(sound, 'static')
@@ -26,7 +21,7 @@ function PreloadGame:new(registry, eventBus)
   self.images = {}
   self.jsons = {}
   self.tilemaps = {}
-  self.fonts = {}
+  self.fontData = {}
   self.sounds = {}
 end
 
@@ -40,7 +35,7 @@ function PreloadGame:enter()
   self:slurpDirectory('media/images', self.images, lily.newImage)
   self:slurpDirectory('media/json', self.jsons, lily.read, json.parse)
   self:slurpDirectory('media/tilemaps', self.tilemaps, lily.read, loadstring)
-  self:slurpDirectory('media/fonts', self.fonts, doNewFont)
+  self:slurpDirectory('media/fonts', self.fontData, lily.read)
   self:slurpDirectory('media/sfx', self.sounds, doNewSound)
 end
 
@@ -77,9 +72,6 @@ function PreloadGame:leave()
     self.eventBus:emit('loadedTilemap', name, map)
   end
 
-  -- Initialize the one and only font.
-  font:init(self.fonts['m5x7.ttf'])
-
   local registry = self.registry
   -- Gather the animation files and create an animation service.
   local animationJsons = {}
@@ -100,6 +92,15 @@ function PreloadGame:leave()
     soundService:add(name:gsub('.wav', ''), sound)
   end
   registry:add('sound', soundService)
+
+  local allFonts = registry:get('fonts')
+  for name, stringData in pairs(self.fontData) do
+    local data = love.filesystem.newFileData(stringData, name)
+    self.fontData[name] = data
+  end
+  allFonts:add('text', love.graphics.newFont(self.fontData['m5x7.ttf'], 32))
+  allFonts:add('title', love.graphics.newFont(self.fontData['m5x7.ttf'], 64))
+  allFonts:setDefault('text')
 
 end
 

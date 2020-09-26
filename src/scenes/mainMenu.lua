@@ -5,9 +5,11 @@ local CoroutineList = require 'core.coroutineList'
 local Context = require 'ui.context'
 local Frame = require 'ui.frame'
 local bagLayout = require 'ui.bagLayout'
+local fillLayout = require 'ui.fillLayout'
 local Label = require 'ui.label'
 
 local lg = love.graphics
+local UI_SCALE = 2
 
 local MainMenu = Scene:extend()
 
@@ -24,14 +26,27 @@ function MainMenu:enter()
   log.debug('-------------')
 
   -- The UI.
-  local width, height = lg.getDimensions()
-  self.context = Context(2)
-  local rootFrame = self.context.rootFrame
-  local menuFrame = rootFrame:add(Frame(0, 0, 200, height))
+  local fonts = self.registry:get('fonts')
+  local titleFont = fonts:get('title')
+  local textFont = fonts:get('text')
 
-  local logoFrame = menuFrame:add(Frame(0, 0, 200, 120))
-  logoFrame.layout = bagLayout(10, 10, 'vertical', 'middle')
-  logoFrame:add(Label('Surrender'))
+  local width, height = lg.getDimensions()
+  self.context = Context(UI_SCALE)
+  local rootFrame = self.context.rootFrame
+  log.debug(height / 2)
+  local menuFrame = rootFrame:add(Frame(0, 0, width / UI_SCALE / 3, height / UI_SCALE))
+  menuFrame.layout = bagLayout(2, 2, 'vertical', 'center', true)
+
+  local logoFrame = menuFrame:add(Frame(0, 0, 100, 100))
+  logoFrame.layout = fillLayout()
+  logoFrame:add(Label(titleFont, 'Surrender', 'center'))
+
+  local choicesFrame = menuFrame:add(Frame(0, 0, width, 300))
+  choicesFrame.layout = bagLayout(10, 2, 'vertical', 'center', true)
+  choicesFrame:add(Label(textFont, 'Hey'))
+  choicesFrame:add(Label(textFont, 'Hey'))
+  choicesFrame:add(Label(textFont, 'Hey'))
+  choicesFrame:add(Label(textFont, 'Hey'))
 
   -- Kick things off
   self.inWorld = self.parent:get('inWorld')

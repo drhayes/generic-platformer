@@ -14,6 +14,21 @@ function FontService:add(name, font)
   end
 end
 
+function FontService:get(name)
+  if not name then return self.defaultFont end
+  local font = self.fonts[name]
+  if not font then
+    log.warn('unknown font', name)
+    return self.defaultFont
+  end
+  return font
+end
+
+function FontService:alias(oneName, anotherName)
+  local font = self:get(oneName)
+  self.fonts[anotherName] = font
+end
+
 function FontService:setDefault(name)
   local defaultFont = self.fonts[name]
   if not defaultFont then

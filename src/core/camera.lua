@@ -3,6 +3,7 @@ local Player = require 'sprites.player'
 local config = require 'gameConfig'
 local AABB = require 'core.aabb'
 local lume = require 'lib.lume'
+local FontService = require 'services.fontService'
 
 local lg = love.graphics
 local SCREEN_WIDTH, SCREEN_HEIGHT = config.graphics.width, config.graphics.height
@@ -139,6 +140,20 @@ function Camera:draw(gobsList)
   lg.push()
   lg.setColor(self.fadeTint, self.fadeTint, self.fadeTint, 1)
   lg.draw(self.canvas, 0, 0, 0, self.windowFactor)
+  lg.pop()
+
+  lg.push()
+  lg.origin()
+
+  lg.setColor(0, 0, 0, 0.4)
+  local w, h = lg.getWidth(), lg.getHeight()
+  lg.rectangle('fill', 0, h - 34, w, h)
+
+  lg.setColor(1, 1, 1)
+  lg.setFont(FontService.defaultFont)
+  lg.print('FPS: ' .. love.timer.getFPS(), 0, h - 32)
+  lg.print('Memory: ' .. math.floor(collectgarbage('count')) .. ' kb', 96, h - 32)
+
   lg.pop()
 
   -- lg.setColor(0, 1, 0, 1)
