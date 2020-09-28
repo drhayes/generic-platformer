@@ -5,7 +5,6 @@ local CoroutineList = require 'core.coroutineList'
 local Context = require 'ui.context'
 local Frame = require 'ui.frame'
 local bagLayout = require 'ui.bagLayout'
-local fillLayout = require 'ui.fillLayout'
 local Label = require 'ui.label'
 local Button = require 'ui.button'
 

@@ -1,7 +1,7 @@
 local Component = require 'components.component'
 local Vector = require 'lib.brinevector'
 local AABB = require 'core.aabb'
-local bit = bit or bit32 or require 'bit32'
+local bit = bit or require 'bit32'
 local lume = require 'lib.lume'
 
 local PhysicsBody = Component:extend()

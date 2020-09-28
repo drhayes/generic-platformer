@@ -1,6 +1,6 @@
 local GameObject = require 'gobs.gameObject'
 local Grid = require 'core.grid'
-local bit = bit or bit32 or require 'bit32' -- luacheck: ignore
+local bit = bit or require 'bit32' -- luacheck: ignore
 local config = require 'gameConfig'
 local lume = require 'lib.lume'
 
