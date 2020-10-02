@@ -129,7 +129,7 @@ function MainMenu:onCredits()
 end
 
 function MainMenu:onQuit()
-  log.debug('quit')
+  love.event.quit()
 end
 
 return MainMenu
