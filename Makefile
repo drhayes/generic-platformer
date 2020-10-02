@@ -1,3 +1,6 @@
+# Names and things.
+LOVEFILE := surrender.love
+
 # All the dang dirs.
 ASSETS_DIR := assets
 IMAGE_ASSETS_DIR := $(ASSETS_DIR)/images
@@ -12,6 +15,7 @@ SRC_DIR := src
 TMP_DIR := tmp
 SPRITES_TMP := $(TMP_DIR)/sprites
 TILES_TMP := $(TMP_DIR)/tiles
+BUILD_DIR := build
 
 
 # All the dang assets.
@@ -65,6 +69,11 @@ clean:
 test:
 	@busted --lua=`which luajit` test/
 
+.PHONY: dist
+dist: $(BUILD_DIR)
+	rm -f $(BUILD_DIR)/$(LOVEFILE)
+	cd $(SRC_DIR) && zip -9 -r "../$(BUILD_DIR)/${LOVEFILE}" ./*
+
 ###############
 # Directories #
 ###############
@@ -88,6 +97,9 @@ $(TILES_TMP):
 	mkdir -p $@
 
 $(SPRITES_TMP):
+	mkdir -p $@
+
+$(BUILD_DIR):
 	mkdir -p $@
 
 
