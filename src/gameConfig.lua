@@ -1,4 +1,7 @@
 return {
+  title = 'Platformer',
+  identity = 'generic-platformer',
+
   player = {
     runVelocity = 65,
     airVelocity = 50,

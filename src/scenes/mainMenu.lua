@@ -51,9 +51,9 @@ function MainMenu:enter()
   }
 
   local logoFrame = menuFrame:add(Frame(0, 0, 100, 100))
-  local logoShadow = logoFrame:add(Label(titleFont, 'Surrender', 'center', 'middle', 0, 2, menuFrame.w))
+  local logoShadow = logoFrame:add(Label(titleFont, config.title, 'center', 'middle', 0, 2, menuFrame.w))
   logoShadow:updateColor(evilRed)
-  logoFrame:add(Label(titleFont, 'Surrender', 'center', 'middle', 0, 0, menuFrame.w))
+  logoFrame:add(Label(titleFont, config.title, 'center', 'middle', 0, 0, menuFrame.w))
 
   local choicesFrame = menuFrame:add(Frame(0, 0, width, 300))
   choicesFrame.layout = bagLayout(10, 2, 'vertical', 'center', true)
@@ -64,7 +64,6 @@ function MainMenu:enter()
     button.fill:initFocusColor(lessEvilRed, evilRed)
     button:on('trigger', sound.play, sound, 'success', 1)
     button:on('trigger', handler, self)
-    button:on('focus', sound.play, sound, 'click', 1)
     if neighbor then
       button:setNeighbor('up', neighbor, true)
     end
@@ -91,13 +90,18 @@ function MainMenu:update(dt)
   self.context:update(dt)
   if not self.isProcessingInput then return end
   local input = self.registry:get('input')
+  local sound = self.registry:get('sound')
   if input:pressed('up') then
+    sound:play('click')
     self.context:userInput('up')
   elseif input:pressed('down') then
+    sound:play('click')
     self.context:userInput('down')
   elseif input:pressed('left') then
+    sound:play('click')
     self.context:userInput('left')
   elseif input:pressed('right') then
+    sound:play('click')
     self.context:userInput('right')
   elseif input:pressed('jump') then
     self.context:userInput('trigger')
@@ -108,7 +112,7 @@ end
 
 function MainMenu:draw()
   self.inWorld:draw()
-  self.context:draw()
+  self.context:draw(self.camera.fadeTint)
 end
 
 function MainMenu:onNewGame()
