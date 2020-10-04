@@ -1,5 +1,5 @@
 # Names and things.
-LOVEFILE := surrender.love
+LOVEFILE := platformer.love
 
 # All the dang dirs.
 ASSETS_DIR := assets

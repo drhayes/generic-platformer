@@ -1,8 +1,8 @@
-# surrender
+# Generic Platformer Example
 
-A short game.
+A short game built in [LÖVE][love] built as an example.
 
-## Ideas
+## Overview
 
-* Sprites sort by layer on add.
-* Track layers as key-value map, `{ player = 100, harm = 200 }` like that. Sprites know what layer they're supposed to be on.
+
+[love]: https://love2d.org/

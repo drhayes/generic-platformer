@@ -26,7 +26,7 @@ local Camera = require 'core.camera'
 function love.load()
   log.level = 'debug' -- luacheck: ignore
 
-  log.info('Starting Surrender...')
+  log.info('Starting ' .. config.title .. '...')
 
   -- Figure out a sensible windowFactor based on screen resolution.
   local _, _, flags = love.window.getMode()
@@ -78,5 +78,5 @@ end
 
 function love.quit()
   lily.quit()
-  log.info('Quitting Surrender. Have a day.')
+  log.info('Quitting '.. config.title .. '. Have a day.')
 end
