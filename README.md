@@ -5,6 +5,7 @@ A short game built in [LÖVE][love] built as an example.
 <!-- MarkdownTOC autolink="true" -->
 
 - [Gameplay](#gameplay)
+- [Screenshots](#screenshots)
 - [Overview](#overview)
   - [Game Fundamentals](#game-fundamentals)
   - [Squeak Fundamentals](#squeak-fundamentals)
@@ -31,6 +32,12 @@ The game is drop-dead simple. There's a main menu. Selecting "New Game" starts t
 There's no end. Just quit.
 
 Controls are WASD, arrow keys, and gamepad. Jump might be the spacebar or a gamepad button. The "action" key is Z or a different gamepad button.
+
+## Screenshots
+
+![Main menu screenshot](screenshots/2020-10-05-10h-29m-19s.png)
+
+![Gameplay from first level](screenshots/2020-10-05-10h-29m-31s.png)
 
 ## Overview
 
@@ -318,3 +325,4 @@ When constructed, the `Context` will create a `Frame` instance and set it as the
 [bagLayout]: src/ui/bagLayout.lua
 [fillLayout]: src/ui/fillLayout.lua
 [main]: src/main.lua
+[screenshots/2020-10-05-10h-29m-19s.png]:

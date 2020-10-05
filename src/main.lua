@@ -76,6 +76,15 @@ function love.update(dt)
   sceneManager:update(dt)
 end
 
+function love.keypressed(key, scancode, isRepeat)
+  if key == 'f10' then
+    love.graphics.captureScreenshot(os.date('%Y-%m-%d-%Hh-%Mm-%Ss.png')) -- luacheck: ignore
+  elseif key == 'f9' then
+    love.system.openURL('file://'..love.filesystem.getSaveDirectory())
+  end
+end
+
+
 function love.quit()
   lily.quit()
   log.info('Quitting '.. config.title .. '. Have a day.')
