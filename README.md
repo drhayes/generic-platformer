@@ -30,6 +30,8 @@ The game is drop-dead simple. There's a main menu. Selecting "New Game" starts t
 
 There's no end. Just quit.
 
+Controls are WASD, arrow keys, and gamepad. Jump might be the spacebar or a gamepad button. The "action" key is Z or a different gamepad button.
+
 ## Overview
 
 I feel like this is a good starting point for a LÖVE game. If you disagree, please open an issue and explain why and hopefully I'll learn something in the process.
